@@ -37,7 +37,7 @@ func (u Character) DisplayClass() {
 }
 
 func (u *Character) RecupInfoClass() {
-	fmt.Println("choisisir un pseudo : ")
+	fmt.Println("\n choisisir un classe : ")
 	fmt.Scanln(&u.Classe) 
 	u.DisplayClass()
 
