@@ -52,5 +52,9 @@ func (u *Character) RecupInfoClass() {
 	if ClasseSelection == 4 {
 		u.Classe = "Wakanda"
 	}
+	if ClasseSelection > 4 || ClasseSelection < 0 {
+		fmt.Println("ce n'est pas une option disponible")
+		u.RecupInfoClass()
+	}
 	u.DisplayClass()
 }
