@@ -6,10 +6,8 @@ type Character struct {
 
 Nom string 
 Classe string 
+vieactuelle int 
 Niveau int 
-Viemax int 
-Vieactuelle int 
-Inventaire int   
 }
 
 func main() {
