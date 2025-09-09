@@ -37,8 +37,20 @@ func (u Character) DisplayClass() {
 }
 
 func (u *Character) RecupInfoClass() {
-	fmt.Println("\n choisisir un classe : ")
-	fmt.Scanln(&u.Classe) 
+	var ClasseSelection int
+	fmt.Println("\n choisisir un classe :\n 1.Kryptonien \n 2.Bat family \n 3.Hulk \n 4.Wakanda")
+	fmt.Scanln(&ClasseSelection)
+	if ClasseSelection == 1 {
+		u.Classe = "Kryptonien"
+	}
+	if ClasseSelection == 2 {
+		u.Classe = "Bat family"
+	}
+	if ClasseSelection == 3 {
+		u.Classe = "Hulk"
+	}
+	if ClasseSelection == 4 {
+		u.Classe = "Wakanda"
+	}
 	u.DisplayClass()
-
 }
