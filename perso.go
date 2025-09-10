@@ -33,7 +33,7 @@ func (u Character) DisplayName() {
 func (u *Character) RecupInfoName() {
 	fmt.Print("\033[H\033[2J")
 	fmt.Print("choisisir un pseudo : ")
-	fmt.Scanln(&u.Nom)
+	fmt.Scan(&u.Nom)
 	u.DisplayName()
 }
 
@@ -49,7 +49,7 @@ func (u *Character) RecupInfoClass() {
 		ClasseSelection = 0
 		fmt.Print("\033[H\033[2J")
 		fmt.Println("\n choisisir une classe :\n 1.Kryptonien \n 2.Bat family \n 3.Hulk \n 4.Wakanda")
-		fmt.Scanln(&ClasseSelection)
+		fmt.Scan(&ClasseSelection)
 		if ClasseSelection == 1 {
 			u.Classe = "Kryptonien"
 			fmt.Print("\033[H\033[2J")
@@ -141,10 +141,10 @@ func (u *Character) RecupInfoClass() {
 				
 		}
 	}
-		if ClasseSelection > 4 || ClasseSelection < 0 {
-			fmt.Print("ce n'est pas une option disponible")
-			u.RecupInfoClass()
-		}
-
 }
 
+func DisplayInfo(u Character) {
+	var joueur Character 
+	fmt.Print("infos perso : \n")
+	fmt.Print("Pseudo : ", joueur.Nom, "\n Casse : ", joueur.Classe, "\n Niveau : ", joueur.Niveau, "\n Vie : ", joueur.vieactuelle, "/", joueur.Viemax, "\n Compétences : ", joueur.Capacity, "\n Faiblaisses : ", joueur.Faiblaisse  )
+}

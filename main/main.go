@@ -2,15 +2,10 @@ package main
 
 import (
 	"personnage"
+	"personnage/menu"
 )
 
-type Character struct {
-	Nom         string
-	Classe      string
-	vieactuelle int
-	Niveau      int
-}
-
-func main() {
+func main() {	
 	personnage.CharacterCreation()
+	menu.MenuGeneral()
 }
