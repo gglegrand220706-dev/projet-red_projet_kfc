@@ -1,4 +1,4 @@
-package main
+package personnage
 
 import "fmt"
 
@@ -10,7 +10,7 @@ vieactuelle int
 Niveau int 
 }
 
-func main() {
+func CharacterCreation() {
 	var joueur Character
 	joueur.RecupInfoName()
 	var classe Character
