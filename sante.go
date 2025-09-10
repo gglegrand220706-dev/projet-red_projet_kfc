@@ -1,8 +1,4 @@
-package personnage 
+package personnage
 
-
-func Vie(){
-
-
-	
+func Vie() {
 }

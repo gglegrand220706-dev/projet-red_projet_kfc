@@ -2,12 +2,19 @@ package personnage
 
 import "fmt"
 
-type Character struct {
 
-Nom string 
-Classe string 
-vieactuelle int 
-Niveau int 
+type Character struct {
+	Nom         string
+	Classe      string
+	vieactuelle int
+	Niveau      int
+	Viemax       int
+	Inventaire   int
+	Puissance    int
+	Faiblaisse   []string
+	Agilite      int
+	Intelligence int
+	Capacity     []string
 }
 
 func CharacterCreation() {
@@ -18,41 +25,126 @@ func CharacterCreation() {
 }
 
 func (u Character) DisplayName() {
+	fmt.Print("\033[H\033[2J")
 	fmt.Printf("votre pseudo est donc: " + u.Nom)
 }
 
-
-
 func (u *Character) RecupInfoName() {
+	fmt.Print("\033[H\033[2J")
 	fmt.Println("choisisir un pseudo : ")
-	fmt.Scanln(&u.Nom) 
+	fmt.Scanln(&u.Nom)
 	u.DisplayName()
-
 }
 
-func (u Character) DisplayClass() {
-	fmt.Printf("votre classe est donc: " + u.Classe)
+func (u Character) DisplayPlayerClass() {
+	fmt.Print("\033[H\033[2J")
+	fmt.Printf("votre classe est donc: ", u.Classe)
 }
 
 func (u *Character) RecupInfoClass() {
+	var Confirme int = 0
 	var ClasseSelection int
-	fmt.Println("\n choisisir un classe :\n 1.Kryptonien \n 2.Bat family \n 3.Hulk \n 4.Wakanda")
+	fmt.Print("\033[H\033[2J")
+	fmt.Println("\n choisisir une classe :\n 1.Kryptonien \n 2.Bat family \n 3.Hulk \n 4.Wakanda")
 	fmt.Scanln(&ClasseSelection)
 	if ClasseSelection == 1 {
 		u.Classe = "Kryptonien"
-	}
+		fmt.Print("\033[H\033[2J")
+		fmt.Println("voulez vous choisire ", u.Classe, " comme classe ? \n")
+		fmt.Println("Vie max : ", Kryptonien1.Viemax, "\n Inventaire : ", Kryptonien1.Inventaire, "\n Puissance : ", Kryptonien1.Puissance, "\n Faiblaisse : ", Kryptonien1.Faiblaisse, "\n Agilite : ", Kryptonien1.Agilite, "\n Intelligence : ", Kryptonien1.Intelligence, "\n Capacity : ", Kryptonien1.Capacity, "\n")
+		fmt.Println("êtes-vous sur ?\n 1. oui \n 2. non")
+		fmt.Scan(&Confirme)
+		if Confirme == 1 {
+			u.Viemax = Kryptonien1.Viemax
+			u.Inventaire = Kryptonien1.Inventaire
+			u.Puissance = Kryptonien1.Puissance
+			u.Faiblaisse = Kryptonien1.Faiblaisse
+			u.Agilite = Kryptonien1.Agilite
+			u.Intelligence = Kryptonien1.Intelligence
+			u.Capacity = Kryptonien1.Capacity
+			u.DisplayPlayerClass()
+		}	
+		if	Confirme == 2 {
+			fmt.Print("\033[H\033[2J")
+			u.RecupInfoClass()
+		}
+	
+		}
+
 	if ClasseSelection == 2 {
 		u.Classe = "Bat family"
+		fmt.Print("\033[H\033[2J")
+		fmt.Println("voulez vous choisire %v, comme classe ? \n", u.Classe)
+		fmt.Println("Vie max : ", BatFamily1.Viemax, "\n Inventaire : ", BatFamily1.Inventaire, "\n Puissance : ", BatFamily1.Puissance, "\n Agilite : ", BatFamily1.Agilite, "\n Intelligence : ", BatFamily1.Intelligence, "\n Capacity : ", BatFamily1.Capacity, "\n")
+		fmt.Println("êtes-vous sur ?\n 1. oui \n 2. non")
+		fmt.Scan(&Confirme)
+		if Confirme == 1 {
+			u.Viemax = BatFamily1.Viemax
+			u.Inventaire = BatFamily1.Inventaire
+			u.Puissance = BatFamily1.Puissance
+			u.Agilite = BatFamily1.Agilite
+			u.Intelligence = BatFamily1.Intelligence
+			u.Capacity = BatFamily1.Capacity
+			u.DisplayPlayerClass()
+		}
+		if	Confirme == 2 {
+			fmt.Print("\033[H\033[2J")
+			u.RecupInfoClass()
+		}
+			
+		
 	}
+
 	if ClasseSelection == 3 {
 		u.Classe = "Hulk"
+		fmt.Print("\033[H\033[2J")
+		fmt.Println("voulez vous choisire %v, comme classe ? \n", u.Classe)
+		fmt.Println("Vie max : ", Hulk1.Viemax, "\n Inventaire : ", Hulk1.Inventaire, "\n Puissance : ", Hulk1.Puissance, "\n Faiblaisse : ", Hulk1.Faiblaisse, "\n Agilite : ", Hulk1.Agilite, "\n Intelligence : ", Hulk1.Intelligence, "\n Capacity : ",Hulk1.Capacity, "\n")
+		fmt.Println("êtes-vous sur ?\n 1. oui \n 2. non")
+		fmt.Scan(&Confirme)
+		if Confirme == 1 {
+			u.Viemax = Hulk1.Viemax
+			u.Inventaire = Hulk1.Inventaire
+			u.Puissance = Hulk1.Puissance
+			u.Faiblaisse = Hulk1.Faiblaisse
+			u.Agilite = Hulk1.Agilite
+			u.Intelligence = Hulk1.Intelligence
+			u.Capacity = Hulk1.Capacity
+			u.DisplayPlayerClass()
+		}
+		if Confirme == 2 {
+			fmt.Print("\033[H\033[2J")
+			u.RecupInfoClass()
+		}
 	}
+
 	if ClasseSelection == 4 {
 		u.Classe = "Wakanda"
+		fmt.Print("\033[H\033[2J")
+		fmt.Println("voulez vous choisire %v, comme classe ? \n", u.Classe)
+		fmt.Println("Vie max : ", Wakanda1.Viemax, "\n Inventaire : ", Wakanda1.Inventaire, "\n Puissance : ", Wakanda1.Puissance, "\n Faiblaisse : ", Wakanda1.Faiblaisse, "\n Agilite : ", Wakanda1.Agilite, "\n Intelligence : ", Wakanda1.Intelligence, "\n Capacity : ",Wakanda1.Capacity, "\n")
+		fmt.Println("êtes-vous sur ?\n 1. oui \n 2. non")
+		fmt.Scan(&Confirme)
+		if Confirme == 1 {
+			u.Viemax = Wakanda1.Viemax
+			u.Inventaire = Wakanda1.Inventaire
+			u.Puissance = Wakanda1.Puissance
+			u.Faiblaisse = Wakanda1.Faiblaisse
+			u.Agilite = Wakanda1.Agilite
+			u.Intelligence = Wakanda1.Intelligence
+			u.Capacity = Wakanda1.Capacity
+			u.DisplayPlayerClass()
+		}
+		if Confirme == 2 {
+			fmt.Print("\033[H\033[2J")
+			u.RecupInfoClass()
+		}
+			
 	}
+
 	if ClasseSelection > 4 || ClasseSelection < 0 {
 		fmt.Println("ce n'est pas une option disponible")
 		u.RecupInfoClass()
 	}
-	u.DisplayClass()
+	u.DisplayPlayerClass()
 }
