@@ -24,6 +24,7 @@ func MenuGeneral() {
 	}
 	if selection == 4 {
 		fmt.Print("\033[H\033[2J")
+		personnage.AtackSysteme()
 	}
 	if selection > 4 || selection <= 0 {
 		fmt.Print("\033[H\033[2J")
