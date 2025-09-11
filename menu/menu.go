@@ -8,7 +8,7 @@ import (
 func MenuGeneral() {
 	var selection int
 	fmt.Print("\033[H\033[2J")
-	fmt.Print("          TeKnologia          \n")
+	fmt.Print("          TeKnologia : Battle World         \n")
 	fmt.Print("Options\n")
 	fmt.Print("1. Base de donnees\n 2. Boutique\n 3. Entrainement\n 4. Quete\n")
 	fmt.Scan(&selection)
@@ -73,12 +73,17 @@ func MenuShop() {
 	fmt.Scan(&selection)
 	if selection == 1 {
 		fmt.Print("\033[H\033[2J")
-		fmt.Print("                      Quelle potion voulez vous acheter\n")
-		personnage.Shop()
-		MenuDataBase()
+		fmt.Print("          BOUTIQUE          \n")
+		fmt.Print("Quelle potion voulez vous acheter\n")
+		personnage.ShopPotion()
+		RetourMenu()
 	}
 	if selection == 2 {
 		fmt.Print("\033[H\033[2J")
+		fmt.Print("          BOUTIQUE          \n")
+		fmt.Print("Quelle arme voulez vous acheter\n")
+		personnage.ShopArmes()
+		RetourMenu()
 	}
 	if selection == 3 {
 		fmt.Print("\033[H\033[2J")
@@ -102,5 +107,5 @@ func RetourMenu() {
 	if Retour == 1 {
 		MenuGeneral()
 	}
-	
+
 }
