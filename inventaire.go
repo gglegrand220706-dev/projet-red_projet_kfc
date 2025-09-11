@@ -3,12 +3,13 @@ package personnage
 import "fmt"
 
 type Potions struct {
-	name string
+	Name string
 	Nb int
+	Prix int
 }
 
-var Potions01 = Potions{"Potion de vie", 0}
-var Potions02 = Potions{"Potions de dégas", 0}
+var Potions01 = Potions{"Potion de vie", 0, 20}
+var Potions02 = Potions{"Potions de dégas", 0, 20}
 
 type Armes struct {
 	Name string
@@ -28,7 +29,7 @@ var Armures01 = Armures{"armure d'entraînment", false, 0.15}
 
 func DisplayInventory() {
 	fmt.Print("             invetaire             \n")
-	fmt.Print("-", Potions01.name, " x ", Potions01.Nb, "\n","-", Potions02.name, " x ", Potions02.Nb, "\n")
+	fmt.Print("-", Potions01.Name, " x ", Potions01.Nb, "\n","-", Potions02.Name, " x ", Potions02.Nb, "\n")
 	if Arme01.Possède == true {
 		fmt.Print("-", Arme01.Name)
 	}

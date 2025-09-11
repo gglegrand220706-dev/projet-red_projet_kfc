@@ -18,6 +18,7 @@ func MenuGeneral() {
 	}
 	if selection == 2 {
 		fmt.Print("\033[H\033[2J")
+		MenuShop()
 	}
 	if selection == 3 {
 		fmt.Print("\033[H\033[2J")
@@ -72,6 +73,9 @@ func MenuShop() {
 	fmt.Scan(&selection)
 	if selection == 1 {
 		fmt.Print("\033[H\033[2J")
+		fmt.Print("                      Quelle potion voulez vous acheter\n")
+		personnage.Shop()
+		MenuDataBase()
 	}
 	if selection == 2 {
 		fmt.Print("\033[H\033[2J")

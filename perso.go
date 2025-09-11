@@ -7,7 +7,8 @@ import "fmt"
 type Character struct {
 	Nom         string
 	Classe      string
-	vieactuelle int
+	Vieactuelle int
+	Bourse 		int
 	Niveau      int
 	Viemax       int
 	Inventaire   int
@@ -18,11 +19,11 @@ type Character struct {
 	Capacity     []string
 }
 
-var joueur Character
+var Joueur Character
 
 func CharacterCreation() {
-	joueur.RecupInfoName()
-	joueur.RecupInfoClass()
+	Joueur.RecupInfoName()
+	Joueur.RecupInfoClass()
 }
 
 func (u Character) DisplayName() {
@@ -59,7 +60,7 @@ func (u *Character) RecupInfoClass() {
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
 				u.Viemax = Kryptonien1.Viemax
-				u.vieactuelle = u.Viemax
+				u.Vieactuelle = u.Viemax
 				u.Inventaire = Kryptonien1.Inventaire
 				u.Puissance = Kryptonien1.Puissance
 				u.Faiblaisse = Kryptonien1.Faiblaisse
@@ -83,7 +84,8 @@ func (u *Character) RecupInfoClass() {
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
 				u.Viemax = BatFamily1.Viemax
-				u.vieactuelle = u.Viemax
+				u.Vieactuelle = u.Viemax
+				u.Bourse = 100
 				u.Inventaire = BatFamily1.Inventaire
 				u.Puissance = BatFamily1.Puissance
 				u.Agilite = BatFamily1.Agilite
@@ -107,7 +109,7 @@ func (u *Character) RecupInfoClass() {
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
 				u.Viemax = Hulk1.Viemax
-				u.vieactuelle = u.Viemax
+				u.Vieactuelle = u.Viemax
 				u.Inventaire = Hulk1.Inventaire
 				u.Puissance = Hulk1.Puissance
 				u.Faiblaisse = Hulk1.Faiblaisse
@@ -130,7 +132,7 @@ func (u *Character) RecupInfoClass() {
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
 				u.Viemax = Wakanda1.Viemax
-				u.vieactuelle = u.Viemax
+				u.Vieactuelle = u.Viemax
 				u.Inventaire = Wakanda1.Inventaire
 				u.Puissance = Wakanda1.Puissance
 				u.Faiblaisse = Wakanda1.Faiblaisse
@@ -149,5 +151,5 @@ func (u *Character) RecupInfoClass() {
 
 func DisplayInfo() {
 	fmt.Print("infos perso : \n")
-	fmt.Print("Pseudo : ", joueur.Nom, "\n Casse : ", joueur.Classe, "\n Niveau : ", joueur.Niveau, "\n Vie : ", joueur.vieactuelle, "/", joueur.Viemax, "\n Compétences : ", joueur.Capacity, "\n Faiblaisses : ", joueur.Faiblaisse  )
+	fmt.Print("Pseudo : ", Joueur.Nom, "\n Casse : ", Joueur.Classe, "\n Niveau : ", Joueur.Niveau, "\n Vie : ", Joueur.Vieactuelle, "/", Joueur.Viemax, "\n Compétences : ", Joueur.Capacity, "\n Faiblaisses : ", Joueur.Faiblaisse  )
 }
