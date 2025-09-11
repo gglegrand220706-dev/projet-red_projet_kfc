@@ -27,12 +27,12 @@ func CharacterCreation() {
 
 func (u Character) DisplayName() {
 	fmt.Print("\033[H\033[2J")
-	fmt.Print("votre pseudo est donc: " + u.Nom)
+	fmt.Print("\033[33mvotre pseudo est donc -->\033[0m" + u.Nom)
 }
 
 func (u *Character) RecupInfoName() {
 	fmt.Print("\033[H\033[2J")
-	fmt.Print("choisisir un pseudo : ")
+	fmt.Print("\033[33mChoissiser votre pseudo -->\033[0m")
 	fmt.Scan(&u.Nom)
 	u.DisplayName()
 }
@@ -48,7 +48,7 @@ func (u *Character) RecupInfoClass() {
 	for Confirme != 1 {
 		ClasseSelection = 0
 		fmt.Print("\033[H\033[2J")
-		fmt.Println("\n choisisir une classe :\n 1.Kryptonien \n 2.Bat family \n 3.Hulk \n 4.Wakanda")
+		fmt.Println("\033[33mChoissiser votre classe :\033[0m\n\033[31m\033[0m\033[33m1-->\033[0m\033[31m Kryptonien\033[0m\n\033[31m\033[0m\033[33m2-->\033[0m\033[31m Bat family\033[0m\n\033[31m\033[0m\033[33m3-->\033[0m\033[31m Hulk\n\033[31m\033[0m\033[33m4-->\033[0m\033[31m Wakanda\033[0m")
 		fmt.Scan(&ClasseSelection)
 		if ClasseSelection == 1 {
 			u.Classe = "Kryptonien"
