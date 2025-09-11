@@ -49,13 +49,13 @@ func (u *Character) RecupInfoClass() {
 	for Confirme != 1 {
 		ClasseSelection = 0
 		fmt.Print("\033[H\033[2J")
-		fmt.Println("\033[33mChoissiser votre classe :\033[0m\n\033[31m\033[0m\033[33m1-->\033[0m\033[31m Kryptonien\033[0m\n\033[31m\033[0m\033[33m2-->\033[0m\033[31m Bat family\033[0m\n\033[31m\033[0m\033[33m3-->\033[0m\033[31m Hulk\n\033[31m\033[0m\033[33m4-->\033[0m\033[31m Wakanda\033[0m")
+		fmt.Println("\033[33m\033[33mChoissiser votre classe :\033[0m\033[0m\n\033[31m\033[0m\033[33m1-->\033[0m\033[34m Kryptonien\033[0m\n\033[31m\033[0m\033[33m2-->\033[0m\033[90m Bat family\033[0m\n\033[31m\033[0m\033[33m3-->\033[0m\033[92m Hulk\n\033[31m\033[0m\033[33m4-->\033[0m\033[95m Wakanda\033[0m")
 		fmt.Scan(&ClasseSelection)
 		if ClasseSelection == 1 {
-			u.Classe = "Kryptonien"
+			u.Classe = "\033[34m Kryptonien\033[0m"
 			fmt.Print("\033[H\033[2J")
-			fmt.Print("voulez vous choisire ", u.Classe, " comme classe ? \n")
-			fmt.Print("Vie max : ", Kryptonien1.Viemax, "\n Inventaire : ", Kryptonien1.Inventaire, "\n Puissance : ", Kryptonien1.Puissance, "\n Faiblaisse : ", Kryptonien1.Faiblaisse, "\n Agilite : ", Kryptonien1.Agilite, "\n Intelligence : ", Kryptonien1.Intelligence, "\n Capacity : ", Kryptonien1.Capacity, "\n")
+			fmt.Print("\033[33mvoulez vous choisir -->",u.Classe,"\033[0m comme classe ? \n")
+			fmt.Print("\033[33m Vie max -->\0330\033[32m ",Kryptonien1.Viemax,"\033[0m\n \033[33mInventaire -->\033[0m \033[32m ",Kryptonien1.Inventaire,"\033[0m\n \033[33mPuissance -->\033[0m \033[32m ",Kryptonien1.Puissance,"\033[0m \n \033[33mFaiblaisse -->\033[0m\033[32m ",Kryptonien1.Faiblaisse,"\033[0m \n \033[33mAgilite -->\033[0m\033[32m ",Kryptonien1.Agilite,"\033[0m\n\033[33m Intelligence -->\033[0m \033[32m ",Kryptonien1.Intelligence,"\033[0m\n\033[33m Capacity -->\033[0m \033[32m ",Kryptonien1.Capacity,"\033[0m \n")
 			fmt.Print("êtes-vous sur ?\n 1. oui \n 2. non \n")
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
