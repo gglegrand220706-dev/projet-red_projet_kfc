@@ -85,7 +85,7 @@ func (u *Character) RecupInfoClass() {
 			if Confirme == 1 {
 				u.Viemax = BatFamily1.Viemax
 				u.Vieactuelle = u.Viemax
-				u.Bourse = 100
+				u.Bourse = 2000
 				u.Inventaire = BatFamily1.Inventaire
 				u.Puissance = BatFamily1.Puissance
 				u.Agilite = BatFamily1.Agilite

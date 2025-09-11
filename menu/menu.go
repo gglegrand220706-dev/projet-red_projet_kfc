@@ -87,6 +87,10 @@ func MenuShop() {
 	}
 	if selection == 3 {
 		fmt.Print("\033[H\033[2J")
+		fmt.Print("          BOUTIQUE          \n")
+		fmt.Print("Quelle armure voulez vous acheter\n")
+		personnage.ShopArmures() 
+		RetourMenu()
 	}
 	if selection == 4 {
 		fmt.Print("\033[H\033[2J")
