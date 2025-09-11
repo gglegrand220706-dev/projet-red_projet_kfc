@@ -13,9 +13,8 @@ func MenuGeneral() {
 	fmt.Print("1. Base de donnees\n 2. Boutique\n 3. Entrainement\n 4. Quete\n")
 	fmt.Scan(&selection)
 	if selection == 1 {
-		var joueur personnage.Character
 		fmt.Print("\033[H\033[2J")
-		personnage.DisplayInfo(joueur)
+		personnage.DisplayInfo()
 	}
 	if selection == 2 {
 		fmt.Print("\033[H\033[2J")

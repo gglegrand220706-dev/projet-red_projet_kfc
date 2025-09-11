@@ -18,11 +18,11 @@ type Character struct {
 	Capacity     []string
 }
 
+var joueur Character
+
 func CharacterCreation() {
-	var joueur Character
 	joueur.RecupInfoName()
-	var classe Character
-	classe.RecupInfoClass()
+	joueur.RecupInfoClass()
 }
 
 func (u Character) DisplayName() {
@@ -59,6 +59,7 @@ func (u *Character) RecupInfoClass() {
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
 				u.Viemax = Kryptonien1.Viemax
+				u.vieactuelle = u.Viemax
 				u.Inventaire = Kryptonien1.Inventaire
 				u.Puissance = Kryptonien1.Puissance
 				u.Faiblaisse = Kryptonien1.Faiblaisse
@@ -82,6 +83,7 @@ func (u *Character) RecupInfoClass() {
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
 				u.Viemax = BatFamily1.Viemax
+				u.vieactuelle = u.Viemax
 				u.Inventaire = BatFamily1.Inventaire
 				u.Puissance = BatFamily1.Puissance
 				u.Agilite = BatFamily1.Agilite
@@ -105,6 +107,7 @@ func (u *Character) RecupInfoClass() {
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
 				u.Viemax = Hulk1.Viemax
+				u.vieactuelle = u.Viemax
 				u.Inventaire = Hulk1.Inventaire
 				u.Puissance = Hulk1.Puissance
 				u.Faiblaisse = Hulk1.Faiblaisse
@@ -127,6 +130,7 @@ func (u *Character) RecupInfoClass() {
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
 				u.Viemax = Wakanda1.Viemax
+				u.vieactuelle = u.Viemax
 				u.Inventaire = Wakanda1.Inventaire
 				u.Puissance = Wakanda1.Puissance
 				u.Faiblaisse = Wakanda1.Faiblaisse
@@ -143,8 +147,7 @@ func (u *Character) RecupInfoClass() {
 	}
 }
 
-func DisplayInfo(u Character) {
-	var joueur Character 
+func DisplayInfo() {
 	fmt.Print("infos perso : \n")
 	fmt.Print("Pseudo : ", joueur.Nom, "\n Casse : ", joueur.Classe, "\n Niveau : ", joueur.Niveau, "\n Vie : ", joueur.vieactuelle, "/", joueur.Viemax, "\n Compétences : ", joueur.Capacity, "\n Faiblaisses : ", joueur.Faiblaisse  )
 }
