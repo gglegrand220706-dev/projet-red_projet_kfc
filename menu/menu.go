@@ -14,7 +14,7 @@ func MenuGeneral() {
 	fmt.Scan(&selection)
 	if selection == 1 {
 		fmt.Print("\033[H\033[2J")
-		personnage.DisplayInfo()
+		MenuDataBase()
 	}
 	if selection == 2 {
 		fmt.Print("\033[H\033[2J")
@@ -38,14 +38,17 @@ func MenuDataBase() {
 	fmt.Print("\033[H\033[2J")
 	fmt.Print("          BASE DE DONNEES          \n")
 	fmt.Print("Options\n")
-	fmt.Print("1. Fiche du personnage\n 2. Inventaire\n 3. Retour")
+	fmt.Print("1. Fiche du personnage\n 2. Inventaire\n 3. Retour\n")
 	fmt.Scan(&selection)
 
 	if selection == 1 {
-		fmt.Print("\033[H\033[2J")
+		personnage.DisplayInfo()
+		RetourMenu()
 	}
 	if selection == 2 {
 		fmt.Print("\033[H\033[2J")
+		personnage.DisplayInventory()
+		RetourMenu()
 	}
 	if selection == 3 {
 		fmt.Print("\033[H\033[2J")
@@ -85,4 +88,14 @@ func MenuShop() {
 		MenuGeneral()
 
 	}
+}
+
+func RetourMenu() {
+	var Retour int
+	fmt.Print("appuyer sur 1 pour retourner au menue ")
+	fmt.Scan(&Retour)
+	if Retour == 1 {
+		MenuGeneral()
+	}
+	
 }

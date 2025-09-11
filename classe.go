@@ -56,4 +56,4 @@ type Wakandais struct {
 	Capacity     []string
 }
 
-var Wakanda1 = Wakandais{15, 13, 20, []string{"emp,"}, 30, 40, []string{"Assimilation des coups pour renvoie synetique"}}
+var Wakanda1 = Wakandais{15, 13, 20, []string{"emp"}, 30, 40, []string{"Assimilation des coups pour renvoie synetique"}}
