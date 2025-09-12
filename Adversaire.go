@@ -12,6 +12,7 @@ type Adversery struct {
 	CapacityDisplay     []string
 	Attaques 			[]Attaques
 	GivenExp			int
+	GivenMoney			int
 }
 
-var Adversery01 = Adversery{"entrîneur : kentino", 10, 10, 10, 50, []string{}, 50, 50, []string{"coup de point bousté, proute brumisateur, lancé de casquet"}, []Attaques{AttaqueBasique01, AttaqueBasique02, AttaqueBasique03, AttaqueBasique04}, 20}
+var Adversery01 = Adversery{"entrîneur : kentino", 50, 50, 10, 50, []string{}, 50, 50, []string{"coup de point bousté, proute brumisateur, lancé de casquet"}, []Attaques{AttaqueBasique01, AttaqueBasique02, AttaqueBasique03, AttaqueBasique04}, 20, 20}

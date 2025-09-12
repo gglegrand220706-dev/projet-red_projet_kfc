@@ -94,3 +94,7 @@ func ShopArmures() {
 	}
 
 }
+
+func BourseReward() {
+	Joueur.Bourse += Adversery01.GivenMoney
+}

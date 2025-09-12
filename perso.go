@@ -157,5 +157,5 @@ func (u *Character) RecupInfoClass() {
 
 func DisplayInfo() {
 	fmt.Print("infos perso : \n")
-	fmt.Print("Pseudo : ", Joueur.Nom, "\n Casse : ", Joueur.Classe, "\n Niveau : ", Joueur.Niveau, "\n Vie : ", Joueur.Vieactuelle, "/", Joueur.Viemax, "\n Compétences : ", Joueur.CapacityClasseDisplay, "\n Faiblaisses : ", Joueur.Faiblaisse  )
+	fmt.Print("Pseudo : ", Joueur.Nom, "\n Casse : ", Joueur.Classe, "\n Niveau : ", Joueur.Niveau, "\n Exp : ", Joueur.EXP, "/", Joueur.ExpNextLevel, "\n Vie : ", Joueur.Vieactuelle, "/", Joueur.Viemax, "\n Compétences : ", Joueur.CapacityClasseDisplay, "\n Faiblaisses : ", Joueur.Faiblaisse)
 }

@@ -22,19 +22,21 @@ func MenuGeneral() {
 	}
 	if selection == 3 {
 		fmt.Print("\033[H\033[2J")
+		personnage.Adversery01.Vieactuelle = personnage.Adversery01.Viemax
 		DisplayAtack()
-		for personnage.Joueur.Vieactuelle >= 0 || personnage.Adversery01.Vieactuelle >= 0 {
-			personnage.AtackSystème()
-			personnage.Response()
-			DisplayAtack()
+		for personnage.Joueur.Vieactuelle > 0 && personnage.Adversery01.Vieactuelle > 0 {
+				personnage.AtackSystème()
+				personnage.Response()
+				DisplayAtack()
+			}
 			if personnage.Joueur.Vieactuelle <= 0 {
 				IsDead()
 			}
 			if personnage.Adversery01.Vieactuelle <= 0{
 				personnage.AddExp()
+				RetourMenu()
+				personnage.BourseReward() 
 			}
-		}
-		
 	}
 	if selection == 4 {
 		fmt.Print("\033[H\033[2J")
@@ -119,7 +121,7 @@ func MenuShop() {
 
 func RetourMenu() {
 	var Retour int
-	fmt.Print("appuyer sur 1 pour retourner au menue ")
+	fmt.Print("\nappuyer sur 1 pour retourner au menue ")
 	fmt.Scan(&Retour)
 	if Retour == 1 {
 		MenuGeneral()
@@ -128,18 +130,20 @@ func RetourMenu() {
 }
 
 func DisplayAtack() {
-	var joueur = &personnage.Joueur
-	var AttaquesName = []string{personnage.CoupDePoing.Name, personnage.HighKick.Name, personnage.GutPunch.Name}
-	var i int = 0
-    fmt.Println("Que voulez-vous faire :")
-    for _, cap := range AttaquesName {
-        i++
-		fmt.Printf("%d. %v\n", i+1, cap )	
-    }
-	for _, cap := range joueur.CapacityClasseDisplay {
-		i++
-        fmt.Printf("%d. %v\n", i+1, cap )
-    }
+	if personnage.Joueur.Vieactuelle > 0 && personnage.Adversery01.Vieactuelle > 0 {
+		var joueur = &personnage.Joueur
+		var AttaquesName = []string{personnage.CoupDePoing.Name, personnage.HighKick.Name, personnage.GutPunch.Name}
+		var i int = 0
+    	fmt.Println("\nQue voulez-vous faire :")
+    	for _, cap := range AttaquesName {
+			fmt.Printf("%d. %v\n", i+1, cap )
+			i++	
+    	}
+		for _, cap := range joueur.CapacityClasseDisplay {
+			i++
+        	fmt.Printf("%d. %v\n", i+1, cap )
+    	}
+	}	
 }
 
 func IsDead() {
