@@ -8,4 +8,5 @@ import (
 func main() {	
 	personnage.CharacterCreation()
 	menu.MenuGeneral()
+	personnage.LevelUp()
 }

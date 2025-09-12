@@ -7,10 +7,11 @@ type Kryptonien struct {
 	Faiblaisse   []string
 	Agilite      int
 	Intelligence int
-	Capacity     []string
+	CapacityDisplay     []string
+	Capacity			[]Attaques
 }
 
-var Kryptonien1 = Kryptonien{20, 10, 25, []string{"Crypto,", "magie,", "puissance plus grande"}, 25, 20, []string{"Vole,", "Laser"}}
+var Kryptonien1 = Kryptonien{20, 10, 25, []string{"Crypto,", "magie,", "puissance plus grande"}, 25, 20, []string{"Laser"},  []Attaques{AttaqueLasser}}
 
 type Batfamily struct {
 	Viemax       int
@@ -18,7 +19,7 @@ type Batfamily struct {
 	Puissance    int
 	Agilite      int
 	Intelligence int
-	Capacity     []string
+	CapacityDisplay     []string
 }
 
 var BatFamily1 = Batfamily{10, 15, 10, 35, 50, []string{"Adaptation,", "Gadjet,", "*2EXP"}}
@@ -30,7 +31,7 @@ type Hulk struct {
 	Faiblaisse   []string
 	Agilite      int
 	Intelligence int
-	Capacity     []string
+	CapacityDisplay     []string
 }
 
 var Hulk1 = Hulk{30, 4, 35, []string{"Hypnoses,", "Self Controle,"}, 15, 10, []string{"Clape Sonic,", "Resistance"}}
@@ -41,19 +42,19 @@ type Kantin struct {
 	Puissance    int
 	Agilite      int
 	Intelligence int
-	Capacity     []string
+	CapacityDisplay     []string
 }
 
 var Kantin1 = Kantin{120, 60, 100, 70, 100, []string{"Toutes,", "HO,", "Prout Bruisateurr!!"}}
 
 type Wakandais struct {
-	Viemax       int
-	Inventaire   int
-	Puissance    int
-	Faiblaisse   []string
-	Agilite      int
-	Intelligence int
-	Capacity     []string
+	Viemax       		int
+	Inventaire   		int
+	Puissance    		int
+	Faiblaisse   		[]string
+	Agilite      		int
+	Intelligence 		int
+	CapacityDisplay     []string
 }
 
 var Wakanda1 = Wakandais{15, 13, 20, []string{"emp"}, 30, 40, []string{"Assimilation des coups pour renvoie synetique"}}

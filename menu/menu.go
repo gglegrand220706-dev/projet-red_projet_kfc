@@ -22,10 +22,23 @@ func MenuGeneral() {
 	}
 	if selection == 3 {
 		fmt.Print("\033[H\033[2J")
+		DisplayAtack()
+		for personnage.Joueur.Vieactuelle >= 0 || personnage.Adversery01.Vieactuelle >= 0 {
+			personnage.AtackSystème()
+			personnage.Response()
+			DisplayAtack()
+			if personnage.Joueur.Vieactuelle <= 0 {
+				IsDead()
+			}
+			if personnage.Adversery01.Vieactuelle <= 0{
+				personnage.AddExp()
+			}
+		}
+		
 	}
 	if selection == 4 {
 		fmt.Print("\033[H\033[2J")
-		personnage.AtackSysteme()
+	
 	}
 	if selection > 4 || selection <= 0 {
 		fmt.Print("\033[H\033[2J")
@@ -112,4 +125,26 @@ func RetourMenu() {
 		MenuGeneral()
 	}
 
+}
+
+func DisplayAtack() {
+	var joueur = &personnage.Joueur
+	var AttaquesName = []string{personnage.CoupDePoing.Name, personnage.HighKick.Name, personnage.GutPunch.Name}
+	var i int = 0
+    fmt.Println("Que voulez-vous faire :")
+    for _, cap := range AttaquesName {
+        i++
+		fmt.Printf("%d. %v\n", i+1, cap )	
+    }
+	for _, cap := range joueur.CapacityClasseDisplay {
+		i++
+        fmt.Printf("%d. %v\n", i+1, cap )
+    }
+}
+
+func IsDead() {
+		fmt.Print("Vous êtes mort sale noob")
+		RetourMenu()
+		fmt.Print("vous récussitez avec ", personnage.Joueur.Viemax/2)
+		personnage.Joueur.Vieactuelle = personnage.Joueur.Viemax/2
 }
