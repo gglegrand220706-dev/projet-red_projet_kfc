@@ -8,34 +8,30 @@ import (
 func AtackSystème() {
     if Joueur.Vieactuelle > 0 && Adversery01.Vieactuelle > 0{
         var AttackChoice int
-        var Damges = []int{CoupDePoing.Damage, HighKick.Damage, GutPunch.Damage, AttaqueLasser.Damage}
-        var LandingRate =[]int{int(CoupDePoing.LandingRate), int(HighKick.LandingRate), int(GutPunch.LandingRate), int(AttaqueLasser.LandingRate)}
+        var Attaques = []Attaques{Joueur.Attaques[0], Joueur.Attaques[1], Joueur.Attaques[2], Joueur.Attaques[3]}
         var RandomeRate int
         RandomeRate = rand.Intn(101)
         fmt.Scan(&AttackChoice)
-        if RandomeRate <= LandingRate[AttackChoice - 1] {
-            Adversery01.Vieactuelle -= Damges[AttackChoice -1]
+        if RandomeRate <= int(Attaques[AttackChoice - 1].LandingRate) {
+            Adversery01.Vieactuelle -= Attaques[AttackChoice -1].Damage
             fmt.Print("attaques réussis, vie restante : ", Adversery01.Vieactuelle, "/", Adversery01.Viemax, " pv\n")
         } else {
             fmt.Print("attaque ratée \n")
-        }
-            
+        }    
     }
 }
 
 func Response() {
     if Adversery01.Vieactuelle > 0 && Joueur.Vieactuelle > 0 {
         var ChoiceResponse int
-        var Damages = []int{AttaqueBasique01.Damage, AttaqueBasique02.Damage, AttaqueBasique03.Damage, AttaqueBasique04.Damage}
-        var NameAttaques = []string{AttaqueBasique01.Name, AttaqueBasique02.Name, AttaqueBasique03.Name, AttaqueBasique04.Name}
+        var Attaques = []Attaques{AttaqueBasique01, AttaqueBasique02, AttaqueBasique03, AttaqueBasique04}
         var UsedAttaques string
-        var LandingRate = []int{int(AttaqueBasique01.LandingRate), int(AttaqueBasique02.LandingRate), int(AttaqueBasique03.LandingRate), int(AttaqueBasique04.LandingRate)}
         var RandomeRate int
         ChoiceResponse = rand.Intn(4)
         RandomeRate = rand.Intn(101)
-        if RandomeRate <= LandingRate[ChoiceResponse] {
-            Joueur.Vieactuelle -= Damages[ChoiceResponse]
-            UsedAttaques = NameAttaques[ChoiceResponse]
+        if RandomeRate <= int(Attaques[ChoiceResponse].LandingRate) {
+            Joueur.Vieactuelle -= Attaques[ChoiceResponse].Damage
+            UsedAttaques = Attaques[ChoiceResponse].Name
             fmt.Print("Attaque utilisée : ", UsedAttaques, "\n")
             fmt.Print("vous avez été touché, il vous reste : ", Joueur.Vieactuelle, "/", Joueur.Viemax, " pv\n")
         }else {

@@ -131,24 +131,18 @@ func RetourMenu() {
 
 func DisplayAtack() {
 	if personnage.Joueur.Vieactuelle > 0 && personnage.Adversery01.Vieactuelle > 0 {
-		var joueur = &personnage.Joueur
-		var AttaquesName = []string{personnage.CoupDePoing.Name, personnage.HighKick.Name, personnage.GutPunch.Name}
-		var i int = 0
+		var Attaques = []string{personnage.Joueur.Attaques[0].Name, personnage.Joueur.Attaques[1].Name, personnage.Joueur.Attaques[2].Name, personnage.Joueur.Attaques[3].Name}
     	fmt.Println("\nQue voulez-vous faire :")
-    	for _, cap := range AttaquesName {
+    	for i, cap := range Attaques {
 			fmt.Printf("%d. %v\n", i+1, cap )
 			i++	
-    	}
-		for _, cap := range joueur.CapacityClasseDisplay {
-			i++
-        	fmt.Printf("%d. %v\n", i+1, cap )
     	}
 	}	
 }
 
 func IsDead() {
 		fmt.Print("Vous êtes mort sale noob")
-		RetourMenu()
 		fmt.Print("vous récussitez avec ", personnage.Joueur.Viemax/2)
 		personnage.Joueur.Vieactuelle = personnage.Joueur.Viemax/2
+		RetourMenu()
 }

@@ -11,7 +11,7 @@ func AddExp() {
 	fmt.Print("\nvous avez gagné : ", Adversery01.GivenExp, " EXP")
 	if Joueur.EXP >= Joueur.ExpNextLevel {
 		Joueur.Niveau += 1
-		Joueur.ExpNextLevel = Joueur.Niveau + (10 - Joueur.Niveau) + 10
+		Joueur.ExpNextLevel = Joueur.Niveau*10 +20
 		fmt.Print("\nVous passez niveau ", Joueur.Niveau)
 		Joueur.EXP = 0
 	}

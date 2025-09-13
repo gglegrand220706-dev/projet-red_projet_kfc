@@ -74,6 +74,7 @@ func (u *Character) RecupInfoClass() {
 				u.Intelligence = Kryptonien1.Intelligence
 				u.CapacityClasseDisplay = Kryptonien1.CapacityDisplay
 				u.Capacity = Kryptonien1.Capacity 
+				u.Attaques = append(u.Attaques, Kryptonien1.AttaquesSpé...)
 				u.DisplayPlayerClass()
 			}
 			if Confirme == 2 {
