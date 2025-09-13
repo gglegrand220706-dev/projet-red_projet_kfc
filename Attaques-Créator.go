@@ -12,9 +12,9 @@ var HighKick = Attaques{"Coup pied", 5, 60.5}
 var GutPunch = Attaques{"coup estomac", 8, 50}
 
 var AttaqueBasique01 = Attaques{"coup de dague", 2, 100}
-var AttaqueBasique02 = Attaques{"coup de dague", 3, 100}
-var AttaqueBasique03 = Attaques{"coup de dague", 4, 100}
-var AttaqueBasique04 = Attaques{"coup de dague", 5, 100}
+var AttaqueBasique02 = Attaques{"coup de poing", 3, 100}
+var AttaqueBasique03 = Attaques{"attaque magique", 4, 100}
+var AttaqueBasique04 = Attaques{"pied bouche", 5, 100}
 
 type Capacity struct {
 	Name string

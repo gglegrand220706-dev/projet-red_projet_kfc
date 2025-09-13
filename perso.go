@@ -18,7 +18,9 @@ type Character struct {
 	Intelligence          int
 	CapacityClasseDisplay []string
 	CapacityDisplay       []string
-	Capacity              []Attaques
+	Attaques              []Attaques
+	Capacity			  []Capacity
+
 }
 
 var Joueur Character
@@ -48,7 +50,7 @@ func (u Character) DisplayPlayerClass() {
 func (u *Character) RecupInfoClass() {
 	var Confirme int = 0
 	var ClasseSelection int
-	u.Capacity = []Attaques{HighKick, GutPunch, CoupDePoing}
+	u.Attaques = []Attaques{HighKick, GutPunch, CoupDePoing}
 	u.CapacityDisplay = []string{CoupDePoing.Name, HighKick.Name, GutPunch.Name}
 	for Confirme != 1 {
 		ClasseSelection = 0
@@ -71,6 +73,7 @@ func (u *Character) RecupInfoClass() {
 				u.Agilite = Kryptonien1.Agilite
 				u.Intelligence = Kryptonien1.Intelligence
 				u.CapacityClasseDisplay = Kryptonien1.CapacityDisplay
+				u.Capacity = Kryptonien1.Capacity 
 				u.DisplayPlayerClass()
 			}
 			if Confirme == 2 {
