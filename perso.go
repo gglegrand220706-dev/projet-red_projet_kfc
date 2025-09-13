@@ -2,25 +2,23 @@ package personnage
 
 import "fmt"
 
-
-
 type Character struct {
-	Nom         		string
-	Classe      		string
-	Vieactuelle 		int
-	Bourse 				int
-	Niveau      		int
-	EXP					int
-	ExpNextLevel 		int	
-	Viemax       		int
-	Inventaire   		int
-	Puissance    		int
-	Faiblaisse   		[]string
-	Agilite      		int
-	Intelligence        int
-	CapacityClasseDisplay     []string
-	CapacityDisplay     []string
-	Capacity            []Attaques
+	Nom                   string
+	Classe                string
+	Vieactuelle           int
+	Bourse                int
+	Niveau                int
+	EXP                   int
+	ExpNextLevel          int
+	Viemax                int
+	Inventaire            int
+	Puissance             int
+	Faiblaisse            []string
+	Agilite               int
+	Intelligence          int
+	CapacityClasseDisplay []string
+	CapacityDisplay       []string
+	Capacity              []Attaques
 }
 
 var Joueur Character
@@ -60,8 +58,8 @@ func (u *Character) RecupInfoClass() {
 		if ClasseSelection == 1 {
 			u.Classe = "\033[34m Kryptonien\033[0m"
 			fmt.Print("\033[H\033[2J")
-			fmt.Print("\033[33mvoulez vous choisir --> ",u.Classe," \033[0m comme classe ? \n")
-			fmt.Print("\033[33m Vie max -->\0330\033[32m ",Kryptonien1.Viemax,"\033[0m\n \033[33mInventaire -->\033[0m \033[32m ",Kryptonien1.Inventaire,"\033[0m\n \033[33mPuissance -->\033[0m \033[32m ",Kryptonien1.Puissance,"\033[0m \n \033[33mFaiblaisse -->\033[0m\033[32m ",Kryptonien1.Faiblaisse,"\033[0m \n \033[33mAgilite -->\033[0m\033[32m ",Kryptonien1.Agilite,"\033[0m\n\033[33m Intelligence -->\033[0m \033[32m ",Kryptonien1.Intelligence,"\033[0m\n\033[33m Capacity -->\033[0m \033[32m ",Kryptonien1.CapacityDisplay,"\033[0m \n")
+			fmt.Print("\033[33mvoulez vous choisir --> ", u.Classe, " \033[0m comme classe ? \n")
+			fmt.Print("\033[33m Vie max -->\0330\033[32m ", Kryptonien1.Viemax, "\033[0m\n \033[33mInventaire -->\033[0m \033[32m ", Kryptonien1.Inventaire, "\033[0m\n \033[33mPuissance -->\033[0m \033[32m ", Kryptonien1.Puissance, "\033[0m \n \033[33mFaiblaisse -->\033[0m\033[32m ", Kryptonien1.Faiblaisse, "\033[0m \n \033[33mAgilite -->\033[0m\033[32m ", Kryptonien1.Agilite, "\033[0m\n\033[33m Intelligence -->\033[0m \033[32m ", Kryptonien1.Intelligence, "\033[0m\n\033[33m Capacity -->\033[0m \033[32m ", Kryptonien1.CapacityDisplay, "\033[0m \n")
 			fmt.Print("êtes-vous sur ?\n 1. oui \n 2. non \n")
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
@@ -74,12 +72,12 @@ func (u *Character) RecupInfoClass() {
 				u.Intelligence = Kryptonien1.Intelligence
 				u.CapacityClasseDisplay = Kryptonien1.CapacityDisplay
 				u.DisplayPlayerClass()
-			}	
-			if	Confirme == 2 {
+			}
+			if Confirme == 2 {
 				fmt.Print("\033[H\033[2J")
 			}
-		
-			}
+
+		}
 
 		if ClasseSelection == 2 {
 			u.Classe = "Bat family"
@@ -99,18 +97,17 @@ func (u *Character) RecupInfoClass() {
 				u.CapacityClasseDisplay = BatFamily1.CapacityDisplay
 				u.DisplayPlayerClass()
 			}
-			if	Confirme == 2 {
+			if Confirme == 2 {
 				fmt.Print("\033[H\033[2J")
 			}
-				
-			
+
 		}
 
 		if ClasseSelection == 3 {
 			u.Classe = "Hulk"
 			fmt.Print("\033[H\033[2J")
 			fmt.Print("voulez vous choisire ", u.Classe, " comme classe ? \n", u.Classe)
-			fmt.Print("Vie max : ", Hulk1.Viemax, "\n Inventaire : ", Hulk1.Inventaire, "\n Puissance : ", Hulk1.Puissance, "\n Faiblaisse : ", Hulk1.Faiblaisse, "\n Agilite : ", Hulk1.Agilite, "\n Intelligence : ", Hulk1.Intelligence, "\n Capacity : ",Hulk1.CapacityDisplay, "\n")
+			fmt.Print("Vie max : ", Hulk1.Viemax, "\n Inventaire : ", Hulk1.Inventaire, "\n Puissance : ", Hulk1.Puissance, "\n Faiblaisse : ", Hulk1.Faiblaisse, "\n Agilite : ", Hulk1.Agilite, "\n Intelligence : ", Hulk1.Intelligence, "\n Capacity : ", Hulk1.CapacityDisplay, "\n")
 			fmt.Print("êtes-vous sur ?\n 1. oui \n 2. non\n")
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
@@ -133,7 +130,7 @@ func (u *Character) RecupInfoClass() {
 			u.Classe = "Wakanda"
 			fmt.Print("\033[H\033[2J")
 			fmt.Print("voulez vous choisire ", u.Classe, " comme classe ? \n", u.Classe)
-			fmt.Print("Vie max : ", Wakanda1.Viemax, "\n Inventaire : ", Wakanda1.Inventaire, "\n Puissance : ", Wakanda1.Puissance, "\n Faiblaisse : ", Wakanda1.Faiblaisse, "\n Agilite : ", Wakanda1.Agilite, "\n Intelligence : ", Wakanda1.Intelligence, "\n Capacity : ",Wakanda1.CapacityDisplay, "\n")
+			fmt.Print("Vie max : ", Wakanda1.Viemax, "\n Inventaire : ", Wakanda1.Inventaire, "\n Puissance : ", Wakanda1.Puissance, "\n Faiblaisse : ", Wakanda1.Faiblaisse, "\n Agilite : ", Wakanda1.Agilite, "\n Intelligence : ", Wakanda1.Intelligence, "\n Capacity : ", Wakanda1.CapacityDisplay, "\n")
 			fmt.Print("êtes-vous sur ?\n 1. oui \n 2. non\n")
 			fmt.Scan(&Confirme)
 			if Confirme == 1 {
@@ -150,7 +147,7 @@ func (u *Character) RecupInfoClass() {
 			if Confirme == 2 {
 				fmt.Print("\033[H\033[2J")
 			}
-				
+
 		}
 	}
 }

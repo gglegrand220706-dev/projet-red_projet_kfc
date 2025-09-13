@@ -15,3 +15,11 @@ var AttaqueBasique01 = Attaques{"coup de dague", 2, 100}
 var AttaqueBasique02 = Attaques{"coup de dague", 3, 100}
 var AttaqueBasique03 = Attaques{"coup de dague", 4, 100}
 var AttaqueBasique04 = Attaques{"coup de dague", 5, 100}
+
+type Capacity struct {
+	Name string
+	Bonus string
+	Rate int
+}
+
+var Vole = Capacity{"Vole", "attaques ont moins de chance de toucher leurs cibles", 60}
