@@ -8,7 +8,8 @@ import (
 func AtackSystème() {
     if Joueur.Vieactuelle > 0 && Adversery01.Vieactuelle > 0{
         var AttackChoice int
-        var Attaques = []Attaques{Joueur.Attaques[0], Joueur.Attaques[1], Joueur.Attaques[2], Joueur.Attaques[3]}
+        var Attaques = []Attaques{}
+        Attaques = append(Attaques, Joueur.Attaques...)
         var RandomeRate int
         RandomeRate = rand.Intn(101)
         fmt.Scan(&AttackChoice)
