@@ -2,13 +2,13 @@ package personnage
 
 import "fmt"
 
-func AddExp() {
+func Reward() {
 	if Joueur.Classe == "Bat family" {
-		Joueur.EXP += 2*Adversery01.GivenExp
+		Joueur.EXP += 2*CurrentAdversery[AdverseryChoice].GivenExp
 	} else {
-		Joueur.EXP += Adversery01.GivenExp
+		Joueur.EXP += CurrentAdversery[AdverseryChoice].GivenExp
 	}	
-	fmt.Print("\nvous avez gagné : ", Adversery01.GivenExp, " EXP")
+	fmt.Print("\nvous avez gagné : ", CurrentAdversery[AdverseryChoice].GivenExp, " EXP et : ", CurrentAdversery[AdverseryChoice].GivenMoney, " techno-Dollars\n")
 	if Joueur.EXP >= Joueur.ExpNextLevel {
 		Joueur.Niveau += 1
 		Joueur.ExpNextLevel = Joueur.Niveau*10 +20

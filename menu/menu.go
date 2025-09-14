@@ -24,18 +24,22 @@ func MenuGeneral() {
 		fmt.Print("\033[H\033[2J")
 		personnage.Adversery01.Vieactuelle = personnage.Adversery01.Viemax
 		DisplayAtack()
-		for personnage.Joueur.Vieactuelle > 0 && personnage.Adversery01.Vieactuelle > 0 {
+		var continuer int
+		personnage.AdverseryChoice = 0
+		for personnage.Joueur.Vieactuelle > 0 && personnage.CurrentAdversery[personnage.AdverseryChoice].Vieactuelle > 0 {						
 				personnage.AtackSystème()
 				personnage.Response()
-				DisplayAtack()
+				fmt.Print("appuyer sur 1 pour continuer... ")
+				fmt.Scan(&continuer)
+				fmt.Print("\033[H\033[2J")
+				DisplayAtack()			
 			}
 			if personnage.Joueur.Vieactuelle <= 0 {
 				IsDead()
 			}
-			if personnage.Adversery01.Vieactuelle <= 0{
-				personnage.AddExp()
+			if personnage.CurrentAdversery[personnage.AdverseryChoice].Vieactuelle <= 0{
+				personnage.Reward()
 				RetourMenu()
-				personnage.BourseReward() 
 			}
 	}
 	if selection == 4 {
@@ -130,6 +134,7 @@ func RetourMenu() {
 }
 
 func DisplayAtack() {
+	fmt.Print(personnage.Joueur.Vieactuelle, "/", personnage.Joueur.Viemax)
 	if personnage.Joueur.Vieactuelle > 0 && personnage.Adversery01.Vieactuelle > 0 {
 		var AttaquesNameDisplay = []string{}
 		for _, Attaque := range personnage.Joueur.Attaques {
@@ -144,8 +149,8 @@ func DisplayAtack() {
 }
 
 func IsDead() {
-	fmt.Print("Vous êtes mort sale noob")
-	fmt.Print("vous récussitez avec ", personnage.Joueur.Viemax/2, " PV")
+	fmt.Print("Vous êtes mort sale noob\n")
+	fmt.Print("vous récussitez avec ", personnage.Joueur.Viemax/2, " PV\n")
 	personnage.Joueur.Vieactuelle = personnage.Joueur.Viemax/2
 	RetourMenu()
 }
