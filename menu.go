@@ -72,7 +72,7 @@ func MenuShop() {
 	fmt.Print("\033[H\033[2J")
 	fmt.Print("          BOUTIQUE          \n")
 	fmt.Print("Options\n")
-	fmt.Print("1. Potions\n2. Armes\n3. Armures\n4. Retour\n")
+	fmt.Print("1. Potions\n2. Armes\n3. Armures\n4. Forgeron\n5. Retour\n")
 	fmt.Scan(&selection)
 	if selection == 1 {
 		fmt.Print("\033[H\033[2J")
@@ -98,13 +98,18 @@ func MenuShop() {
 	}
 	if selection == 4 {
 		fmt.Print("\033[H\033[2J")
+		BlackSmithDisplay()
+		BlackSmith()
+		Continuer()
+		MenuShop()
+	}
+	if selection == 5 {
 		MenuGeneral()
 	}
-	if selection > 4 || selection <= 0 {
+	if selection > 5 || selection <= 0 {
 		fmt.Print("\033[H\033[2J")
 		fmt.Print("Option indisponible, veuillez choisir parmi les 4 propositions\n")
-		MenuGeneral()
-
+		MenuShop()
 	}
 }
 
@@ -119,11 +124,12 @@ func DisplayAtack() {
 		for _, Attaque := range Joueur.Attaques {
 			OptionDisplay = append(OptionDisplay, Attaque.Name)
 		}
-		fmt.Println("\nQue voulez-vous faire :\n")
+		fmt.Print("\nQue voulez-vous faire :\n")
 		for index, OptionsName := range OptionDisplay {
 			fmt.Printf("%d. %v\n", index+1, OptionsName)
 			index++
 		}
+		fmt.Print("5. Retour\n")
 	}
 }
 
@@ -152,6 +158,7 @@ func DisplayPotions() {
 			fmt.Printf("%d. %v\n", index+1, PotionsName)
 			index++
 		}
+		fmt.Print("3. Retour\n")
 	}
 }
 
@@ -191,7 +198,7 @@ func MenuQuetes() {
 
 func CombatMode() {
 	fmt.Print("\033[H\033[2J")
-		CurrentAdversery[AdverseryChoice -1].Vieactuelle = CurrentAdversery[AdverseryChoice -1].Viemax
+		CurrentAdversery[AdverseryChoice].Vieactuelle = CurrentAdversery[AdverseryChoice].Viemax
 		var Selection02 int = 0
 		for Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
 			fmt.Print("\n", Joueur.Vieactuelle, "/", Joueur.Viemax, "\n")
@@ -217,10 +224,47 @@ func CombatMode() {
 			}
 			if CurrentAdversery[AdverseryChoice].Vieactuelle <= 0 {
 				Reward()
+				DropRate()
 				RetourMenu()
 			}
 			if Selection02 < 0 || Selection02 > 3 {
 				fmt.Print("Ce n'est pas un choix disponoble\n")
 			}
 		}
+}
+
+func BlackSmithDisplay() {
+	fmt.Print("\033[H\033[2J")
+	fmt.Print("                 Forgeron\n")
+	var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
+	var IndexObj int
+	for index, Name := range ArmesForgeable {
+		fmt.Print(index +1 , ". ", Name.Name, "\n" )
+		IndexObj = 0
+		for IndexObj < len(ArmesForgeable[index].ObjectsCraft) {
+			fmt.Print("           - ", ArmesForgeable[index].ObjectsCraft[IndexObj].Name, "\n")
+			IndexObj ++
+		}
+	}
+}
+
+func DisplayInventory() {
+	fmt.Print("\033[H\033[2J")
+	var ChoiceSection int
+	fmt.Print("               Invetaire\n")
+	fmt.Print("\n que voulez vous vérifier ?\n\n1. Objets\n2. Armes\n3. Armures\n4. Retour\n")
+	fmt.Scan(&ChoiceSection)
+	switch ChoiceSection {
+	case 1 :
+		DisplayInventoryObjects()
+	case 2 :
+		DisplayInventoryWeapons()
+	case 3 :
+		DisplayInventoryArmures()
+	case 4 :
+		RetourMenu()
+	default :
+		fmt.Print("se n'est pas une Option disponible")
+		DisplayInventory()
+	}
 }

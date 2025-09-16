@@ -12,7 +12,7 @@ type Character struct {
 	ExpNextLevel          int
 	Viemax                int
 	Inventaire            int
-	Puissance             int
+	Puissance             float64
 	Faiblaisse            []string
 	Agilite               int
 	Intelligence          int
@@ -20,7 +20,8 @@ type Character struct {
 	CapacityDisplay       []string
 	Attaques              []Attaques
 	Capacity			  []Capacity
-
+	EquipedWeapon		  Armes
+	EquipedArmure		  Armures
 }
 
 var Joueur Character

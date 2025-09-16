@@ -29,9 +29,19 @@ func ShopPotion() {
 func ShopArmes() {
 	var ChoixArmes int
 	fmt.Print("\nVous avez ", Joueur.Bourse, " TeKno-Dollar\n")
-	fmt.Print("1. ", Arme01.Name, " ", Arme01.Prix, " TeKno-Dollar", "\n2. ", Arme02.Name, " ", Arme02.Prix, " TeKno-Dollar", "\n3. ", Arme03.Name, " ", Arme03.Prix, " TeKno-Dollar\n")
-	var ArmesDispo = []*Armes{&Arme01, &Arme02, &Arme03 }
+	var ArmesDispo = []*Armes{&EpeeTraining, &MarteauThor, &GantThanos, &StormBreaker}
+	var Index int
+	for i, Name := range ArmesDispo {
+		if Name.InStrore {
+			fmt.Println(i + 1, Name.Name,  Name.Prix, " TKD")
+			Index = i
+		}
+	}
+	fmt.Print(Index + 2, ". Retour\n")
 	fmt.Scan(&ChoixArmes)
+	if ChoixArmes == Index + 2 {
+		MenuShop()
+	}
 	if ChoixArmes < 0 || ChoixArmes > len(ArmesDispo) {
 		fmt.Print("se n'est pas une option disponible")
 		Continuer()
@@ -54,8 +64,10 @@ func ShopArmes() {
 func ShopArmures() {
 	fmt.Print("Vous avez ", Joueur.Bourse, " TeKno-Dollar\n")
 	var ChoixArmures int
-	fmt.Print("1. ", Armure01.Name, " ", Armure01.Prix, "\n")
-	var ArmuresDispo = []*Armures{&Armure01}
+	var ArmuresDispo = []*Armures{&ArmureTraining}
+	for i, Name := range ArmuresDispo {
+		fmt.Println(i+1, Name.Name, Name.Prix, "TKD")
+	}
 	fmt.Scan(&ChoixArmures)
 	if ChoixArmures < 0 || ChoixArmures > len(ArmuresDispo) {
 		fmt.Print("se n'est pas un choix disponible")
@@ -69,4 +81,29 @@ func ShopArmures() {
 		Continuer()
 		MenuShop()
 	}
+}
+
+func BlackSmith() {
+    var CraftingChoice int
+    fmt.Print("Que voulez vous Aventurier ?\n")
+    fmt.Scan(&CraftingChoice)
+    var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
+    var Enough int
+    var IndexFreeFire int
+    for IndexFreeFire < len(ArmesForgeable[CraftingChoice -1].ObjectsCraft) {
+        if ArmesForgeable[CraftingChoice -1].ObjectsCraft[IndexFreeFire].Nb >= ArmesForgeable[CraftingChoice -1].RequiredQuantity[IndexFreeFire] {
+            Enough++
+            IndexFreeFire++
+        } else {
+            fmt.Print("Vous n'avez pas les matériaux\n")
+            return
+        }
+    }
+    if Enough == len(ArmesForgeable[CraftingChoice -1].ObjectsCraft) {
+        for i := 0; i < len(ArmesForgeable[CraftingChoice -1].ObjectsCraft); i++ {
+            ArmesForgeable[CraftingChoice -1].ObjectsCraft[i].Nb -= ArmesForgeable[CraftingChoice -1].RequiredQuantity[i]
+        }
+        fmt.Print("Vous retrouverez cette arme dans le magasin\n")
+		ArmesForgeable[CraftingChoice -1].InStrore = true
+    }
 }

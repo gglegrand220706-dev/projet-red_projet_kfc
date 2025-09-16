@@ -47,8 +47,10 @@ func PotionCHoice() {
 		PotionsVie()
 	case 2 :
 		PotionDamage()
+	case 3 :
+		CombatMode()
 	default :
-		fmt.Print("se n'est pas une option")
+		fmt.Print("\nSe n'est pas une option de potion")
 		PotionCHoice()
 	}
 }
