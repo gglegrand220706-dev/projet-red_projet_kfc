@@ -36,7 +36,7 @@ type Hulk struct {
 	CapacityDisplay     []string
 }
 
-var Hulk1 = Hulk{30, 4, 35, []string{"Hypnoses,", "Self Controle,"}, 15, 10, []string{"Clape Sonic,", "Resistance"}}
+var Hulk1 = Hulk{30, 4, 50, []string{"Hypnoses,", "Self Controle,"}, 15, 10, []string{"Clape Sonic,", "Resistance"}}
 
 type Kantin struct {
 	Viemax       int

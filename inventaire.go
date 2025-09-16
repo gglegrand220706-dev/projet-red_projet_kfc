@@ -5,11 +5,13 @@ import "fmt"
 type Potions struct {
 	Name string
 	Nb int
+	EffectLife int
 	Prix int
 }
 
-var Potions01 = Potions{"Potion de vie", 0, 20}
-var Potions02 = Potions{"Potions de dégas", 0, 20}
+var PotionsSoins = Potions{"Potion de vie", 0, 10, 20}
+var PotionsDamage = Potions{"Potions de dégas", 0, -10, 20}
+var AllPotions = []Potions{PotionsSoins, PotionsDamage}
 
 type Armes struct {
 	Name string
@@ -32,19 +34,28 @@ type Armures struct {
 
 var Armure01 = Armures{"armure d'entraînment", false, 0.15, 15}
 
+type Objects struct {
+	Name string
+	Nb int
+	DropRate int
+}
+
+var ScrapMetal = Objects{"scrape de metal", 0, 75}
+var InfinityStoneMind = Objects{"pierre de l'esprit", 0, 15}
+
 func DisplayInventory() {
 	fmt.Print("             invetaire             \n")
-	fmt.Print("-", Potions01.Name, " x ", Potions01.Nb, "\n","-", Potions02.Name, " x ", Potions02.Nb, "\n")
-	if Arme01.Possede == true {
+	fmt.Print("-", PotionsSoins.Name, " x ", PotionsSoins.Nb, "\n","-", PotionsDamage.Name, " x ", PotionsDamage.Nb, "\n")
+	if Arme01.Possede {
 		fmt.Print("-", Arme01.Name, "\n")
 	}
-	if Arme02.Possede == true {
+	if Arme02.Possede {
 		fmt.Print("-", Arme02.Name, "\n")
 	}
-	if Arme03.Possede == true {
+	if Arme03.Possede {
 		fmt.Print("-", Arme03.Name, "\n")
 	}
-	if Armure01.Possede == true {
+	if Armure01.Possede {
 		fmt.Print("-", Armure01.Name, "\n")
 	}
 }

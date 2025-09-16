@@ -1,0 +1,226 @@
+package personnage
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"time"
+)
+
+func MenuGeneral() {
+	var selection int
+	fmt.Print("\033[H\033[2J")
+	fmt.Print("          TeKnologia : Battle World         \n")
+	fmt.Print("Options\n")
+	fmt.Print("1. Base de donnees\n2. Boutique\n3. Entrainement\n4. Quete\n")
+	fmt.Scan(&selection)
+	if selection == 1 {
+		fmt.Print("\033[H\033[2J")
+		MenuDataBase()
+	}
+	if selection == 2 {
+		fmt.Print("\033[H\033[2J")
+		MenuShop()
+	}
+	if selection == 3 {
+		fmt.Print("\033[H\033[2J")
+		AdverseryChoice = 0
+		CombatMode()
+	}
+	if selection == 4 {
+		fmt.Print("\033[H\033[2J")
+		MenuQuetes()
+	}
+	if selection > 4 || selection <= 0 {
+		fmt.Print("\033[H\033[2J")
+		fmt.Print("Option indisponible, veuillez choisir parmi les 4 propositions\n")
+		MenuGeneral()
+
+	}
+}
+
+func MenuDataBase() {
+	var selection int
+	fmt.Print("\033[H\033[2J")
+	fmt.Print("          BASE DE DONNEES          \n")
+	fmt.Print("Options\n")
+	fmt.Print("1. Fiche du personnage\n2. Inventaire\n3. Retour\n")
+	fmt.Scan(&selection)
+
+	if selection == 1 {
+		DisplayInfo()
+		RetourMenu()
+	}
+	if selection == 2 {
+		fmt.Print("\033[H\033[2J")
+		DisplayInventory()
+		RetourMenu()
+	}
+	if selection == 3 {
+		fmt.Print("\033[H\033[2J")
+		MenuGeneral()
+	}
+	if selection > 3 || selection <= 0 {
+		fmt.Print("\033[H\033[2J")
+		fmt.Print("Option indisponible, veuillez choisir parmi les 3 propositions\n")
+		MenuDataBase()
+	}
+}
+
+func MenuShop() {
+	var selection int
+	fmt.Print("\033[H\033[2J")
+	fmt.Print("          BOUTIQUE          \n")
+	fmt.Print("Options\n")
+	fmt.Print("1. Potions\n2. Armes\n3. Armures\n4. Retour\n")
+	fmt.Scan(&selection)
+	if selection == 1 {
+		fmt.Print("\033[H\033[2J")
+		fmt.Print("          BOUTIQUE          \n")
+		fmt.Print("Quelle potion voulez vous acheter\n")
+		ShopPotion()
+		Continuer()
+		MenuShop()
+	}
+	if selection == 2 {
+		fmt.Print("\033[H\033[2J")
+		fmt.Print("          BOUTIQUE          \n")
+		fmt.Print("\nQuelle arme voulez vous acheter\n")
+		ShopArmes()
+		RetourMenu()
+	}
+	if selection == 3 {
+		fmt.Print("\033[H\033[2J")
+		fmt.Print("          BOUTIQUE          \n")
+		fmt.Print("Quelle armure voulez vous acheter\n")
+		ShopArmures()
+		RetourMenu()
+	}
+	if selection == 4 {
+		fmt.Print("\033[H\033[2J")
+		MenuGeneral()
+	}
+	if selection > 4 || selection <= 0 {
+		fmt.Print("\033[H\033[2J")
+		fmt.Print("Option indisponible, veuillez choisir parmi les 4 propositions\n")
+		MenuGeneral()
+
+	}
+}
+
+func RetourMenu() {
+	Continuer()
+	MenuGeneral()
+}
+
+func DisplayAtack() {
+	if Joueur.Vieactuelle > 0 && CurrentAdversery[0].Vieactuelle > 0 {
+		var OptionDisplay = []string{}
+		for _, Attaque := range Joueur.Attaques {
+			OptionDisplay = append(OptionDisplay, Attaque.Name)
+		}
+		fmt.Println("\nQue voulez-vous faire :\n")
+		for index, OptionsName := range OptionDisplay {
+			fmt.Printf("%d. %v\n", index+1, OptionsName)
+			index++
+		}
+	}
+}
+
+func IsDead() {
+	fmt.Print("Vous êtes mort sale noob\n")
+	fmt.Print("vous récussitez avec ", Joueur.Viemax/2, " PV\n")
+	Joueur.Vieactuelle = Joueur.Viemax / 2
+	RetourMenu()
+}
+
+func Continuer() {
+	time.Sleep(1 * time.Second)	
+	fmt.Print("\nAppuyer sur esapce pour continuer ...\n")
+	bufio.NewReader(os.Stdin).ReadBytes(' ')
+}
+
+func DisplayPotions() {
+	var index =0
+	if Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
+		var PotionsDisplay = []string{}
+		for _, NamePotion := range AllPotions {
+			PotionsDisplay = append(PotionsDisplay, NamePotion.Name)
+		}
+		fmt.Print("quelle potion voulez vous utilisé ?\n")
+		for _, PotionsName := range PotionsDisplay {
+			fmt.Printf("%d. %v\n", index+1, PotionsName)
+			index++
+		}
+	}
+}
+
+func Fuite() {
+	if Joueur.Bourse-CurrentAdversery[AdverseryChoice].GivenMoney > 0 {
+		fmt.Print("Vous vous êtes fais raquètter pour partire, vous perdez : ", CurrentAdversery[AdverseryChoice].GivenMoney, " Techno-Dollars\n")
+		Joueur.Bourse -= CurrentAdversery[AdverseryChoice].GivenMoney
+	} else {
+		fmt.Print("\nVous fuyez et vous avez pas d'argents, vous êtes pitoyable.")
+	}
+	if Joueur.EXP-CurrentAdversery[AdverseryChoice].GivenExp > 0 {
+		Joueur.EXP -= CurrentAdversery[AdverseryChoice].GivenExp
+	} else {
+		fmt.Print("\nVous fuyez car vous êtes sans experience, vous êtes pitoyable.")
+	}
+	RetourMenu()
+}
+
+func MenuQuetes() {
+	var SelectionQuete int
+	fmt.Print("quelle quete voulez vous faire ?\n1. Bosses\n2. Enemys Classique\n")
+	fmt.Scan(&SelectionQuete)
+	if SelectionQuete == 1 {
+		fmt.Print("\033[H\033[2J")
+		AdverseryChoice = 1
+		CombatMode()
+	}
+	if SelectionQuete == 2 {
+		fmt.Print("\033[H\033[2J")
+		AdverseryChoice = 2
+		CombatMode()
+	} else {
+		fmt.Print("se n'est pas une option disponible")
+	}
+	
+}
+
+func CombatMode() {
+	fmt.Print("\033[H\033[2J")
+		CurrentAdversery[AdverseryChoice -1].Vieactuelle = CurrentAdversery[AdverseryChoice -1].Viemax
+		var Selection02 int = 0
+		for Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
+			fmt.Print("\n", Joueur.Vieactuelle, "/", Joueur.Viemax, "\n")
+			fmt.Print("que voulez vous faire ?\n1. Attaque\n2. Potions\n3. Fuire\n")
+			fmt.Scan(&Selection02)
+			if Selection02 == 1 {
+				DisplayAtack()
+				AtackSystème()
+				Response()
+			}
+			if Selection02 == 2 {
+				DisplayPotions()
+				PotionCHoice()
+				Response()
+			}
+			if Selection02 == 3 {
+				fmt.Print("\033[H\033[2J")
+				Fuite()
+
+			}
+			if Joueur.Vieactuelle <= 0 {
+				IsDead()
+			}
+			if CurrentAdversery[AdverseryChoice].Vieactuelle <= 0 {
+				Reward()
+				RetourMenu()
+			}
+			if Selection02 < 0 || Selection02 > 3 {
+				fmt.Print("Ce n'est pas un choix disponoble\n")
+			}
+		}
+}

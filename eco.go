@@ -6,29 +6,21 @@ import (
 
 func ShopPotion() {
 	var ChoixPotion int
-	fmt.Print("Vous avez ", Joueur.Bourse, " tekno-dollar\n")
-	fmt.Print("1. potion de soins\n")
+	fmt.Print("\nVous avez ", Joueur.Bourse, " TeKno-dollar\n")
+	fmt.Print("\n1. potion de soins\n")
 	fmt.Print("2. potion de poison\n")
-	fmt.Scan(&ChoixPotion)
-	if ChoixPotion == 1 {
-		if Potions01.Prix <= Joueur.Bourse && Potions01.Nb < 5{
-			Joueur.Bourse -= Potions01.Prix
-			Potions01.Nb++
-			fmt.Print("vous avez acheté une potion de soin\n")
-			fmt.Print("il vous reste : ", Joueur.Bourse, " tekno-dollar\n")
-		}else{
-			fmt.Print("Vous ne pouvez pas acheter :P\n")
-			ShopPotion()
+	fmt.Print("3. Retour\n")
+	var PotionDispo = []*Potions{&PotionsSoins, &PotionsDamage}
+	fmt.Scan(&ChoixPotion)	
+	if PotionDispo[ChoixPotion - 1].Prix <= Joueur.Bourse && PotionDispo[ChoixPotion - 1].Nb < 5{
+		Joueur.Bourse -= PotionDispo[ChoixPotion - 1].Prix
+		PotionDispo[ChoixPotion - 1].Nb ++
+		fmt.Print("Vous avez acheter ", PotionDispo[ChoixPotion -1].Name, " il vous reste donc ", Joueur.Bourse, " TeKno-Dollars")
+		if ChoixPotion == 3 {
+			MenuShop()
 		}
-	}
-	if ChoixPotion == 2 {
-		if Potions02.Prix <= Joueur.Bourse {
-			Joueur.Bourse -= Potions02.Prix
-			Potions02.Nb++
-			fmt.Print("vous avez acheté une potion de poison\n")
-			fmt.Print("il vous reste : ", Joueur.Bourse, " tekno-dollar\n")
-		}else{
-			fmt.Print("Vous ne pouvez pas acheter :P\n")
+		if ChoixPotion < 0 || ChoixPotion > 4 {
+			fmt.Print("se n'est pas une proposition disponible")
 			ShopPotion()
 		}
 	}
@@ -36,61 +28,45 @@ func ShopPotion() {
 
 func ShopArmes() {
 	var ChoixArmes int
-	fmt.Print("Vous avez ", Joueur.Bourse, " tekno-dollar\n")
-	fmt.Print("1. ", Arme01.Name, " ", Arme01.Prix, " tekno-dollar", "\n 2. ", Arme02.Name, " ", Arme02.Prix, " tekno-dollar", "\n 3. ", Arme03.Name, " ", Arme03.Prix, " tekno-dollar\n")
+	fmt.Print("\nVous avez ", Joueur.Bourse, " TeKno-Dollar\n")
+	fmt.Print("1. ", Arme01.Name, " ", Arme01.Prix, " TeKno-Dollar", "\n2. ", Arme02.Name, " ", Arme02.Prix, " TeKno-Dollar", "\n3. ", Arme03.Name, " ", Arme03.Prix, " TeKno-Dollar\n")
+	var ArmesDispo = []*Armes{&Arme01, &Arme02, &Arme03 }
 	fmt.Scan(&ChoixArmes)
-	if ChoixArmes == 1 {
-		if Arme01.Prix <= Joueur.Bourse && !Arme01.Possede{
-			Joueur.Bourse -= Arme01.Prix
-			Arme01.Possede = true
-			fmt.Print("vous avez acheté ", Arme01.Name, "\n")
-			fmt.Print("il vous reste : ", Joueur.Bourse, " tekno-dollar\n")
-		}else{
-			fmt.Print("Vous ne pouvez pas acheter :P\n")
-			ShopArmes()
-		}
+	if ChoixArmes < 0 || ChoixArmes > len(ArmesDispo) {
+		fmt.Print("se n'est pas une option disponible")
+		Continuer()
+		ShopArmes()
 	}
-	if ChoixArmes == 2 {
-		if Arme02.Prix <= Joueur.Bourse && !Arme02.Possede{
-			Joueur.Bourse -= Arme02.Prix
-			Arme02.Possede = true
-			fmt.Print("vous avez acheté ", Arme02.Name, "\n")
-			fmt.Print("il vous reste : ", Joueur.Bourse, " tekno-dollar\n")
-		}else{
-			fmt.Print("Vous ne pouvez pas acheter :P\n")
-			ShopArmes()
-		}
-	}
-	if ChoixArmes == 3 {
-		if Arme03.Prix <= Joueur.Bourse && !Arme03.Possede{
-			Joueur.Bourse -= Arme03.Prix
-			Arme03.Possede = true
-			fmt.Print("vous avez acheté ", Arme03.Name, "\n")
-			fmt.Print("il vous reste : ", Joueur.Bourse, " tekno-dollar\n")
-		}else{
-			fmt.Print("Vous ne pouvez pas acheter :P\n")
-			ShopArmes()
-		}
-
+	if ArmesDispo[ChoixArmes -1].Prix <= Joueur.Bourse && !ArmesDispo[ChoixArmes-1].Possede{
+		Joueur.Bourse -= ArmesDispo[ChoixArmes -1].Prix
+		ArmesDispo[ChoixArmes -1].Possede = true
+		fmt.Print("vous avez acheté ", ArmesDispo[ChoixArmes -1].Name, "\n")
+		fmt.Print("il vous reste : ", Joueur.Bourse, " TeKno-Dollar\n")
+		Continuer()
+		MenuShop()
+	}else {
+		fmt.Print("Vous ne pouvez pas acheter :P\n")
+		Continuer()
+		ShopArmes()
 	}
 }
 
 func ShopArmures() {
-	fmt.Print("Vous avez ", Joueur.Bourse, " tekno-dollar\n")
+	fmt.Print("Vous avez ", Joueur.Bourse, " TeKno-Dollar\n")
 	var ChoixArmures int
 	fmt.Print("1. ", Armure01.Name, " ", Armure01.Prix, "\n")
+	var ArmuresDispo = []*Armures{&Armure01}
 	fmt.Scan(&ChoixArmures)
-	if ChoixArmures == 1 {
-		if Armure01.Prix <= Joueur.Bourse && !Armure01.Possede{
-			Joueur.Bourse -= Armure01.Prix
-			Armure01.Possede = true
-			fmt.Print("vous avez acheté ", Arme01.Name, "\n")
-			fmt.Print("il vous reste : ", Joueur.Bourse, " tekno-dollar\n")
-
-		}else{
-			fmt.Print("Vous ne pouvez pas acheter :P\n")
-			ShopArmures()
-		}
+	if ChoixArmures < 0 || ChoixArmures > len(ArmuresDispo) {
+		fmt.Print("se n'est pas un choix disponible")
+		Continuer()
+		ShopArmures()
 	}
-
+	if Joueur.Bourse >= ArmuresDispo[ChoixArmures -1].Prix && !ArmuresDispo[ChoixArmures -1].Possede {
+		Joueur.Bourse -= ArmuresDispo[ChoixArmures -1].Prix
+		ArmuresDispo[ChoixArmures -1].Possede = true
+		fmt.Print("Vous avez acheter ", ArmuresDispo[ChoixArmures -1].Name, " il vous reste ", Joueur.Bourse, " TeKno-Dollars")
+		Continuer()
+		MenuShop()
+	}
 }

@@ -13,7 +13,9 @@ type Adversery struct {
 	Attaques 			[]Attaques
 	GivenExp			int
 	GivenMoney			int
+	Drop 				[]Objects
 }
 
-var Adversery01 = Adversery{"entrîneur : kentino", 30, 1, 30, 50, []string{}, 50, 50, []string{"coup de point bousté, proute brumisateur, lancé de casquet"}, []Attaques{AttaqueBasique01, AttaqueBasique02, AttaqueBasique03, AttaqueBasique04}, 20, 20}
-var AdverseryLoki = Adversery{"boose : Loki", 40, 5, 40, 50, []string{}, 60, 65, []string{"coup de sptre", "tourment", "boule de magie"}, []Attaques{AttaqueSeptre, AttaqueMentale, AttaqueMagique}, 30, 30 }
+var Adversery01 = Adversery{"entrîneur : kentino", 30, 1, 30, 50, []string{}, 50, 50, []string{"coup de point bousté, proute brumisateur, lancé de casquet"}, []Attaques{AttaqueBasique01, AttaqueBasique02, AttaqueBasique03, AttaqueBasique04}, 20, 20, []Objects{}}
+var AdverseryLoki = Adversery{"boose : Loki", 40, 5, 40, 50, []string{}, 60, 65, []string{"coup de sptre", "tourment", "boule de magie"}, []Attaques{AttaqueSeptre, AttaqueMentale, AttaqueMagique}, 30, 30, []Objects{InfinityStoneMind} }
+var AdverseryBarry = Adversery{"Barry (-_°)", 10, 1, 10, 10, []string{}, 10, 10, []string{"coup de poing de Barry", "Coup de pied de Barry", "coup de tête de Barry"}, []Attaques{AttaqueBarryPoing, AttaqueBarrypied, AttaqueBarryTete}, 10, 10, []Objects{ScrapMetal} }
