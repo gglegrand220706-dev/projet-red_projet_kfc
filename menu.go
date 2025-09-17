@@ -10,9 +10,18 @@ import (
 func MenuGeneral() {
 	var selection int
 	fmt.Print("\033[H\033[2J")
-	fmt.Print("          TeKnologia : Battle World         \n")
-	fmt.Print("Options\n")
-	fmt.Print("1. Base de donnees\n2. Boutique\n3. Entrainement\n4. Quete\n")
+	 fmt.Println("\033[91m  _____         _                _             _           \033[0m")
+    fmt.Println("\033[91m |_   _|__  ___| | ___ __   ___ | | ___   __ _(_) __ _     \033[0m")
+    fmt.Println("\033[31m   | |/ _ \\/ __| |/ / '_ \\ / _ \\| |/ _ \\ / _` | |/ _` |    \033[0m")
+    fmt.Println("\033[31m   | |  __/ (__|   <| | | | (_) | | (_) | (_| | | (_| |    \033[0m")
+    fmt.Println("\033[31m   |_|\\___|\\___|_|\\_\\_| |_|\\___/|_|\\___/ \\__, |_|\\__,_|    \033[0m")
+    fmt.Println("\033[31m  ____        _   _   _       __        _|___/     _     _ \033[0m")
+    fmt.Println("\033[31m | __ )  __ _| |_| |_| | ___  \\ \\      / /__  _ __| | __| |\033[0m")
+    fmt.Println("\033[31m |  _ \\ / _` | __| __| |/ _ \\  \\ \\ /\\ / / _ \\| '__| |/ _` |\033[0m")
+    fmt.Println("\033[31m | |_) | (_| | |_| |_| |  __/   \\ V  V / (_) | |  | | (_| |\033[0m")
+    fmt.Println("\033[31m |____/ \\__,_|\\__|\\__|_|\\___|    \\_/\\_/ \\___/|_|  |_|\\__,_|\033[0m")
+	fmt.Print("\033[33mOptions :\n\033[0m")
+	fmt.Print("\033[33m1 -->\033[0m \033[36mBase de donnees\033[0m\n\033[33m2 -->\033[0m \033[35mBoutique\033[0m\n\033[33m3 -->\033[0m \033[32mEntrainement\033[0m\n\033[33m4 -->\033[0m \033[34mQuête\033[0m\n")
 	fmt.Scan(&selection)
 	if selection == 1 {
 		fmt.Print("\033[H\033[2J")
@@ -43,7 +52,7 @@ func MenuDataBase() {
 	var selection int
 	fmt.Print("\033[H\033[2J")
 	fmt.Print("          BASE DE DONNEES          \n")
-	fmt.Print("Options\n")
+	fmt.Print("\033[33mOptions :\n\033[0m")
 	fmt.Print("1. Fiche du personnage\n2. Inventaire\n3. Retour\n")
 	fmt.Scan(&selection)
 
