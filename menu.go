@@ -127,9 +127,10 @@ func RetourMenu() {
 	MenuGeneral()
 }
 
-func DisplayAtack() {
+func DisplayAtackPhysqiue() {
 	if Joueur.Vieactuelle > 0 && CurrentAdversery[0].Vieactuelle > 0 {
 		var OptionDisplay = []string{}
+		var Index int = 1
 		for _, Attaque := range Joueur.Attaques {
 			OptionDisplay = append(OptionDisplay, Attaque.Name)
 		}
@@ -137,8 +138,26 @@ func DisplayAtack() {
 		for index, OptionsName := range OptionDisplay {
 			fmt.Printf("%d. %v\n", index+1, OptionsName)
 			index++
+			Index ++
 		}
-		fmt.Print("5. Retour\n")
+		fmt.Print(Index, ". Retour\n")
+	}
+}
+
+func DisplayAtackArmes() {
+	if Joueur.Vieactuelle > 0 && CurrentAdversery[0].Vieactuelle > 0 {
+		var OptionDisplay = []string{}
+		var Index int
+		for _, Attaque := range Joueur.EquipedWeapon.Attaques {
+			OptionDisplay = append(OptionDisplay, Attaque.Name)
+		}
+		fmt.Print("\nQue voulez-vous faire :\n")
+		for index, OptionsName := range OptionDisplay {
+			fmt.Printf("%d. %v\n", index+1, OptionsName)
+			index++
+			Index ++
+		}
+		fmt.Print(Index +1, ". Retour\n")
 	}
 }
 
@@ -210,13 +229,30 @@ func CombatMode() {
 		CurrentAdversery[AdverseryChoice].Vieactuelle = CurrentAdversery[AdverseryChoice].Viemax
 		var Selection02 int = 0
 		for Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
-			fmt.Print("\n", Joueur.Vieactuelle, "/", Joueur.Viemax, "\n")
+			fmt.Print("\nPV :", Joueur.Vieactuelle, "/", Joueur.Viemax, "                                               ", CurrentAdversery[AdverseryChoice].Nom, " : ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Viemax, "\n\n")
 			fmt.Print("que voulez vous faire ?\n1. Attaque\n2. Potions\n3. Fuire\n")
 			fmt.Scan(&Selection02)
 			if Selection02 == 1 {
-				DisplayAtack()
-				AtackSystème()
-				Response()
+				fmt.Print("\nque voulez vous faire ?\n1. Attaque Physique\n2. Attaques Arme\n3. Retour\n")
+				var Selection03 int
+				fmt.Scan(&Selection03)
+				if Selection03 == 1 {
+					DisplayAtackPhysqiue()
+					AtackBasiqueSystème()
+					Response()
+				}
+				if Selection03 == 2 {
+					DisplayAtackArmes()
+					AtackWeaponSystème()
+					Response()
+				}
+				if Selection03 == 3 {
+					CombatMode()
+				}
+				if Selection03 < 0 || Selection03 > 3 {
+					fmt.Print("non disponible")
+					CombatMode()
+				}
 			}
 			if Selection02 == 2 {
 				DisplayPotions()

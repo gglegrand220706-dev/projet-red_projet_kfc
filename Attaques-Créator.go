@@ -11,6 +11,22 @@ var CoupDePoing = Attaques{"Coup de poing", 2, 90}
 var HighKick = Attaques{"Coup pied", 6, 85.5}
 var GutPunch = Attaques{"coup estomac", 8, 80}
 
+var AttaqueHache = Attaques{"Lancé de Hache", 10, 75}
+var AttaqueHache02 = Attaques{"Hache de foudre", 12, 75}
+
+var AttaqueGantThanos = Attaques{"Pierre du pouvoir", 6, 80}
+var AttaqueGantThanos02 = Attaques{"Pierre de l'esprit", 7, 80}
+var AttaqueGantThanos03 = Attaques{"Pierre de la réalité", 8, 80}
+var AttaqueGantThanos04 = Attaques{"Pierre de l'espace", 9, 82}
+var AttaqueGantThanos05 = Attaques{"Pierre de l'âme", 10, 82}
+var AttaqueGantThanos06 = Attaques{"Pierre du temps", 11, 82}
+var AttaqueGantSnap = Attaques{"Ineluctable", int(CurrentAdversery[AdverseryChoice].Vieactuelle/2), 100}
+
+var AttaquesEpeeTraining = Attaques{"Coup d'estoque", 5, 75}
+
+var AttaquesMarteauLancé = Attaques{"Lancé Marteau", 5, 65}
+var AttaquesMarteauFoudre = Attaques{"Foudre du marteau", 7, 75}
+
 var AttaqueSeptre = Attaques{"coup de septre", 4, 90}
 var AttaqueMentale =  Attaques{"tourment", 5, 80}
 var AttaqueMagique = Attaques{"Boule Magqiue", 6, 90}

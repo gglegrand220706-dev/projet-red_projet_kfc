@@ -18,16 +18,17 @@ type Armes struct {
 	Possede bool
 	InStrore bool
 	Multiplicateur float32
-	Prix int
+	Prix int	
 	ObjectsCraft []*Objects
 	RequiredQuantity []int
+	Attaques	[]Attaques
 }
 
 
-var EpeeTraining = Armes{"épées d'entraînements", false, true, 5, 30, []*Objects{}, []int{}}
-var GantThanos = Armes{"gant de Thanos", false, false, 100, 1000, []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule}, []int{5, 1, 1, 1, 1, 1, 1}}
-var MarteauThor = Armes{"marteau de Thor", false, true, 20, 200, []*Objects{}, []int{}}
-var StormBreaker = Armes{"Hache de Thor", false, false, 30, 400, []*Objects{&ScrapMetal, &GrootsBranches}, []int{5, 5}}
+var EpeeTraining = Armes{"épées d'entraînements", false, true, 10, 30, []*Objects{}, []int{}, []Attaques{AttaquesEpeeTraining}}
+var GantThanos = Armes{"gant de Thanos", false, false, 100, 1000, []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule}, []int{10, 1, 1, 1, 1, 1, 1}, []Attaques{AttaqueGantThanos, AttaqueGantThanos02, AttaqueGantThanos03, AttaqueGantThanos04, AttaqueGantThanos05, AttaqueGantThanos06, AttaqueGantSnap}}
+var MarteauThor = Armes{"marteau de Thor", false, true, 20, 200, []*Objects{}, []int{}, []Attaques{AttaquesMarteauLancé, AttaquesMarteauFoudre}}
+var StormBreaker = Armes{"Hache de Thor", false, false, 30, 400, []*Objects{&ScrapMetal, &GrootsBranches}, []int{5, 5}, []Attaques{AttaqueHache, AttaqueHache02}}
 var AllWeapons = []*Armes{&EpeeTraining, &GantThanos, &MarteauThor, &StormBreaker}
 
 type Armures struct {
@@ -93,7 +94,7 @@ func DisplayInventoryWeapons() {
     fmt.Print("               inventaire: Armes             \n")
     var Choice int
     var index int = 1
-    var mapping []int 
+    var Mapping []int 
     for i, Obj := range AllWeapons {
         if Obj.Possede {
             if Obj.Name == Joueur.EquipedWeapon.Name {
@@ -101,7 +102,7 @@ func DisplayInventoryWeapons() {
             } else {
                 fmt.Printf("%d. %s\n", index, Obj.Name)
             }
-            mapping = append(mapping, i)
+            Mapping = append(Mapping, i)
             index++
         }
     }
@@ -117,9 +118,9 @@ func DisplayInventoryWeapons() {
         DisplayInventoryWeapons()
         return
     }
-    Joueur.EquipedWeapon = *AllWeapons[mapping[Choice-1]]
+    Joueur.EquipedWeapon = *AllWeapons[Mapping[Choice-1]]
     fmt.Println("Vous avez équipé", Joueur.EquipedWeapon.Name)
-	Joueur.Puissance += float64(AllWeapons[mapping[Choice-1]].Multiplicateur)
+	Joueur.Puissance += float64(AllWeapons[Mapping[Choice-1]].Multiplicateur)
 }
 
 func DisplayInventoryArmures() {

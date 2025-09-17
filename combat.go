@@ -6,7 +6,7 @@ import (
     "math"
 )
 
-func AtackSystème() {
+func AtackBasiqueSystème() {
     if Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0{
         var AttackChoice int
         var Multiplicateur float64 
@@ -17,7 +17,7 @@ func AtackSystème() {
         fmt.Scan(&AttackChoice)
         if AttackChoice - 1 > len(Attaques) +1 {
             fmt.Print("ce n'est pas une proposition espèce de demeuré")
-            AtackSystème()
+            AtackBasiqueSystème()
         }        
         if AttackChoice == len(Attaques) + 1 {
             PotionsVie()
@@ -57,6 +57,12 @@ func Response() {
             fmt.Print("l'attaque de", CurrentAdversery[AdverseryChoice].Nom, " a raté, petit chanceux")
         }
     }
+      if P == 3{
+        for P > 0{
+            CurrentAdversery[AdverseryChoice].Vieactuelle-=5
+            fmt.Print("", CurrentAdversery[AdverseryChoice].Nom, " subit des dégâts de poison, il lui reste ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Vieactuelle, " PV.\n")
+        }
+    }
 }
 
 var CurrentAdversery = []*Adversery{&Adversery01, &AdverseryLoki, &AdverseryBarry}
@@ -87,12 +93,36 @@ func DropRate() {
             fmt.Print("vous avez déjà le max de ", CurrentAdversery[AdverseryChoice].Drop[RandomeObj].Name, "\n")
         }
     }
-    if P == 3{
-        for P > 0{
-            CurrentAdversery[AdverseryChoice].Vieactuelle-=5
-            fmt.Print("", CurrentAdversery[AdverseryChoice].Nom, " subit des dégâts de poison, il lui reste ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Vieactuelle, " PV.\n")
-}
-    }
         
 }
-    
+
+func AtackWeaponSystème() {
+    if Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0{
+        var AttackChoice int
+        var Multiplicateur float64 
+        var Attaques = []Attaques{}
+        Attaques = append(Attaques, Joueur.EquipedWeapon.Attaques...)
+        var RandomeRate int
+        RandomeRate = rand.Intn(101)
+        fmt.Scan(&AttackChoice)
+        if AttackChoice - 1 > len(Attaques) +1 {
+            fmt.Print("ce n'est pas une proposition espèce de demeuré")
+            AtackBasiqueSystème()
+        }        
+        if AttackChoice == len(Attaques) + 1{
+            CombatMode()
+        }
+        if AttackChoice - 1 < len(Attaques) {
+            if RandomeRate <= int(Attaques[AttackChoice - 1].LandingRate) {       
+                Multiplicateur = (1 + Joueur.Puissance/100)
+               CurrentAdversery[AdverseryChoice].Vieactuelle -= Attaques[AttackChoice -1].Damage * Arrondir(Multiplicateur) 
+               if CurrentAdversery[AdverseryChoice].Vieactuelle < 0 {
+                CurrentAdversery[AdverseryChoice].Vieactuelle = 0
+               } 
+                fmt.Print("votre attaque a réussi, votre adversaire a encore ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Viemax, " PV\n")
+            } else {
+               fmt.Print("votre attaque a raté \n")
+            }
+        }
+    }
+}
