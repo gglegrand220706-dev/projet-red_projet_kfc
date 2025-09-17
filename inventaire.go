@@ -19,26 +19,28 @@ type Armes struct {
 	InStrore bool
 	Multiplicateur float32
 	Prix int
-	ObjectsCraft []Objects
+	ObjectsCraft []*Objects
 	RequiredQuantity []int
 }
 
 
-var EpeeTraining = Armes{"épées d'entraînements", false, true, 1.15, 30, []Objects{}, []int{}}
-var GantThanos = Armes{"gant de Thanos", false, false, 10, 1000, []Objects{ScrapMetal, InfinityStoneMind, InfinityStoneReality, InfinityStoneTime, InfinityStonePouvoir, InfinityStoneSpace, InfinityStoneSoule}, []int{5, 1, 1, 1, 1, 1, 1}}
-var MarteauThor = Armes{"marteau de Thor", false, true, 4, 200, []Objects{}, []int{}}
-var StormBreaker = Armes{"Hache de Thor", false, false, 5, 400, []Objects{ScrapMetal, GrootsBranches}, []int{5, 5}}
+var EpeeTraining = Armes{"épées d'entraînements", false, true, 5, 30, []*Objects{}, []int{}}
+var GantThanos = Armes{"gant de Thanos", false, false, 100, 1000, []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule}, []int{5, 1, 1, 1, 1, 1, 1}}
+var MarteauThor = Armes{"marteau de Thor", false, true, 20, 200, []*Objects{}, []int{}}
+var StormBreaker = Armes{"Hache de Thor", false, false, 30, 400, []*Objects{&ScrapMetal, &GrootsBranches}, []int{5, 5}}
 var AllWeapons = []*Armes{&EpeeTraining, &GantThanos, &MarteauThor, &StormBreaker}
 
 type Armures struct {
 	Name string
 	Possede bool
 	InStrore bool
-	Protect float32
+	Protect int
 	Prix int
+	ObjectCraft []*Objects
+	RequiredQuantity []int
 }
 
-var ArmureTraining = Armures{"armure d'entraînment", false, true, 0.15, 15}
+var ArmureTraining = Armures{"armure d'entraînment", false, true, 10, 15, []*Objects{}, []int{}}
 var AllArmures = []*Armures{&ArmureTraining}
 
 type Objects struct {
@@ -117,6 +119,7 @@ func DisplayInventoryWeapons() {
     }
     Joueur.EquipedWeapon = *AllWeapons[mapping[Choice-1]]
     fmt.Println("Vous avez équipé", Joueur.EquipedWeapon.Name)
+	Joueur.Puissance += float64(AllWeapons[mapping[Choice-1]].Multiplicateur)
 }
 
 func DisplayInventoryArmures() {
@@ -149,5 +152,5 @@ func DisplayInventoryArmures() {
     }
     Joueur.EquipedArmure = *AllArmures[mapping[Choice-1]]
     fmt.Println("Vous avez équipé", Joueur.EquipedArmure.Name)
+	Joueur.Viemax += AllArmures[mapping[Choice -1]].Protect
 }
-
