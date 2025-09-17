@@ -16,7 +16,7 @@ func AtackSystème() {
         RandomeRate = rand.Intn(101)
         fmt.Scan(&AttackChoice)
         if AttackChoice - 1 > len(Attaques) +1 {
-            fmt.Print("se n'est pas une proposition espèce de demeuré")
+            fmt.Print("ce n'est pas une proposition espèce de demeuré")
             AtackSystème()
         }        
         if AttackChoice == len(Attaques) + 1 {
@@ -54,7 +54,7 @@ func Response() {
             UsedAttaques = Attaques[ChoiceResponse].Name
             fmt.Print("vous avez été touché par : ", UsedAttaques, "\n")
         }else {
-            fmt.Print("son attaque a été râté petit chanceux")
+            fmt.Print("l'attaque de", CurrentAdversery[AdverseryChoice].Nom, " a raté, petit chanceux")
         }
     }
 }
@@ -82,7 +82,7 @@ func DropRate() {
         RandomeObj = rand.Intn(len(CurrentAdversery[AdverseryChoice].Drop))
         if RandomeDrop <= CurrentAdversery[AdverseryChoice].Drop[RandomeObj].DropRate && CurrentAdversery[AdverseryChoice].Drop[RandomeObj].MaxAmount > CurrentAdversery[AdverseryChoice].Drop[RandomeObj].Nb {
             CurrentAdversery[AdverseryChoice].Drop[RandomeObj].Nb ++
-            fmt.Print("vous avez ressus ", CurrentAdversery[AdverseryChoice].Drop[RandomeObj].Name, "\n")
+            fmt.Print("vous avez reçu ", CurrentAdversery[AdverseryChoice].Drop[RandomeObj].Name, "\n")
         } else {
             fmt.Print("vous avez déjà le max de ", CurrentAdversery[AdverseryChoice].Drop[RandomeObj].Name, "\n")
         }
@@ -90,7 +90,7 @@ func DropRate() {
     if P == 3{
         for P > 0{
             CurrentAdversery[AdverseryChoice].Vieactuelle-=5
-            fmt.Print("L'adversaire subit des dégâts de poison, il lui reste ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Vieactuelle, " PV.\n")
+            fmt.Print("", CurrentAdversery[AdverseryChoice].Nom, " subit des dégâts de poison, il lui reste ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Vieactuelle, " PV.\n")
 }
     }
         
