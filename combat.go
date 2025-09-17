@@ -32,9 +32,9 @@ func AtackSystème() {
                if CurrentAdversery[AdverseryChoice].Vieactuelle < 0 {
                 CurrentAdversery[AdverseryChoice].Vieactuelle = 0
                } 
-                fmt.Print("attaques réussis, vie restante : ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Viemax, " PV\n")
+                fmt.Print("votre attaque a réussi, votre adversaire a toujours ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Viemax, " PV\n")
             } else {
-               fmt.Print("attaque ratée \n")
+               fmt.Print("votre attaque a raté \n")
             }
         }
     }
@@ -87,4 +87,12 @@ func DropRate() {
             fmt.Print("vous avez déjà le max de ", CurrentAdversery[AdverseryChoice].Drop[RandomeObj].Name, "\n")
         }
     }
+    if P == 3{
+        for P > 0{
+            CurrentAdversery[AdverseryChoice].Vieactuelle-=5
+            fmt.Print("L'adversaire subit des dégâts de poison, il lui reste ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Vieactuelle, " PV.\n")
 }
+    }
+        
+}
+    

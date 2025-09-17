@@ -2,7 +2,6 @@ package personnage
 
 import (
 	"fmt"
-	"time"
 )
 
 func PotionsVie() {
@@ -30,14 +29,14 @@ func PotionsVie() {
 	Healed = false
 }
 
+var P int 
 func PotionDamage() {
-	PotionsDamage.Nb--
-	for i := 0; i < 3; i++ {
-		CurrentAdversery[AdverseryChoice].Vieactuelle -= 5
-		time.Sleep(1 * time.Second)	
-		fmt.Print("L'adversaire perd 5 pv ", CurrentAdversery[AdverseryChoice].Vieactuelle, " PV\n")
+	P = 3
+	for i:=3; i!=0; i--{
+		P--
 	}
 }
+
 
 func PotionCHoice() {
 	var PotionsChoice int
