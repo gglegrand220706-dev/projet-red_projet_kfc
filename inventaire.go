@@ -22,13 +22,15 @@ type Armes struct {
 	ObjectsCraft []*Objects
 	RequiredQuantity []int
 	Attaques	[]Attaques
+    Mastery int
+    MaxMastery int
 }
 
 
-var EpeeTraining = Armes{"épées d'entraînements", false, true, 10, 30, []*Objects{}, []int{}, []Attaques{AttaquesEpeeTraining}}
-var GantThanos = Armes{"gant de Thanos", false, false, 100, 1000, []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule}, []int{10, 1, 1, 1, 1, 1, 1}, []Attaques{AttaqueGantThanos, AttaqueGantThanos02, AttaqueGantThanos03, AttaqueGantThanos04, AttaqueGantThanos05, AttaqueGantThanos06, AttaqueGantSnap}}
-var MarteauThor = Armes{"marteau de Thor", false, true, 20, 200, []*Objects{}, []int{}, []Attaques{AttaquesMarteauLancé, AttaquesMarteauFoudre}}
-var StormBreaker = Armes{"Hache de Thor", false, false, 30, 400, []*Objects{&ScrapMetal, &GrootsBranches}, []int{5, 5}, []Attaques{AttaqueHache, AttaqueHache02}}
+var EpeeTraining = Armes{"épées d'entraînements", false, true, 10, 30, []*Objects{}, []int{}, []Attaques{AttaquesEpeeTraining}, 0, 5}
+var GantThanos = Armes{"gant de Thanos", false, false, 100, 1000, []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule}, []int{10, 1, 1, 1, 1, 1, 1}, []Attaques{AttaqueGantThanos, AttaqueGantThanos02, AttaqueGantThanos03, AttaqueGantThanos04, AttaqueGantThanos05, AttaqueGantThanos06, AttaqueGantSnap}, 0, 10}
+var MarteauThor = Armes{"marteau de Thor", false, true, 20, 200, []*Objects{}, []int{}, []Attaques{AttaquesMarteauLancé, AttaquesMarteauFoudre}, 0, 15}
+var StormBreaker = Armes{"Hache de Thor", false, false, 30, 400, []*Objects{&ScrapMetal, &GrootsBranches}, []int{5, 5}, []Attaques{AttaqueHache, AttaqueHache02}, 0, 20}
 var AllWeapons = []*Armes{&EpeeTraining, &GantThanos, &MarteauThor, &StormBreaker}
 
 type Armures struct {
@@ -42,7 +44,9 @@ type Armures struct {
 }
 
 var ArmureTraining = Armures{"armure d'entraînment", false, true, 10, 15, []*Objects{}, []int{}}
-var AllArmures = []*Armures{&ArmureTraining}
+var ArmureBatman = Armures{"Tenue de Batman", false, false, 20, 30, []*Objects{&CuireBat}, []int{15}}
+var Armureamazone = Armures{"Tenue des Amazone", false, true, 15, 20, []*Objects{}, []int{}}
+var AllArmures = []*Armures{&ArmureTraining, &ArmureBatman, &Armureamazone}
 
 type Objects struct {
 	Name string
@@ -59,7 +63,9 @@ var InfinityStonePouvoir = Objects{"Pierre du pouvoir", 1, 15, 1}
 var InfinityStoneSpace = Objects{"Pierre de l'espace", 1, 15, 1}
 var InfinityStoneSoule = Objects{"Pierre de l'âme", 1, 15, 1}
 var GrootsBranches = Objects{"Branche de groot", 10, 50, 10}
-var AllObjects = []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule, &GrootsBranches}
+var CuireBat = Objects{"Aile de chauve souris", 0, 75, 20}
+var PlansMachine = Objects{"Plan pour réparer la machine", 0, 40, 1}
+var AllObjects = []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule, &GrootsBranches, &CuireBat}
 
 func DisplayInventoryObjects() {
 	fmt.Print("               invetaire: Objets             \n")
@@ -154,4 +160,41 @@ func DisplayInventoryArmures() {
     Joueur.EquipedArmure = *AllArmures[mapping[Choice-1]]
     fmt.Println("Vous avez équipé", Joueur.EquipedArmure.Name)
 	Joueur.Viemax += AllArmures[mapping[Choice -1]].Protect
+}
+
+var LastArmorBaught  = []Armures{ArmureBatman, ArmureTraining, Armureamazone}
+var LastWeaponBaught = []Armes{EpeeTraining, MarteauThor, GantThanos, StormBreaker}
+
+func InstantEquipArmor() {
+    var WantedEquip int
+    fmt.Print("\nvoulez vous l'équiper maintenant ?\n    1. oui\n    2. non\n")
+    fmt.Scan(&WantedEquip)
+    switch WantedEquip {
+    case 1 :
+        Joueur.EquipedArmure = LastArmorBaught[WhatIsTheLastBoughtItem]
+        fmt.Print("\nVous avez équipé ", Joueur.EquipedArmure.Name, "\n")
+    case 2 :
+        Continuer()
+		ShopArmures()
+        default :
+            fmt.Print("\nse n'est pas une des deux proposition, tu le fais exprès ?\n")
+            InstantEquipArmor()
+    }
+}
+
+func InstantEquipWeapon() {
+    var WantedEquip int
+    fmt.Print("\nvoulez vous l'équiper maintenant ?\n    1. oui\n    2. non\n")
+    fmt.Scan(&WantedEquip)
+    switch WantedEquip {
+    case 1 :
+        Joueur.EquipedWeapon = LastWeaponBaught[WhatIsTheLastBoughtItem]
+        fmt.Print("\nVous avez équipé ", Joueur.EquipedWeapon.Name, "\n")
+    case 2 :
+        Continuer()
+		ShopArmes()
+    default :
+       fmt.Print("\nse n'est pas une des deux proposition, tu le fais exprès ?\n")
+        InstantEquipWeapon()
+    }
 }

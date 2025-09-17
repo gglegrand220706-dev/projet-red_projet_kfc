@@ -146,16 +146,22 @@ func DisplayAtackPhysqiue() {
 
 func DisplayAtackArmes() {
 	if Joueur.Vieactuelle > 0 && CurrentAdversery[0].Vieactuelle > 0 {
-		var OptionDisplay = []string{}
+		var OptionDisplay = []Attaques{}
 		var Index int
 		for _, Attaque := range Joueur.EquipedWeapon.Attaques {
-			OptionDisplay = append(OptionDisplay, Attaque.Name)
+			OptionDisplay = append(OptionDisplay, Attaque)
 		}
 		fmt.Print("\nQue voulez-vous faire :\n")
 		for index, OptionsName := range OptionDisplay {
-			fmt.Printf("%d. %v\n", index+1, OptionsName)
-			index++
-			Index++
+			if Joueur.EquipedWeapon.Mastery < OptionsName.NeededMastery {
+				fmt.Print(".", index+1, " ", OptionsName.Name, " (maitrise trop basse)\n")
+				index++
+				Index++
+			} else {
+				fmt.Printf("%d. %v\n", index+1, OptionsName.Name)
+				index++
+				Index++
+			}	
 		}
 		fmt.Print(Index+1, ". Retour\n")
 	}
@@ -240,14 +246,11 @@ func CombatMode() {
 				DisplayAtackPhysqiue()
 				AtackBasiqueSystème()
 				Response()
-				PotionDamage()
-
 			}
 			if Selection03 == 2 {
 				DisplayAtackArmes()
 				AtackWeaponSystème()
 				Response()
-				PotionDamage()
 			}
 			if Selection03 == 3 {
 				CombatMode()
@@ -265,7 +268,6 @@ func CombatMode() {
 		if Selection02 == 3 {
 			fmt.Print("\033[H\033[2J")
 			Fuite()
-
 		}
 		if Joueur.Vieactuelle <= 0 {
 			IsDead()

@@ -6,7 +6,7 @@ import (
 
 func ShopPotion() {
 	var ChoixPotion int
-	fmt.Print("\nVous avez ", Joueur.Bourse, " TeKno-dollar\n")
+	fmt.Print("\nVous avez ", Joueur.Bourse, " TeKno-dollar\n\n")
 	fmt.Print("\n1. potion de soins\n")
 	fmt.Print("2. potion de poison\n")
 	fmt.Print("3. Retour\n")
@@ -16,6 +16,7 @@ func ShopPotion() {
 		Joueur.Bourse -= PotionDispo[ChoixPotion - 1].Prix
 		PotionDispo[ChoixPotion - 1].Nb ++
 		fmt.Print("Vous avez acheter ", PotionDispo[ChoixPotion -1].Name, " il vous reste donc ", Joueur.Bourse, " TeKno-Dollars")
+		ShopPotion()
 		if ChoixPotion == 3 {
 			MenuShop()
 		}
@@ -26,14 +27,20 @@ func ShopPotion() {
 	}
 }
 
-func ShopArmes() {
-	var ChoixArmes int
-	fmt.Print("\nVous avez ", Joueur.Bourse, " TeKno-Dollar\n")
+var WhatIsTheLastBoughtItem int
+
+func ShopArmes() {	
+	fmt.Print("\nVous avez ", Joueur.Bourse, " TeKno-Dollar\n\n")
 	var ArmesDispo = []*Armes{&EpeeTraining, &MarteauThor, &GantThanos, &StormBreaker}
+	var ChoixArmes int
 	var Index int
 	for i, Name := range ArmesDispo {
 		if Name.InStrore {
-			fmt.Println(i + 1, Name.Name,  Name.Prix, " TKD")
+			if Name.Possede {
+				fmt.Print(i+1, ". ", Name.Name, Name.Prix, " (déjà possedée)\n") // a ettre en rouge si c'est le cas
+				Index = i
+			}
+			fmt.Print(i + 1, ". ", Name.Name, " ",  Name.Prix, " TKD\n")
 			Index = i
 		}
 	}
@@ -51,9 +58,11 @@ func ShopArmes() {
 		Joueur.Bourse -= ArmesDispo[ChoixArmes -1].Prix
 		ArmesDispo[ChoixArmes -1].Possede = true
 		fmt.Print("vous avez acheté ", ArmesDispo[ChoixArmes -1].Name, "\n")
-		fmt.Print("il vous reste : ", Joueur.Bourse, " TeKno-Dollar\n")
+		fmt.Print("il vous reste : ", Joueur.Bourse, " TeKno-Dollar\n") 
+		WhatIsTheLastBoughtItem = ChoixArmes -1
+		InstantEquipWeapon()
 		Continuer()
-		MenuShop()
+		ShopArmes()
 	}else {
 		fmt.Print("Vous ne pouvez pas acheter :P\n")
 		Continuer()
@@ -61,14 +70,30 @@ func ShopArmes() {
 	}
 }
 
+
+
 func ShopArmures() {
-	fmt.Print("Vous avez ", Joueur.Bourse, " TeKno-Dollar\n")
+	fmt.Print("Vous avez ", Joueur.Bourse, " TeKno-Dollar\n\n")
 	var ChoixArmures int
-	var ArmuresDispo = []*Armures{&ArmureTraining}
+	var Index int
+	var ArmuresDispo = []*Armures{&ArmureTraining, &Armureamazone, &ArmureBatman}
 	for i, Name := range ArmuresDispo {
-		fmt.Println(i+1, Name.Name, Name.Prix, "TKD")
+		if Name.InStrore {
+			if Name.Possede {
+				fmt.Print(i+1, ". ", Name.Name, Name.Prix, " (déjà possedée)\n") // a ettre en rouge si c'est le cas
+				Index = i
+			}
+			fmt.Print(i+1, ". ", Name.Name, Name.Prix, "TKD\n")
+			Index = i
+		} else {
+			i--
+		}	
 	}
+	fmt.Print(Index + 2, ". Retour\n")
 	fmt.Scan(&ChoixArmures)
+	if ChoixArmures == Index + 2 {
+		MenuShop()
+	}
 	if ChoixArmures < 0 || ChoixArmures > len(ArmuresDispo) {
 		fmt.Print("se n'est pas un choix disponible")
 		Continuer()
@@ -78,8 +103,10 @@ func ShopArmures() {
 		Joueur.Bourse -= ArmuresDispo[ChoixArmures -1].Prix
 		ArmuresDispo[ChoixArmures -1].Possede = true
 		fmt.Print("Vous avez acheter ", ArmuresDispo[ChoixArmures -1].Name, " il vous reste ", Joueur.Bourse, " TeKno-Dollars")
+		WhatIsTheLastBoughtItem = ChoixArmures -1
+		InstantEquipArmor()
 		Continuer()
-		MenuShop()
+		ShopArmures()
 	}
 }
 

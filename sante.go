@@ -6,9 +6,9 @@ import (
 
 func PotionsVie() {
 	var Healed bool
-	if PotionsSoins.Nb > PotionsSoins.EffectLife {
+	if PotionsSoins.Nb > 0 {
 		if Joueur.Vieactuelle == Joueur.Viemax && !Healed{
-			fmt.Print("vous ne pouvez pas utilisé cette potions")
+			fmt.Print("vous ne pouvez pas utilisé cette potions\n")
 			Healed =  true
 		}		
 		if Joueur.Viemax - Joueur.Vieactuelle >= PotionsSoins.EffectLife && !Healed{
@@ -24,16 +24,16 @@ func PotionsVie() {
 			Healed = true
 		}
 	} else {
-		fmt.Print("vous n'avez plus de potions")
+		fmt.Print("vous n'avez plus de potions\n")
 	}
 	Healed = false
 }
 
 var IsPoison bool = false
 
-func PotionDamage(){
-	IsPoison = true
-}
+
+		
+
 
 func PotionCHoice() {
 	var PotionsChoice int
@@ -42,7 +42,12 @@ func PotionCHoice() {
 	case 1 :
 		PotionsVie()
 	case 2 :
-		PotionDamage()
+		if AllPotions[1].Nb > 0 {
+			IsPoison = true
+		} else {
+		fmt.Print("Vous n'avez pas cette potion\n")
+		DisplayPotions()
+	}
 	case 3 :
 		CombatMode()
 	default :
