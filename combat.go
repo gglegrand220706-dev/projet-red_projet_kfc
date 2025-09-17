@@ -40,30 +40,39 @@ func AtackBasiqueSystème() {
     }
 }
 
+
+
 func Response() {
-    if CurrentAdversery[AdverseryChoice].Vieactuelle > 0 && Joueur.Vieactuelle > 0 {
-        var ChoiceResponse int
-        var Attaques = []Attaques{}
-        Attaques = append(Attaques, CurrentAdversery[AdverseryChoice].Attaques...)
-        var UsedAttaques string
-        var RandomeRate int
-        ChoiceResponse = rand.Intn(len(CurrentAdversery[AdverseryChoice].Attaques))
-        RandomeRate = rand.Intn(101)
-        if RandomeRate <= int(Attaques[ChoiceResponse].LandingRate) {
-            Joueur.Vieactuelle -= int(Attaques[ChoiceResponse].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
-            UsedAttaques = Attaques[ChoiceResponse].Name
-            fmt.Print("vous avez été touché par : ", UsedAttaques, "\n")
-        }else {
-            fmt.Print("l'attaque de", CurrentAdversery[AdverseryChoice].Nom, " a raté, petit chanceux")
+            if CurrentAdversery[AdverseryChoice].Vieactuelle > 0 && Joueur.Vieactuelle > 0 {
+                var ChoiceResponse int
+                var Attaques = []Attaques{}
+                Attaques = append(Attaques, CurrentAdversery[AdverseryChoice].Attaques...)
+                var UsedAttaques string
+                var RandomeRate int
+                ChoiceResponse = rand.Intn(len(CurrentAdversery[AdverseryChoice].Attaques))
+                RandomeRate = rand.Intn(101)
+                var Count int = 2
+	            if IsPoison{
+		            if Count !=0{
+			            Count--
+			            CurrentAdversery[AdverseryChoice].Vieactuelle -= 5
+			            fmt.Print("", CurrentAdversery[AdverseryChoice].Nom, " est affecté par le poison, il lui reste ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Vieactuelle, " PVs\n")			
+		            } else {
+                        IsPoison = false
+                    }
+	            }
+                if RandomeRate <= int(Attaques[ChoiceResponse].LandingRate) {
+                    Joueur.Vieactuelle -= int(Attaques[ChoiceResponse].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
+                    UsedAttaques = Attaques[ChoiceResponse].Name
+                    fmt.Print("vous avez été touché par : ", UsedAttaques, "\n")
+                }else {
+                    fmt.Print("l'attaque de", CurrentAdversery[AdverseryChoice].Nom, " a raté, petit chanceux")
+            }
+            }
+
+            
         }
-    }
-      if P == 3{
-        for P > 0{
-            CurrentAdversery[AdverseryChoice].Vieactuelle-=5
-            fmt.Print("", CurrentAdversery[AdverseryChoice].Nom, " subit des dégâts de poison, il lui reste ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Vieactuelle, " PV.\n")
-        }
-    }
-}
+    
 
 var CurrentAdversery = []*Adversery{&Adversery01, &AdverseryLoki, &AdverseryBarry}
 var AdverseryChoice int

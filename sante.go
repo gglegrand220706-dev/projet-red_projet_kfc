@@ -29,14 +29,11 @@ func PotionsVie() {
 	Healed = false
 }
 
-var P int 
-func PotionDamage() {
-	P = 3
-	for i:=3; i!=0; i--{
-		P--
-	}
-}
+var IsPoison bool = false
 
+func PotionDamage(){
+	IsPoison = true
+}
 
 func PotionCHoice() {
 	var PotionsChoice int
