@@ -90,6 +90,9 @@ func BlackSmith() {
     var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
     var Enough int
     var IndexFreeFire int
+	if CraftingChoice == K{
+		MenuShop()
+	}
     for IndexFreeFire < len(ArmesForgeable[CraftingChoice -1].ObjectsCraft) {
         if ArmesForgeable[CraftingChoice -1].ObjectsCraft[IndexFreeFire].Nb >= ArmesForgeable[CraftingChoice -1].RequiredQuantity[IndexFreeFire] {
             Enough++

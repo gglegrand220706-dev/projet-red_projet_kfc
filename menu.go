@@ -242,19 +242,24 @@ func CombatMode() {
 		}
 }
 
+var K int // indice pour le retour
+
 func BlackSmithDisplay() {
 	fmt.Print("\033[H\033[2J")
 	fmt.Print("                 Forgeron\n")
 	var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
 	var IndexObj int
+	
 	for index, Name := range ArmesForgeable {
-		fmt.Print(index +1 , ". ", Name.Name, "\n" )
+		fmt.Print(index +1,  ". ", Name.Name, "\n" )
+		K++
 		IndexObj = 0
 		for IndexObj < len(ArmesForgeable[index].ObjectsCraft) {
 			fmt.Print("           - ", ArmesForgeable[index].ObjectsCraft[IndexObj].Name, "\n")
 			IndexObj ++
 		}
 	}
+	fmt.Print(K, ". Retour")
 }
 
 func DisplayInventory() {
