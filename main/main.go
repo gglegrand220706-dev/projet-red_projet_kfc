@@ -6,6 +6,7 @@ import (
 )
 
 func main() {	
+	//personnage.WelcomeRecords()
 	personnage.CharacterCreation()
 	personnage.MenuGeneral()
 	fmt.Print("\033[H\033[2J")

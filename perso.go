@@ -33,12 +33,12 @@ func CharacterCreation() {
 
 func (u Character) DisplayName() {
 	fmt.Print("\033[H\033[2J")
-	fmt.Print("\033[33mvotre pseudo est donc -->\033[0m" + u.Nom)
+	fmt.Print("\033[33mvotre prénom est donc -->\033[0m" + u.Nom)
 }
 
 func (u *Character) RecupInfoName() {
 	fmt.Print("\033[H\033[2J")
-	fmt.Print("\033[33mChoissiser votre pseudo -->\033[0m")
+	fmt.Print("\033[33mChoissisez votre prénom jeune avanturier -->\033[0m")
 	fmt.Scan(&u.Nom)
 	u.DisplayName()
 }
