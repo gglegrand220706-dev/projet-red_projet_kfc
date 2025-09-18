@@ -128,14 +128,18 @@ func BlackSmith() {
     fmt.Print("\033[33mQue voulez-vous, Aventurier ?\033[0m\n")
     fmt.Scan(&CraftingChoice)
     var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
+	var ArmuresForgeable =[]*Armures{&ArmureBatman}
+	var TeknologiaCraft = &TeknologiaItem
     var Enough int
     var IndexFreeFire int
+	var IndexTek int
 
-    if CraftingChoice == K {
+    if CraftingChoice == K +2 {
         MenuShop()
         return
     }
-    for IndexFreeFire < len(ArmesForgeable[CraftingChoice-1].ObjectsCraft) {
+	if 1>CraftingChoice && CraftingChoice < 2 {
+		for IndexFreeFire < len(ArmesForgeable[CraftingChoice-1].ObjectsCraft) {
         if ArmesForgeable[CraftingChoice-1].ObjectsCraft[IndexFreeFire].Nb >= ArmesForgeable[CraftingChoice-1].RequiredQuantity[IndexFreeFire] {
             Enough++
             IndexFreeFire++
@@ -151,5 +155,42 @@ func BlackSmith() {
         fmt.Print("\033[32mVous retrouverez cette arme dans le magasin\033[0m\n")
         ArmesForgeable[CraftingChoice-1].InStrore = true
     }
+	}
+    if CraftingChoice == 3 {
+		for IndexFreeFire < len(ArmuresForgeable[CraftingChoice-1].ObjectCraft) {
+        if ArmuresForgeable[CraftingChoice-1].ObjectCraft[IndexFreeFire].Nb >= ArmuresForgeable[CraftingChoice-1].RequiredQuantity[IndexFreeFire] {
+            Enough++
+            IndexFreeFire++
+        } else {
+            fmt.Print("\033[31mVous n'avez pas les matériaux\033[0m\n")
+            return
+        }
+    }
+    if Enough == len(ArmuresForgeable[CraftingChoice-1].ObjectCraft) {
+        for i := 0; i < len(ArmuresForgeable[CraftingChoice-1].ObjectCraft); i++ {
+            ArmuresForgeable[CraftingChoice-1].ObjectCraft[i].Nb -= ArmuresForgeable[CraftingChoice-1].RequiredQuantity[i]
+        }
+        fmt.Print("\033[32mVous retrouverez cette armure dans le magasin\033[0m\n")
+        ArmuresForgeable[CraftingChoice-1].InStrore = true
+    }
+	}
+	if CraftingChoice == 4 {
+		for IndexTek < len(TeknologiaCraft.ObjectsCraft){
+			if TeknologiaCraft.ObjectsCraft[IndexTek].Nb == TeknologiaCraft.ObjectsQuentity[IndexTek]{
+				Enough++
+				IndexTek ++
+			} else {
+				fmt.Print("vous n'avez pas les matériaux")
+				return
+			}
+		}
+		if Enough == len(TeknologiaCraft.ObjectsCraft) {
+			for i :=0; i< len(TeknologiaCraft.ObjectsCraft); i++ {
+				TeknologiaCraft.ObjectsCraft[i].Nb -= TeknologiaCraft.ObjectsQuentity[i]
+			}
+			fmt.Print("Vous avez réparer Teknologia, ouvrez votre invetaire pour l'utiliser")
+			TeknologiaCraft.Possede = true
+		}
+	}
 }
 

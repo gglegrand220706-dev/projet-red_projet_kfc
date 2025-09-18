@@ -6,7 +6,7 @@ import (
 )
 
 func main() {	
-	// personnage.WelcomeRecords()
+	//personnage.WelcomeRecords()
 	personnage.CharacterCreation()
 	personnage.MenuGeneral()
 	/*

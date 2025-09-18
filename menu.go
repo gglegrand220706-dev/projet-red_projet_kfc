@@ -21,7 +21,7 @@ func MenuGeneral() {
 	fmt.Println("\033[31m | |_) | (_| | |_| |_| |  __/   \\ V  V / (_) | |  | | (_| |\033[0m")
 	fmt.Println("\033[31m |____/ \\__,_|\\__|\\__|_|\\___|    \\_/\\_/ \\___/|_|  |_|\\__,_|\033[0m")
 	fmt.Print("\033[33mOptions :\n\033[0m")
-	fmt.Print("\033[33m1 -->\033[0m \033[36mBase de donnees\033[0m\n\033[33m2 -->\033[0m \033[35mBoutique\033[0m\n\033[33m3 -->\033[0m \033[32mEntrainement\033[0m\n\033[33m4 -->\033[0m \033[34mQuête\033[0m\n5 -->Quitter\n")
+	fmt.Print("\033[33m1 -->\033[0m \033[36mTekno-Book\033[0m\n\033[33m2 -->\033[0m \033[35mBoutique\033[0m\n\033[33m3 -->\033[0m \033[32mEntrainement\033[0m\n\033[33m4 -->\033[0m \033[34mQuête\033[0m\n5 -->Quitter\n")
 	fmt.Scan(&selection)
 	if selection == 1 {
 		fmt.Print("\033[H\033[2J")
@@ -54,7 +54,7 @@ func MenuGeneral() {
 func MenuDataBase() {
     var selection int
     fmt.Print("\033[H\033[2J")
-    fmt.Print("\033[36m          BASE DE DONNÉES          \033[0m\n")
+    fmt.Print("\033[36m          Tekno-Book          \033[0m\n")
     fmt.Print("\033[33mOptions :\033[0m\n")
     fmt.Print("\033[33m1 --> \033[31mFiche du personnage\033[0m\n")
     fmt.Print("\033[33m2 --> \033[31mInventaire\033[0m\n")
@@ -330,6 +330,8 @@ func BlackSmithDisplay() {
     fmt.Print("\033[H\033[2J")
     fmt.Print("\033[36m                 Forgeron\033[0m\n")
     var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
+	var ArmuresForgeable = []*Armures{&ArmureBatman}
+	var TeknologiaForgeable = TeknologiaItem
     var IndexObj int
     K = 1
 
@@ -342,7 +344,21 @@ func BlackSmithDisplay() {
             IndexObj++
         }
     }
-    fmt.Printf("\033[33m%d --> \033[31mRetour\033[0m\n", K)
+	for index, Name := range ArmuresForgeable {
+        fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", K, Name.Name)
+        K++
+        IndexObj = 0
+        for IndexObj < len(ArmuresForgeable[index].ObjectCraft) {
+            fmt.Printf("           \033[33m- \033[32m%v\033[0m\n", ArmuresForgeable[index].ObjectCraft[IndexObj].Name)
+            IndexObj++
+        }
+    }
+	fmt.Print(K, " --> ", TeknologiaForgeable.Name, "\n")
+	for IndexObj < len(TeknologiaForgeable.ObjectsCraft) {
+            fmt.Printf("           \033[33m- \033[32m%v\033[0m\n", TeknologiaForgeable.ObjectsCraft[IndexObj].Name)
+            IndexObj++
+        }
+    fmt.Printf("\033[33m%d --> \033[31mRetour\033[0m\n", K+1)
 }
 
 func DisplayInventory() {

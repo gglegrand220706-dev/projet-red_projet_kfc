@@ -81,7 +81,7 @@ func Response() {
         if Attaque_CapaityChoice + 1 > len(PourUnSeulMec.Att) && !PourUnSeulMec.Cap[0].Used {
             PourUnSeulMec.Cap[0].Used = true
             var RandomeRate int
-                RandomeRate = rand.Intn(101)
+                RandomeRate = int(rand.Intn(101*(1-Joueur.Agilite/100)))
                 if RandomeRate <= int(PourUnSeulMec.Att[Attaque_CapaityChoice].LandingRate){
                      Joueur.Vieactuelle -= int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
                     UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
