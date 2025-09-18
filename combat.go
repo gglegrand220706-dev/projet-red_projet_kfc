@@ -70,7 +70,7 @@ func Response() {
             }
         }
     }
-    if PourUnSeulMec.Name == CurrentAdversery[AdverseryChoice].Nom {
+    if PourUnSeulMec.Name[0] == CurrentAdversery[AdverseryChoice].Nom {
         var Attaque_CapaityChoice int
         var UsedAttaques_Capacity string
         Attaque_CapaityChoice = rand.Intn(4)
@@ -164,12 +164,18 @@ func AtackWeaponSystème() {
         var RandomeRate int
         RandomeRate = rand.Intn(101)
         fmt.Scan(&AttackChoice)
-
-        if AttackChoice-1 > len(Attaques)+1 {
+        if AttackChoice-1 > len(Attaques)+2 {
             fmt.Print("\033[31m❌ Ce n'est pas une proposition espèce de demeuré\033[0m\n")
             AtackBasiqueSystème()
             return
         }
+        if AttackChoice -1 ==  len(Attaques)+2 && !PourUnSeulMec.Cap[0].Used && Joueur.EquipedWeapon.Name == PourUnSeulMec.Name[1] {
+            fmt.Print("le temps se déforme, vous allez rejouer")
+            PourUnSeulMec.Cap[0].Used = true
+            DisplayAtackArmes()
+            AtackWeaponSystème()
+        }
+
         if AttackChoice == len(Attaques)+1 {
             CombatMode()
             return

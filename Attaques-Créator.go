@@ -23,7 +23,6 @@ var AttaqueGantThanos02 = Attaques{"Pierre de l'esprit 🧠💎", 7, 80, 10}
 var AttaqueGantThanos03 = Attaques{"Pierre de la réalité 🌌💎", 8, 80, 15}
 var AttaqueGantThanos04 = Attaques{"Pierre de l'espace 🌍💎", 9, 82, 15}
 var AttaqueGantThanos05 = Attaques{"Pierre de l'âme 🕊️💎", 10, 82, 20}
-var AttaqueGantThanos06 = Attaques{"Pierre du temps ⏳💎", 11, 82, 20}
 var AttaqueGantSnap     = Attaques{"Inéluctable ✋💥", int(CurrentAdversery[AdverseryChoice].Vieactuelle / 2), 100, 25}
 
 var AttaquesEpeeTraining = Attaques{"Coup d'estoque ⚔️", 5, 75, 5}
@@ -67,7 +66,7 @@ var PierreTemps = Capacity{"Distortion Espace Temps", "Rejoue", false,}
 type Array struct {
 	Att []Attaques
 	Cap []Capacity
-	Name string
+	Name []string
 }
 
-var PourUnSeulMec = Array{[]Attaques{RayonLaserDorm, LancesDorme}, []Capacity{PierreTemps}, "Dormammu"}
+var PourUnSeulMec = Array{[]Attaques{RayonLaserDorm, LancesDorme}, []Capacity{PierreTemps}, []string{"Dormammu", AllWeapons[1].Name}}

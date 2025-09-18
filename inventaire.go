@@ -27,8 +27,8 @@ type Armes struct {
 }
 
 
-var EpeeTraining=Armes{"\033[36m⚔️  Épées d'entraînement\033[0m",false,true,10,30, []*Objects{},[]int{},[]Attaques{AttaquesEpeeTraining},0,5}
-var GantThanos=Armes{"\033[35m🧤 Gant de Thanos\033[0m",false,false,100,1000,[]*Objects{&ScrapMetal,&InfinityStoneMind,&InfinityStoneReality,&InfinityStoneTime,&InfinityStonePouvoir,&InfinityStoneSpace,&InfinityStoneSoule},[]int{10,1,1,1,1,1,1},[]Attaques{AttaqueGantThanos,AttaqueGantThanos02,AttaqueGantThanos03,AttaqueGantThanos04,AttaqueGantThanos05,AttaqueGantThanos06,AttaqueGantSnap},0,10}
+var EpeeTraining=Armes{"\033[36m⚔️  Épées d'entraînement\033[0m",false,true,10,30, []*Objects{},[]int{},[]Attaques{AttaquesEpeeTraining},0,5,}
+var GantThanos=Armes{"\033[35m🧤 Gant de Thanos\033[0m",false,false,100,1000,[]*Objects{&ScrapMetal,&InfinityStoneMind,&InfinityStoneReality,&InfinityStoneTime,&InfinityStonePouvoir,&InfinityStoneSpace,&InfinityStoneSoule},[]int{10,1,1,1,1,1,1},[]Attaques{AttaqueGantThanos,AttaqueGantThanos02,AttaqueGantThanos03,AttaqueGantThanos04,AttaqueGantThanos05,AttaqueGantSnap},0,10}
 var MarteauThor=Armes{"\033[34m🔨 Marteau de Thor\033[0m",false,true,20,200,[]*Objects{},[]int{},[]Attaques{AttaquesMarteauLancé,AttaquesMarteauFoudre},0,15}
 var StormBreaker=Armes{"\033[33m🪓 StormBreaker\033[0m",false,false,30,400,[]*Objects{&ScrapMetal,&GrootsBranches},[]int{5,5},[]Attaques{AttaqueHache,AttaqueHache02},0,20}
 var AllWeapons = []*Armes{&EpeeTraining, &GantThanos, &MarteauThor, &StormBreaker}

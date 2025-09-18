@@ -116,7 +116,7 @@ func ShopArmures() {
         ArmuresDispo[ChoixArmures-1].Possede = true
         fmt.Printf("\033[32m✨ Vous avez acheté \033[0m%v\033[32m,  il vous reste \033[32m%d  🪙  1TeKno-Dirham\033[0m\n",
             ArmuresDispo[ChoixArmures-1].Name, Joueur.Bourse)
-        WhatIsTheLastBoughtItem = ChoixArmures - 1
+        WhatIsTheLastBoughtItem = ChoixArmures
         InstantEquipArmor()
         Continuer()
         ShopArmures()
