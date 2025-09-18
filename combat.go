@@ -70,7 +70,35 @@ func Response() {
             }
         }
     }
-
+    if PourUnSeulMec.Name == CurrentAdversery[AdverseryChoice].Nom {
+        var Attaque_CapaityChoice int
+        var UsedAttaques_Capacity string
+        Attaque_CapaityChoice = rand.Intn(4)
+        if Attaque_CapaityChoice + 1 > len(PourUnSeulMec.Att) && !PourUnSeulMec.Cap[0].Used {
+            PourUnSeulMec.Cap[0].Used = true
+            var RandomeRate int
+                RandomeRate = rand.Intn(101)
+                if RandomeRate <= int(PourUnSeulMec.Att[Attaque_CapaityChoice].LandingRate){
+                     Joueur.Vieactuelle -= int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
+                    UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
+                    fmt.Printf("\n\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques_Capacity)
+                    fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
+                    Joueur.Vieactuelle, Joueur.Viemax)
+                }
+        } else {
+             if CurrentAdversery[AdverseryChoice].Vieactuelle > 0 && Joueur.Vieactuelle > 0 {
+                var RandomeRate int
+                RandomeRate = rand.Intn(101)
+                if RandomeRate <= int(PourUnSeulMec.Att[Attaque_CapaityChoice].LandingRate){
+                     Joueur.Vieactuelle -= int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
+                    UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
+                    fmt.Printf("\n\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques_Capacity)
+                    fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
+                    Joueur.Vieactuelle, Joueur.Viemax)
+                }
+             }
+        }
+    }
     if CurrentAdversery[AdverseryChoice].Vieactuelle > 0 && Joueur.Vieactuelle > 0 {
         var ChoiceResponse int
         var Attaques = []Attaques{}

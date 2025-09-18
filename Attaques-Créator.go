@@ -15,6 +15,9 @@ var GutPunch        = Attaques{"Coup à l’estomac 🤜", 8, 80, 0}
 var AttaqueHache    = Attaques{"Lancé de Hache 🪓", 10, 75, 10}
 var AttaqueHache02  = Attaques{"Hache de foudre ⚡🪓", 12, 75, 20}
 
+var  RayonLaserDorm = Attaques{"Hurlement Laser", 17, 75, 0}
+var LancesDorme = Attaques{"Lances Planètaires", 20, 75, 0} 
+
 var AttaqueGantThanos   = Attaques{"Pierre du pouvoir 💎", 6, 80, 10}
 var AttaqueGantThanos02 = Attaques{"Pierre de l'esprit 🧠💎", 7, 80, 10}
 var AttaqueGantThanos03 = Attaques{"Pierre de la réalité 🌌💎", 8, 80, 15}
@@ -56,7 +59,15 @@ var AttaqueBasique04 = Attaques{"Pied bouche 🦶", 5, 100, 0}
 type Capacity struct {
     Name  string
     Bonus string
-    Rate  int
+	Used bool
 }
 
-var Vole = Capacity{"Vol 🪽", "Les attaques ont moins de chance de toucher leur cible", 60}
+var PierreTemps = Capacity{"Distortion Espace Temps", "Rejoue", false,}
+
+type Array struct {
+	Att []Attaques
+	Cap []Capacity
+	Name string
+}
+
+var PourUnSeulMec = Array{[]Attaques{RayonLaserDorm, LancesDorme}, []Capacity{PierreTemps}, "Dormammu"}

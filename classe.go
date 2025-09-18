@@ -13,7 +13,7 @@ type Kryptonien struct {
 
 }
 
-var Kryptonien1 = Kryptonien{20, 10, 25, []string{"Crypto,", "magie,", "puissance plus grande"}, 25, 20, []string{"Laser"},  []Attaques{AttaqueLasser}, []Capacity{Vole}}
+var Kryptonien1 = Kryptonien{20, 10, 25, []string{"Crypto,", "magie,", "puissance plus grande"}, 25, 20, []string{"Laser"},  []Attaques{AttaqueLasser}, []Capacity{}}
 
 type Batfamily struct {
 	Viemax       int
