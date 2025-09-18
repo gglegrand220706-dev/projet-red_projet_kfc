@@ -10,18 +10,21 @@ func Reward() {
     }
     Joueur.EXP += GainedExp
     Joueur.Bourse += GainedMoney
-    fmt.Printf("\nVous avez gagné : %d EXP et : %d TeKno-Dollars\n", GainedExp, GainedMoney)
+
+    fmt.Printf("\n\033[33mVous avez gagné : \033[32m%d ✨ EXP\033[32m Et \033[32m%d 🪙 TeKno-Dirham\033[0m\n",
+        GainedExp, GainedMoney)
+
     for Joueur.EXP >= Joueur.ExpNextLevel {
         Joueur.EXP -= Joueur.ExpNextLevel
         NextLevel()
         Joueur.ExpNextLevel = Joueur.Niveau*10 + 20
-        fmt.Printf("\nVous passez niveau %d\n", Joueur.Niveau)
+        fmt.Printf("\n\033[33mVous passez niveau \033[32m%d 🆙\033[0m\n", Joueur.Niveau)
+
         if Joueur.EquipedWeapon.MaxMastery > Joueur.EquipedWeapon.Mastery {
-            Joueur.EquipedWeapon.Mastery ++
+            Joueur.EquipedWeapon.Mastery++
         } else {
-            fmt.Print("votre mastery est au mex sur cette arme")
+            fmt.Print("\033[31mVotre mastery est au max sur cette arme\033[0m\n")
         }
-        
     }
 }
 

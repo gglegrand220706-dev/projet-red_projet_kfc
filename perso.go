@@ -33,19 +33,19 @@ func CharacterCreation() {
 
 func (u Character) DisplayName() {
 	fmt.Print("\033[H\033[2J")
-	fmt.Print("\033[33mvotre pseudo est donc --> \033[0m" + u.Nom)
+	fmt.Print("\033[33mvotre pseudo est donc -->\033[0m" + u.Nom)
 }
 
 func (u *Character) RecupInfoName() {
 	fmt.Print("\033[H\033[2J")
-	fmt.Print("\033[33mChoissiser votre pseudo --> \033[0m")
+	fmt.Print("\033[33mChoissiser votre pseudo -->\033[0m")
 	fmt.Scan(&u.Nom)
 	u.DisplayName()
 }
 
 func (u Character) DisplayPlayerClass() {
 	fmt.Print("\033[H\033[2J")
-	fmt.Print("votre classe est donc : " + u.Classe)
+	fmt.Print("\033[33mvotre classe est donc --> " + u.Classe + "\033[0m")
 }
 
 func (u *Character) RecupInfoClass() {
@@ -53,8 +53,6 @@ func (u *Character) RecupInfoClass() {
 	var ClasseSelection int
 	u.Attaques = []Attaques{HighKick, GutPunch, CoupDePoing}
 	u.CapacityDisplay = []string{CoupDePoing.Name, HighKick.Name, GutPunch.Name}
-	u.Niveau = 1
-	u.ExpNextLevel = 20
 	for Confirme != 1 {
 		ClasseSelection = 0
 		fmt.Print("\033[H\033[2J")
@@ -160,6 +158,13 @@ func (u *Character) RecupInfoClass() {
 }
 
 func DisplayInfo() {
-	fmt.Print("infos perso : \n")
-	fmt.Print("Pseudo : ", Joueur.Nom, "\n Casse : ", Joueur.Classe, "\n Niveau : ", Joueur.Niveau, "\n Exp : ", Joueur.EXP, "/", Joueur.ExpNextLevel, "\n Vie : ", Joueur.Vieactuelle, "/", Joueur.Viemax, "\n Compétences : ", Joueur.CapacityClasseDisplay, "\n Faiblaisses : ", Joueur.Faiblaisse)
+	fmt.Print("\033[33minfos perso : \n\033[0m")
+fmt.Println("\033[33mPseudo -->\033[32m", Joueur.Nom,
+    "\n\033[33mClasse -->\033[32m", Joueur.Classe,
+    "\n\033[33mNiveau -->\033[32m", Joueur.Niveau,
+    "\n\033[33mExp -->\033[32m", Joueur.EXP, "/", Joueur.ExpNextLevel,
+    "\n\033[33mVie -->\033[32m", Joueur.Vieactuelle, "/", Joueur.Viemax,
+    "\n\033[33mCompétences -->\033[32m", Joueur.CapacityClasseDisplay,
+    "\n\033[33mFaiblaisses -->\033[32m", Joueur.Faiblaisse, "\033[0m")
 }
+

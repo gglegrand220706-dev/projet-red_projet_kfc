@@ -49,77 +49,86 @@ func MenuGeneral() {
 }
 
 func MenuDataBase() {
-	var selection int
-	fmt.Print("\033[H\033[2J")
-	fmt.Print("          BASE DE DONNEES          \n")
-	fmt.Print("\033[33mOptions :\n\033[0m")
-	fmt.Print("1. Fiche du personnage\n2. Inventaire\n3. Retour\n")
-	fmt.Scan(&selection)
+    var selection int
+    fmt.Print("\033[H\033[2J")
+    fmt.Print("\033[36m          BASE DE DONNÉES          \033[0m\n")
+    fmt.Print("\033[33mOptions :\033[0m\n")
+    fmt.Print("\033[33m1 --> \033[31mFiche du personnage\033[0m\n")
+    fmt.Print("\033[33m2 --> \033[31mInventaire\033[0m\n")
+    fmt.Print("\033[33m3 --> \033[31mRetour\033[0m\n")
+    fmt.Print("\033[33mQue voulez-vous faire ?\033[0m\n")
+    fmt.Scan(&selection)
 
-	if selection == 1 {
-		DisplayInfo()
-		RetourMenu()
-	}
-	if selection == 2 {
-		fmt.Print("\033[H\033[2J")
-		DisplayInventory()
-		RetourMenu()
-	}
-	if selection == 3 {
-		fmt.Print("\033[H\033[2J")
-		MenuGeneral()
-	}
-	if selection > 3 || selection <= 0 {
-		fmt.Print("\033[H\033[2J")
-		fmt.Print("Option indisponible, veuillez choisir parmi les 3 propositions\n")
-		MenuDataBase()
-	}
+    if selection == 1 {
+        DisplayInfo()
+        RetourMenu()
+    }
+    if selection == 2 {
+        fmt.Print("\033[H\033[2J")
+        DisplayInventory()
+        RetourMenu()
+    }
+    if selection == 3 {
+        fmt.Print("\033[H\033[2J")
+        MenuGeneral()
+    }
+    if selection > 3 || selection <= 0 {
+        fmt.Print("\033[H\033[2J")
+        fmt.Print("\033[31m❌ Option indisponible, veuillez choisir parmi les 3 propositions\033[0m\n")
+        MenuDataBase()
+    }
 }
 
 func MenuShop() {
-	var selection int
-	fmt.Print("\033[H\033[2J")
-	fmt.Print("          BOUTIQUE          \n")
-	fmt.Print("Options\n")
-	fmt.Print("1. Potions\n2. Armes\n3. Armures\n4. Forgeron\n5. Retour\n")
-	fmt.Scan(&selection)
-	if selection == 1 {
-		fmt.Print("\033[H\033[2J")
-		fmt.Print("          BOUTIQUE          \n")
-		fmt.Print("Quelle potion voulez vous acheter\n")
-		ShopPotion()
-		Continuer()
-		MenuShop()
-	}
-	if selection == 2 {
-		fmt.Print("\033[H\033[2J")
-		fmt.Print("          BOUTIQUE          \n")
-		fmt.Print("\nQuelle arme voulez vous acheter\n")
-		ShopArmes()
-		RetourMenu()
-	}
-	if selection == 3 {
-		fmt.Print("\033[H\033[2J")
-		fmt.Print("          BOUTIQUE          \n")
-		fmt.Print("Quelle armure voulez vous acheter\n")
-		ShopArmures()
-		RetourMenu()
-	}
-	if selection == 4 {
-		fmt.Print("\033[H\033[2J")
-		BlackSmithDisplay()
-		BlackSmith()
-		Continuer()
-		MenuShop()
-	}
-	if selection == 5 {
-		MenuGeneral()
-	}
-	if selection > 5 || selection <= 0 {
-		fmt.Print("\033[H\033[2J")
-		fmt.Print("Option indisponible, veuillez choisir parmi les 4 propositions\n")
-		MenuShop()
-	}
+    var selection int
+    fmt.Print("\033[H\033[2J")
+    fmt.Print("\033[36m          BOUTIQUE          \033[0m\n")
+    fmt.Print("\033[33mOptions :\033[0m\n")
+    fmt.Print("\033[33m1 --> \033[31mPotions\033[0m\n")
+    fmt.Print("\033[33m2 --> \033[31mArmes\033[0m\n")
+    fmt.Print("\033[33m3 --> \033[31mArmures\033[0m\n")
+    fmt.Print("\033[33m4 --> \033[31mForgeron\033[0m\n")
+    fmt.Print("\033[33m5 --> \033[31mRetour\033[0m\n")
+    fmt.Print("\033[33mQue voulez-vous faire ?\033[0m\n")
+    fmt.Scan(&selection)
+
+    if selection == 1 {
+        fmt.Print("\033[H\033[2J")
+        fmt.Print("\033[36m          BOUTIQUE          \033[0m\n")
+        fmt.Print("\033[33mQuelle potion voulez-vous acheter ?\033[0m\n")
+        ShopPotion()
+        Continuer()
+        MenuShop()
+    }
+    if selection == 2 {
+        fmt.Print("\033[H\033[2J")
+        fmt.Print("\033[36m          BOUTIQUE          \033[0m\n")
+        fmt.Print("\033[33mQuelle arme voulez-vous acheter ?\033[0m\n")
+        ShopArmes()
+        RetourMenu()
+    }
+    if selection == 3 {
+        fmt.Print("\033[H\033[2J")
+        fmt.Print("\033[36m          BOUTIQUE          \033[0m\n")
+        fmt.Print("\033[33mQuelle armure voulez-vous acheter ?\033[0m\n")
+        ShopArmures()
+        RetourMenu()
+    }
+    if selection == 4 {
+        fmt.Print("\033[H\033[2J")
+        BlackSmithDisplay()
+        BlackSmith()
+        Continuer()
+        MenuShop()
+    }
+    if selection == 5 {
+        MenuGeneral()
+    }
+    if selection > 5 || selection <= 0 {
+        fmt.Print("\033[H\033[2J")
+        fmt.Print("\033[31m❌ Option indisponible, veuillez choisir parmi les 5 propositions\033[0m\n")
+        MenuShop()
+    }
 }
 
 func RetourMenu() {
@@ -128,198 +137,228 @@ func RetourMenu() {
 }
 
 func DisplayAtackPhysqiue() {
-	if Joueur.Vieactuelle > 0 && CurrentAdversery[0].Vieactuelle > 0 {
-		var OptionDisplay = []string{}
-		var Index int = 1
-		for _, Attaque := range Joueur.Attaques {
-			OptionDisplay = append(OptionDisplay, Attaque.Name)
-		}
-		fmt.Print("\nQue voulez-vous faire :\n")
-		for index, OptionsName := range OptionDisplay {
-			fmt.Printf("%d. %v\n", index+1, OptionsName)
-			index++
-			Index++
-		}
-		fmt.Print(Index, ". Retour\n")
-	}
+    if Joueur.Vieactuelle > 0 && CurrentAdversery[0].Vieactuelle > 0 {
+        var OptionDisplay = []string{}
+        var Index int = 1
+        for _, Attaque := range Joueur.Attaques {
+            OptionDisplay = append(OptionDisplay, Attaque.Name)
+        }
+
+        fmt.Print("\n\033[33mQue voulez-vous faire :\033[0m\n")
+        for index, OptionsName := range OptionDisplay {
+            fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, OptionsName)
+            index++
+            Index++
+        }
+        fmt.Printf("\033[33m%d --> \033[31mRetour\033[0m\n", Index)
+    }
 }
 
 func DisplayAtackArmes() {
-	if Joueur.Vieactuelle > 0 && CurrentAdversery[0].Vieactuelle > 0 {
-		var OptionDisplay = []Attaques{}
-		var Index int
-		for _, Attaque := range Joueur.EquipedWeapon.Attaques {
-			OptionDisplay = append(OptionDisplay, Attaque)
-		}
-		fmt.Print("\nQue voulez-vous faire :\n")
-		for index, OptionsName := range OptionDisplay {
-			if Joueur.EquipedWeapon.Mastery < OptionsName.NeededMastery {
-				fmt.Print(".", index+1, " ", OptionsName.Name, " (maitrise trop basse)\n")
-				index++
-				Index++
-			} else {
-				fmt.Printf("%d. %v\n", index+1, OptionsName.Name)
-				index++
-				Index++
-			}	
-		}
-		fmt.Print(Index+1, ". Retour\n")
-	}
+    if Joueur.Vieactuelle > 0 && CurrentAdversery[0].Vieactuelle > 0 {
+        var OptionDisplay = []Attaques{}
+        var Index int
+        for _, Attaque := range Joueur.EquipedWeapon.Attaques {
+            OptionDisplay = append(OptionDisplay, Attaque)
+        }
+
+        fmt.Print("\n\033[33mQue voulez-vous faire :\033[0m\n")
+        for index, OptionsName := range OptionDisplay {
+            if Joueur.EquipedWeapon.Mastery < OptionsName.NeededMastery {
+                fmt.Printf("\033[33m%d --> \033[31m%v\033[0m \033[31m(maîtrise trop basse)\033[0m\n", index+1, OptionsName.Name)
+            } else {
+                fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, OptionsName.Name)
+            }
+            Index++
+        }
+        fmt.Printf("\033[33m%d --> \033[31mRetour\033[0m\n", Index+1)
+    }
 }
 
 func IsDead() {
-	fmt.Print("Vous êtes mort sale noob\n")
-	fmt.Print("vous récussitez avec ", Joueur.Viemax/2, " PV\n")
-	Joueur.Vieactuelle = Joueur.Viemax / 2
-	RetourMenu()
+    fmt.Print("\033[31m💀 Vous êtes mort, sale noob 😂\033[0m\n")
+    fmt.Printf("\033[33mVous ressuscitez avec \033[31m%d\033[0m PV\n", Joueur.Viemax/2)
+    Joueur.Vieactuelle = Joueur.Viemax / 2
+    RetourMenu()
 }
 
 func Continuer() {
-	time.Sleep(1 * time.Second)
-	fmt.Print("\nAppuyer sur esapce pour continuer ...\n")
-	bufio.NewReader(os.Stdin).ReadBytes(' ')
+    time.Sleep(1 * time.Second)
+    fmt.Print("\033[33m\nAppuyez sur espace puis Entrée pour continuer ...\033[0m\n")
+    bufio.NewReader(os.Stdin).ReadBytes(' ')
 }
 
 func DisplayPotions() {
-	var index = 0
-	if Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
-		var PotionsDisplay = []string{}
-		for _, NamePotion := range AllPotions {
-			PotionsDisplay = append(PotionsDisplay, NamePotion.Name)
-		}
-		fmt.Print("quelle potion voulez vous utilisé ?\n")
-		for _, PotionsName := range PotionsDisplay {
-			fmt.Printf("%d. %v\n", index+1, PotionsName)
-			index++
-		}
-		fmt.Print("3. Retour\n")
-	}
+    var index = 0
+    if Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
+        var PotionsDisplay []string
+        for _, NamePotion := range AllPotions {
+            PotionsDisplay = append(PotionsDisplay, NamePotion.Name)
+        }
+
+        fmt.Print("\n\033[33mQuelle potion voulez-vous utiliser ?\033[0m\n")
+        for _, PotionsName := range PotionsDisplay {
+            fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, PotionsName)
+            index++
+        }
+        fmt.Printf("\033[33m%d --> \033[31mRetour\033[0m\n", index+1)
+    }
 }
 
 func Fuite() {
-	if Joueur.Bourse-CurrentAdversery[AdverseryChoice].GivenMoney > 0 {
-		fmt.Print("Vous vous êtes fais raquètter pour partire, vous perdez : ", CurrentAdversery[AdverseryChoice].GivenMoney, " Techno-Dollars\n")
-		Joueur.Bourse -= CurrentAdversery[AdverseryChoice].GivenMoney
-	} else {
-		fmt.Print("\nVous fuyez et vous avez pas d'argents, vous êtes pitoyable.")
-	}
-	if Joueur.EXP-CurrentAdversery[AdverseryChoice].GivenExp > 0 {
-		Joueur.EXP -= CurrentAdversery[AdverseryChoice].GivenExp
-	} else {
-		fmt.Print("\nVous fuyez car vous êtes sans experience, vous êtes pitoyable.")
-	}
-	RetourMenu()
+    if Joueur.Bourse-CurrentAdversery[AdverseryChoice].GivenMoney > 0 {
+        fmt.Printf("\033[31mVous vous êtes fait raquetté pour partir, vous perdez : \033[32m%d 🪙 Techno-Dollars\033[0m\n",
+            CurrentAdversery[AdverseryChoice].GivenMoney)
+        Joueur.Bourse -= CurrentAdversery[AdverseryChoice].GivenMoney
+    } else {
+        fmt.Print("\033[31m\nVous fuyez et vous n'avez pas d'argent, vous êtes pitoyable.\033[0m\n")
+    }
+    if Joueur.EXP-CurrentAdversery[AdverseryChoice].GivenExp > 0 {
+        Joueur.EXP -= CurrentAdversery[AdverseryChoice].GivenExp
+    } else {
+        fmt.Print("\033[31m\nVous fuyez car vous êtes sans expérience, vous êtes pitoyable.\033[0m\n")
+    }
+    RetourMenu()
 }
 
 func MenuQuetes() {
-	var SelectionQuete int
-	fmt.Print("quelle quete voulez vous faire ?\n1. Bosses\n2. Enemys Classique\n")
-	fmt.Scan(&SelectionQuete)
-	if SelectionQuete == 1 {
-		fmt.Print("\033[H\033[2J")
-		AdverseryChoice = 1
-		CombatMode()
-	}
-	if SelectionQuete == 2 {
-		fmt.Print("\033[H\033[2J")
-		AdverseryChoice = 2
-		CombatMode()
-	} else {
-		fmt.Print("se n'est pas une option disponible")
-	}
+    var SelectionQuete int
+    fmt.Print("\033[33mQuelle quête voulez-vous faire ?\033[0m\n")
+    fmt.Print("\033[33m1 --> \033[31mBosses\033[0m\n")
+    fmt.Print("\033[33m2 --> \033[31mEnnemis Classiques\033[0m\n")
+    fmt.Print("\033[33mVotre choix :\033[0m\n")
+    fmt.Scan(&SelectionQuete)
 
+    if SelectionQuete == 1 {
+        fmt.Print("\033[H\033[2J")
+        AdverseryChoice = 1
+        CombatMode()
+    } else if SelectionQuete == 2 {
+        fmt.Print("\033[H\033[2J")
+        AdverseryChoice = 2
+        CombatMode()
+    } else {
+        fmt.Print("\033[31mCe n'est pas une option disponible\033[0m\n")
+    }
 }
 
 func CombatMode() {
-	fmt.Print("\033[H\033[2J")
-	CurrentAdversery[AdverseryChoice].Vieactuelle = CurrentAdversery[AdverseryChoice].Viemax
-	var Selection02 int = 0
-	for Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
-		fmt.Print("\nPV :", Joueur.Vieactuelle, "/", Joueur.Viemax, "                                               ", CurrentAdversery[AdverseryChoice].Nom, " : ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Viemax, "\n\n")
-		fmt.Print("que voulez vous faire ?\n1. Attaque\n2. Potions\n3. Fuire\n")
-		fmt.Scan(&Selection02)
-		if Selection02 == 1 {
-			fmt.Print("\nque voulez vous faire ?\n1. Attaque Physique\n2. Attaques Arme\n3. Retour\n")
-			var Selection03 int
-			fmt.Scan(&Selection03)
-			if Selection03 == 1 {
-				DisplayAtackPhysqiue()
-				AtackBasiqueSystème()
-				Response()
-			}
-			if Selection03 == 2 {
-				DisplayAtackArmes()
-				AtackWeaponSystème()
-				Response()
-			}
-			if Selection03 == 3 {
-				CombatMode()
-			}
-			if Selection03 < 0 || Selection03 > 3 {
-				fmt.Print("non disponible")
-				CombatMode()
-			}
-		}
-		if Selection02 == 2 {
-			DisplayPotions()
-			PotionCHoice()
-			Response()
-		}
-		if Selection02 == 3 {
-			fmt.Print("\033[H\033[2J")
-			Fuite()
-		}
-		if Joueur.Vieactuelle <= 0 {
-			IsDead()
-		}
-		if CurrentAdversery[AdverseryChoice].Vieactuelle <= 0 {
-			Reward()
-			DropRate()
-			RetourMenu()
-		}
-		if Selection02 < 0 || Selection02 > 3 {
-			fmt.Print("Ce n'est pas un choix disponoble\n")
-		}
-	}
+    fmt.Print("\033[H\033[2J")
+    CurrentAdversery[AdverseryChoice].Vieactuelle = CurrentAdversery[AdverseryChoice].Viemax
+    var Selection02 int = 0
+
+    for Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
+        fmt.Printf("\n\033[33mPV : \033[32m%d\033[0m / \033[32m%d\033[0m    \033[31m%v\033[0m : \033[32m%d\033[0m / \033[32m%d\033[0m\n\n",
+            Joueur.Vieactuelle, Joueur.Viemax,
+            CurrentAdversery[AdverseryChoice].Nom,
+            CurrentAdversery[AdverseryChoice].Vieactuelle,
+            CurrentAdversery[AdverseryChoice].Viemax)
+
+        fmt.Print("\033[33mQue voulez-vous faire ?\033[0m\n")
+        fmt.Print("\033[33m1 --> \033[31mAttaque\033[0m\n")
+        fmt.Print("\033[33m2 --> \033[31mPotions\033[0m\n")
+        fmt.Print("\033[33m3 --> \033[31mFuite\033[0m\n")
+        fmt.Scan(&Selection02)
+
+        if Selection02 == 1 {
+            fmt.Print("\033[33mQuel type d'attaque ?\033[0m\n")
+            fmt.Print("\033[33m1 --> \033[31mAttaque Physique\033[0m\n")
+            fmt.Print("\033[33m2 --> \033[31mAttaques Arme\033[0m\n")
+            fmt.Print("\033[33m3 --> \033[31mRetour\033[0m\n")
+            var Selection03 int
+            fmt.Scan(&Selection03)
+
+            if Selection03 == 1 {
+                DisplayAtackPhysqiue()
+                AtackBasiqueSystème()
+                Response()
+            }
+            if Selection03 == 2 {
+                DisplayAtackArmes()
+                AtackWeaponSystème()
+                Response()
+            }
+            if Selection03 == 3 {
+                CombatMode()
+            }
+            if Selection03 < 0 || Selection03 > 3 {
+                fmt.Print("\033[31mOption non disponible\033[0m\n")
+                CombatMode()
+            }
+        }
+
+        if Selection02 == 2 {
+            DisplayPotions()
+            PotionCHoice()
+            Response()
+        }
+
+        if Selection02 == 3 {
+            fmt.Print("\033[H\033[2J")
+            Fuite()
+        }
+
+        if Joueur.Vieactuelle <= 0 {
+            IsDead()
+        }
+
+        if CurrentAdversery[AdverseryChoice].Vieactuelle <= 0 {
+            Reward()
+            DropRate()
+            RetourMenu()
+        }
+
+        if Selection02 < 0 || Selection02 > 3 {
+            fmt.Print("\033[31mCe n'est pas un choix disponible\033[0m\n")
+        }
+    }
 }
+
 
 var K int // indice pour le retour
 
 func BlackSmithDisplay() {
-	fmt.Print("\033[H\033[2J")
-	fmt.Print("                 Forgeron\n")
-	var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
-	var IndexObj int
+    fmt.Print("\033[H\033[2J")
+    fmt.Print("\033[36m                 Forgeron\033[0m\n")
+    var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
+    var IndexObj int
+    K = 1
 
-	for index, Name := range ArmesForgeable {
-		fmt.Print(index+1, ". ", Name.Name, "\n")
-		K++
-		IndexObj = 0
-		for IndexObj < len(ArmesForgeable[index].ObjectsCraft) {
-			fmt.Print("           - ", ArmesForgeable[index].ObjectsCraft[IndexObj].Name, "\n")
-			IndexObj++
-		}
-	}
-	fmt.Print(K, ". Retour")
+    for index, Name := range ArmesForgeable {
+        fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, Name.Name)
+        K++
+        IndexObj = 0
+        for IndexObj < len(ArmesForgeable[index].ObjectsCraft) {
+            fmt.Printf("           \033[33m- \033[32m%v\033[0m\n", ArmesForgeable[index].ObjectsCraft[IndexObj].Name)
+            IndexObj++
+        }
+    }
+    fmt.Printf("\033[33m%d --> \033[31mRetour\033[0m\n", K)
 }
 
 func DisplayInventory() {
-	fmt.Print("\033[H\033[2J")
-	var ChoiceSection int
-	fmt.Print("               Invetaire\n")
-	fmt.Print("\n que voulez vous vérifier ?\n\n1. Objets\n2. Armes\n3. Armures\n4. Retour\n")
-	fmt.Scan(&ChoiceSection)
-	switch ChoiceSection {
-	case 1:
-		DisplayInventoryObjects()
-	case 2:
-		DisplayInventoryWeapons()
-	case 3:
-		DisplayInventoryArmures()
-	case 4:
-		RetourMenu()
-	default:
-		fmt.Print("se n'est pas une Option disponible")
-		DisplayInventory()
-	}
+    fmt.Print("\033[H\033[2J")
+    var ChoiceSection int
+    fmt.Print("\033[36m               Inventaire\033[0m\n")
+    fmt.Print("\n\033[33mQue voulez-vous vérifier ?\033[0m\n\n")
+    fmt.Print("\033[33m1 --> \033[31mObjets\033[0m\n")
+    fmt.Print("\033[33m2 --> \033[31mArmes\033[0m\n")
+    fmt.Print("\033[33m3 --> \033[31mArmures\033[0m\n")
+    fmt.Print("\033[33m4 --> \033[31mRetour\033[0m\n")
+    fmt.Scan(&ChoiceSection)
+
+    switch ChoiceSection {
+    case 1:
+        DisplayInventoryObjects()
+    case 2:
+        DisplayInventoryWeapons()
+    case 3:
+        DisplayInventoryArmures()
+    case 4:
+        RetourMenu()
+    default:
+        fmt.Print("\033[31mCe n'est pas une option disponible\033[0m\n")
+        DisplayInventory()
+    }
 }
+
