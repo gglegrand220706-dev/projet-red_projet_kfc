@@ -47,7 +47,7 @@ func AtackBasiqueSystème() {
     }
 }
 
-
+var BeatenBosses int
 
 func Response() {
     var Count int = 2
@@ -63,6 +63,10 @@ func Response() {
 
                 if CurrentAdversery[AdverseryChoice].Vieactuelle <= 0 {
                     fmt.Printf("\033[32m🏆 Vous avez vaincu %v !\033[0m\n", CurrentAdversery[AdverseryChoice].Nom)
+                    if CurrentAdversery[AdverseryChoice].Bosse {
+                        CurrentAdversery[AdverseryChoice].Bosse = false
+                        BeatenBosses ++
+                    }
                     Reward()
                 }
             } else {
@@ -122,7 +126,7 @@ func Response() {
 }
     
 
-var CurrentAdversery = []*Adversery{&Adversery01, &AdverseryLoki, &AdverseryBarry}
+var CurrentAdversery = []*Adversery{&Adversery01, &AdverseryLoki, &AdverseryBarry, &AdverseryRicooo, &AdverseryWanda, &AdverseryJoker, &Dormammu, &Ronan, &Darkseid, &ChimereTK}
 var AdverseryChoice int
 
 func Arrondir(Multiplicateur float64) int {

@@ -66,7 +66,7 @@ var GrootsBranches=Objects{"\033[32m🌿 Branche de Groot\033[0m",10,50,10}
 var CuireBat=Objects{"\033[34m🦇 Aile de chauve-souris\033[0m",0,75,20}
 var PlansMachine=Objects{"\033[33m📐 Plan pour réparer TeKnologia\033[0m",0,100,1}
 var KeyTK=Objects{"\033[33m📐 Clé de TeKnologia\033[0m",0,100,1}
-var AllObjects = []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule, &GrootsBranches, &CuireBat}
+var AllObjects = []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule, &GrootsBranches, &CuireBat, &KeyTK, &PlansMachine}
 
 
 func DisplayInventoryObjects() {

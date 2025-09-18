@@ -237,8 +237,7 @@ func MenuQuetes() {
 	switch SelectionQuete {
 	case 1 :
 		fmt.Print("\033[H\033[2J")
-        AdverseryChoice = 1
-        CombatMode()
+        MenuBosse()
 	case 2 :
 		fmt.Print("\033[H\033[2J")
         AdverseryChoice = 2
@@ -372,3 +371,54 @@ func DisplayInventory() {
     }
 }
 
+func MenuBosse() {
+	var IndexBosses int
+	var BosseSelection int
+	fmt.Print("\n\nqui voulez vous afronter ?\n\n")
+	for indexBosses, Bosses := range AllBosses {
+		if Bosses.Nom == "Chimère TeKnologia" && BeatenBosses < 6 {
+			fmt.Print(indexBosses+1, " -->", Bosses.Nom, " ", "(battez les autres bosses avant)\n")
+			IndexBosses ++
+		} else {
+			fmt.Print(indexBosses+1, " -->", Bosses.Nom, " ", "(Niveau ", Bosses.Niveau, ")\n")
+			IndexBosses ++
+		}
+		
+	}
+	fmt.Print(IndexBosses +1, "--> Retour\n")
+	fmt.Scan(&BosseSelection)
+	switch BosseSelection {
+	case 1 :
+		AdverseryChoice = 1
+		CombatMode()
+	case 2 :
+		AdverseryChoice = 4
+		CombatMode()
+	case 3 :
+		AdverseryChoice = 5
+		CombatMode()
+	case 4 :
+		AdverseryChoice = 6
+		CombatMode()
+	case 5 :
+		AdverseryChoice = 7
+		CombatMode()
+	case 6 :
+		AdverseryChoice = 8
+		CombatMode()
+	case 7 :
+		if BeatenBosses > 6 {
+			AdverseryChoice = 9
+			CombatMode()
+		} else {
+			fmt.Print("\n\nvous ne pouvez pas encore l'afronter\n\n")
+			MenuBosse()
+		}		
+	case 8 :
+		fmt.Print("\033[H\033[2J")
+		MenuQuetes()
+		default : 
+		fmt.Print("se n'est pas une option, lâche ça kantin")
+		MenuBosse()
+	}
+}
