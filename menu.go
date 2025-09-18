@@ -243,6 +243,7 @@ func MenuQuetes() {
 }
 
 func CombatMode() {
+<<<<<<< HEAD
     fmt.Print("\033[H\033[2J")
     CurrentAdversery[AdverseryChoice].Vieactuelle = CurrentAdversery[AdverseryChoice].Viemax
     var Selection02 int = 0
@@ -312,6 +313,61 @@ func CombatMode() {
             fmt.Print("\033[31mCe n'est pas un choix disponible\033[0m\n")
         }
     }
+=======
+	fmt.Print("\033[H\033[2J")
+	CurrentAdversery[AdverseryChoice].Vieactuelle = CurrentAdversery[AdverseryChoice].Viemax
+	var Selection02 int = 0
+	for Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
+		fmt.Print("\nPV :", Joueur.Vieactuelle, "/", Joueur.Viemax, "                                               ", CurrentAdversery[AdverseryChoice].Nom, " : ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Viemax, "\n\n")
+		fmt.Print("que voulez vous faire ?\n1. Attaque\n2. Potions\n3. Fuire\n")
+		fmt.Scan(&Selection02)
+		if CurrentAdversery[AdverseryChoice].Niveau > Joueur.Niveau {
+			Response()
+		}
+		if Selection02 == 1 {
+			fmt.Print("\nque voulez vous faire ?\n1. Attaque Physique\n2. Attaques Arme\n3. Retour\n")
+			var Selection03 int
+			fmt.Scan(&Selection03)
+			if Selection03 == 1 {
+				DisplayAtackPhysqiue()
+				AtackBasiqueSystème()
+				Response()
+			}
+			if Selection03 == 2 {
+				DisplayAtackArmes()
+				AtackWeaponSystème()
+				Response()
+			}
+			if Selection03 == 3 {
+				CombatMode()
+			}
+			if Selection03 < 0 || Selection03 > 3 {
+				fmt.Print("non disponible")
+				CombatMode()
+			}
+		}
+		if Selection02 == 2 {
+			DisplayPotions()
+			PotionCHoice()
+			Response()
+		}
+		if Selection02 == 3 {
+			fmt.Print("\033[H\033[2J")
+			Fuite()
+		}
+		if Joueur.Vieactuelle <= 0 {
+			IsDead()
+		}
+		if CurrentAdversery[AdverseryChoice].Vieactuelle <= 0 {
+			Reward()
+			DropRate()
+			RetourMenu()
+		}
+		if Selection02 < 0 || Selection02 > 3 {
+			fmt.Print("Ce n'est pas un choix disponoble\n")
+		}
+	}
+>>>>>>> f73e6a593c9633cc219a2e252556d35f34e79852
 }
 
 
