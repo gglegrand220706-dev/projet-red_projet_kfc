@@ -55,6 +55,14 @@ var AttaqueBasique02 = Attaques{"Coup de poing ✊", 3, 100, 0}
 var AttaqueBasique03 = Attaques{"Attaque magique ✨", 4, 100, 0}
 var AttaqueBasique04 = Attaques{"Pied bouche 🦶", 5, 100, 0}
 
+var MarteauRonan = Attaques{"Coup de marteau", 15, 80, 0}
+var Onde = Attaques{"Onde sismique", 20, 75, 0}
+var PowerRush = Attaques{"Power Rush", 30, 75, 0 }
+
+var LaserD = Attaques{"Laser guidé", 20, 90, 0}
+var Lune = Attaques{"Lancé de lune", 30, 70, 0}
+var EAV = Attaques{"Équation anti-vie", Joueur.Vieactuelle-1, 40, 0}
+
 type Capacity struct {
     Name  string
     Bonus string

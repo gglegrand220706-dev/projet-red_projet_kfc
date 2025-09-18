@@ -64,8 +64,10 @@ var InfinityStoneSpace=Objects{"\033[35m🪐 Pierre de l'espace\033[0m",1,15,1}
 var InfinityStoneSoule=Objects{"\033[35m🧿 Pierre de l'âme\033[0m",1,15,1}
 var GrootsBranches=Objects{"\033[32m🌿 Branche de Groot\033[0m",10,50,10}
 var CuireBat=Objects{"\033[34m🦇 Aile de chauve-souris\033[0m",0,75,20}
-var PlansMachine=Objects{"\033[33m📐 Plan pour réparer la machine\033[0m",0,40,1}
+var PlansMachine=Objects{"\033[33m📐 Plan pour réparer TeKnologia\033[0m",0,100,1}
+var KeyTK=Objects{"\033[33m📐 Clé de TeKnologia\033[0m",0,100,1}
 var AllObjects = []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule, &GrootsBranches, &CuireBat}
+
 
 func DisplayInventoryObjects() {
     fmt.Print("\033[36m               Inventaire: Objets             \033[0m\n")
