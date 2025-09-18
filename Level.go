@@ -23,7 +23,7 @@ func Reward() {
         if Joueur.EquipedWeapon.MaxMastery > Joueur.EquipedWeapon.Mastery {
             Joueur.EquipedWeapon.Mastery++
         } else {
-            fmt.Print("\033[31mVotre mastery est au max sur cette arme\033[0m\n")
+            fmt.Print("\033[31m✅ Votre mastery est au max sur cette arme ! 🗡️🔥\033[0m\n")
         }
     }
 }

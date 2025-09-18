@@ -61,7 +61,7 @@ type Capacity struct {
 	Used bool
 }
 
-var PierreTemps = Capacity{"Distortion Espace Temps", "Rejoue", false,}
+var PierreTemps = Capacity{"Distortion Espace-Temps ⏳🌌", "Rejoue 🔁", false}
 
 type Array struct {
 	Att []Attaques

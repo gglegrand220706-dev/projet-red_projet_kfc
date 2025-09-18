@@ -21,7 +21,7 @@ func MenuGeneral() {
 	fmt.Println("\033[31m | |_) | (_| | |_| |_| |  __/   \\ V  V / (_) | |  | | (_| |\033[0m")
 	fmt.Println("\033[31m |____/ \\__,_|\\__|\\__|_|\\___|    \\_/\\_/ \\___/|_|  |_|\\__,_|\033[0m")
 	fmt.Print("\033[33mOptions :\n\033[0m")
-	fmt.Print("\033[33m1 -->\033[0m \033[36mBase de donnees\033[0m\n\033[33m2 -->\033[0m \033[35mBoutique\033[0m\n\033[33m3 -->\033[0m \033[32mEntrainement\033[0m\n\033[33m4 -->\033[0m \033[34mQuête\033[0m\n5 -->Quitter\n")
+	fmt.Print("\033[33m1 -->\033[0m \033[31mBase de données 🧠📚\033[0m\n\033[33m2 -->\033[0m \033[31mBoutique 🛒💰\033[0m\n\033[33m3 -->\033[0m \033[31mEntraînement 🥋💪\033[0m\n\033[33m4 -->\033[0m \033[31mQuête 🗺️ ⚔️\033[0m\n\033[33m5 -->\033[0m \033[31mQuitter 🚪👋\033[0m\n")
 	fmt.Scan(&selection)
 	if selection == 1 {
 		fmt.Print("\033[H\033[2J")

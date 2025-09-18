@@ -170,7 +170,7 @@ func AtackWeaponSystème() {
             return
         }
         if AttackChoice -1 ==  len(Attaques)+2 && !PourUnSeulMec.Cap[0].Used && Joueur.EquipedWeapon.Name == PourUnSeulMec.Name[1] {
-            fmt.Print("le temps se déforme, vous allez rejouer")
+            fmt.Print("⏳ Le temps se déforme... 🌀 Vous allez rejouer ! 🔁\n")
             PourUnSeulMec.Cap[0].Used = true
             DisplayAtackArmes()
             AtackWeaponSystème()
