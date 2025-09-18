@@ -238,6 +238,9 @@ func CombatMode() {
 		fmt.Print("\nPV :", Joueur.Vieactuelle, "/", Joueur.Viemax, "                                               ", CurrentAdversery[AdverseryChoice].Nom, " : ", CurrentAdversery[AdverseryChoice].Vieactuelle, "/", CurrentAdversery[AdverseryChoice].Viemax, "\n\n")
 		fmt.Print("que voulez vous faire ?\n1. Attaque\n2. Potions\n3. Fuire\n")
 		fmt.Scan(&Selection02)
+		if CurrentAdversery[AdverseryChoice].Niveau > Joueur.Niveau {
+			Response()
+		}
 		if Selection02 == 1 {
 			fmt.Print("\nque voulez vous faire ?\n1. Attaque Physique\n2. Attaques Arme\n3. Retour\n")
 			var Selection03 int
