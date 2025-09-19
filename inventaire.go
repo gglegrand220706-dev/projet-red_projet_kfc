@@ -44,7 +44,7 @@ type Armures struct {
 }
 
 var ArmureTraining=Armures{"\033[36m🥋 Armure d'entraînement\033[0m",false,true,10,15,[]*Objects{},[]int{}}
-var ArmureBatman=Armures{"\033[34m🦇 Tenue de Batman\033[0m",false,false,20,30,[]*Objects{&CuireBat},[]int{15}}
+var ArmureBatman=Armures{"\033[34m🦇 Tenue de Batman\033[0m",false,false,20,30,[]*Objects{&CuireBat},[]int{10}}
 var Armureamazone=Armures{"\033[35m🛡️ Tenue des Amazones\033[0m",false,true,15,20,[]*Objects{},[]int{}}
 var AllArmures = []*Armures{&ArmureTraining, &ArmureBatman, &Armureamazone}
 
@@ -72,9 +72,9 @@ var InfinityStonePouvoir=Objects{"\033[35m⚡ Pierre du pouvoir\033[0m",1,15,1}
 var InfinityStoneSpace=Objects{"\033[35m🪐 Pierre de l'espace\033[0m",1,15,1}
 var InfinityStoneSoule=Objects{"\033[35m🧿 Pierre de l'âme\033[0m",1,15,1}
 var GrootsBranches=Objects{"\033[32m🌿 Branche de Groot\033[0m",10,50,10}
-var CuireBat=Objects{"\033[34m🦇 Aile de chauve-souris\033[0m",0,75,20}
-var PlansMachine=Objects{"\033[33m📐 Plan pour réparer TeKnologia\033[0m",1,100,1}
-var KeyTK=Objects{"\033[33m📐 Clé de TeKnologia\033[0m",1,100,1}
+var CuireBat=Objects{"\033[34m🦇 Aile de chauve-souris\033[0m",10,75,20}
+var PlansMachine=Objects{"\033[33m📐 Plan pour réparer TeKnologia\033[0m",0,100,1}
+var KeyTK=Objects{"\033[33m📐 Clé de TeKnologia\033[0m",0,100,1}
 var AllObjects = []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule, &GrootsBranches, &CuireBat, &KeyTK, &PlansMachine}
 
 
@@ -189,7 +189,7 @@ func DisplayInventoryArmures() {
     Joueur.Viemax += AllArmures[mapping[Choice-1]].Protect
 }
 
-var LastArmorBaught  = []Armures{ArmureBatman, ArmureTraining, Armureamazone}
+var LastArmorBaught  = []Armures{ArmureTraining, Armureamazone, ArmureBatman,}
 var LastWeaponBaught = []Armes{EpeeTraining, MarteauThor, GantThanos, StormBreaker}
 
 func InstantEquipArmor() {
@@ -200,6 +200,9 @@ func InstantEquipArmor() {
     case 1:
         Joueur.EquipedArmure = LastArmorBaught[WhatIsTheLastBoughtItem]
         fmt.Print("\033[33m\nVous avez équipé \033[31m", Joueur.EquipedArmure.Name, "\033[0m\n")
+        if Joueur.Vieactuelle == Joueur.Viemax - Joueur.EquipedArmure.Protect {
+            Joueur.Vieactuelle = Joueur.Viemax + Joueur.EquipedArmure.Protect
+        }
     case 2:
         Continuer()
         ShopArmures()

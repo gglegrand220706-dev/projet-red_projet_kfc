@@ -12,6 +12,10 @@ var CoupDePoing     = Attaques{"Coup de poing ✊", 2, 90, 0}
 var HighKick        = Attaques{"Coup de pied 🦵", 6, 85.5, 0}
 var GutPunch        = Attaques{"Coup à l’estomac 🤜", 8, 80, 0}
 
+var ClapSuperSonic = Attaques{"Clape SuperSonic", 10, 80, 0}
+
+var RenvoieSinetique = Attaques{"Renvoie Sinetqiue", Joueur.AbsorbedDamage, 100, 0}
+
 var AttaqueHache    = Attaques{"Lancé de Hache 🪓", 10, 75, 10}
 var AttaqueHache02  = Attaques{"Hache de foudre ⚡🪓", 12, 75, 20}
 

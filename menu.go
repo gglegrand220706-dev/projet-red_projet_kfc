@@ -33,11 +33,13 @@ func MenuGeneral() {
 	}
 	if selection == 3 {
 		fmt.Print("\033[H\033[2J")
+		RenvoieSinetique.Damage = 0
 		AdverseryChoice = 0
 		CombatMode()
 	}
 	if selection == 4 {
 		fmt.Print("\033[H\033[2J")
+		RenvoieSinetique.Damage = 0
 		MenuQuetes()
 	}
 	if selection == 5 {
@@ -149,9 +151,13 @@ func DisplayAtackPhysqiue() {
 
         fmt.Print("\n\033[33mQue voulez-vous faire :\033[0m\n")
         for index, OptionsName := range OptionDisplay {
-            fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, OptionsName)
+			if OptionsName == "Renvoie Sinetqiue" {
+				fmt.Printf("\033[33m%d --> \033[31m%v %c\033[0m\n", index+1, RenvoieSinetique.Name, RenvoieSinetique.Damage)
+			} else {
+				fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, OptionsName)
             index++
             Index++
+			}       
         }
         fmt.Printf("\033[33m%d --> \033[31mRetour\033[0m\n", Index)
     }

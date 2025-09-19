@@ -116,7 +116,7 @@ func ShopArmures() {
         ArmuresDispo[ChoixArmures-1].Possede = true
         fmt.Printf("\033[32m✨ Vous avez acheté \033[0m%v\033[32m,  il vous reste \033[32m%d  🪙  1TeKno-Dirham\033[0m\n",
             ArmuresDispo[ChoixArmures-1].Name, Joueur.Bourse)
-        WhatIsTheLastBoughtItem = ChoixArmures
+        	WhatIsTheLastBoughtItem = ChoixArmures -1
         InstantEquipArmor()
         Continuer()
         ShopArmures()
@@ -138,7 +138,7 @@ func BlackSmith() {
         MenuShop()
         return
     }
-	if 1>CraftingChoice && CraftingChoice < 2 {
+	if 1 >= CraftingChoice || CraftingChoice <= 2 {
 		for IndexFreeFire < len(ArmesForgeable[CraftingChoice-1].ObjectsCraft) {
         if ArmesForgeable[CraftingChoice-1].ObjectsCraft[IndexFreeFire].Nb >= ArmesForgeable[CraftingChoice-1].RequiredQuantity[IndexFreeFire] {
             Enough++
@@ -157,8 +157,8 @@ func BlackSmith() {
     }
 	}
     if CraftingChoice == 3 {
-		for IndexFreeFire < len(ArmuresForgeable[CraftingChoice-1].ObjectCraft) {
-        if ArmuresForgeable[CraftingChoice-1].ObjectCraft[IndexFreeFire].Nb >= ArmuresForgeable[CraftingChoice-1].RequiredQuantity[IndexFreeFire] {
+		for IndexFreeFire < len(ArmuresForgeable[0].ObjectCraft) {
+        if ArmuresForgeable[0].ObjectCraft[IndexFreeFire].Nb >= ArmuresForgeable[0].RequiredQuantity[IndexFreeFire] {
             Enough++
             IndexFreeFire++
         } else {
@@ -166,12 +166,12 @@ func BlackSmith() {
             return
         }
     }
-    if Enough == len(ArmuresForgeable[CraftingChoice-1].ObjectCraft) {
-        for i := 0; i < len(ArmuresForgeable[CraftingChoice-1].ObjectCraft); i++ {
-            ArmuresForgeable[CraftingChoice-1].ObjectCraft[i].Nb -= ArmuresForgeable[CraftingChoice-1].RequiredQuantity[i]
+    if Enough == len(ArmuresForgeable[0].ObjectCraft) {
+        for i := 0; i < len(ArmuresForgeable[0].ObjectCraft); i++ {
+            ArmuresForgeable[0].ObjectCraft[i].Nb -= ArmuresForgeable[0].RequiredQuantity[i]
         }
         fmt.Print("\033[32mVous retrouverez cette armure dans le magasin\033[0m\n")
-        ArmuresForgeable[CraftingChoice-1].InStrore = true
+        ArmuresForgeable[0].InStrore = true
     }
 	}
 	if CraftingChoice == 4 {
