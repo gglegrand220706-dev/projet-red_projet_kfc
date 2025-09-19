@@ -7,10 +7,9 @@ import (
 
 func main() {
 
-	//personnage.WelcomeRecords()
+	personnage.WelcomeRecords()
 	personnage.CharacterCreation()
 	personnage.MenuGeneral()
-	/*
 		fmt.Print("\033[H\033[2J")
 		fmt.Println("\033[91m  _____         _                _             _           \033[0m")
 		fmt.Println("\033[91m |_   _|__  ___| | ___ __   ___ | | ___   __ _(_) __ _     \033[0m")
@@ -22,5 +21,4 @@ func main() {
 		fmt.Println("\033[31m |  _ \\ / _` | __| __| |/ _ \\  \\ \\ /\\ / / _ \\| '__| |/ _` |\033[0m")
 		fmt.Println("\033[31m | |_) | (_| | |_| |_| |  __/   \\ V  V / (_) | |  | | (_| |\033[0m")
 		fmt.Println("\033[31m |____/ \\__,_|\\__|\\__|_|\\___|    \\_/\\_/ \\___/|_|  |_|\\__,_|\033[0m")
-	*/
 }
