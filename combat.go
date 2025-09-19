@@ -15,7 +15,6 @@ func AtackBasiqueSystème() {
         var RandomeRate int
         RandomeRate = rand.Intn(101)
         fmt.Scan(&AttackChoice)
-
         if AttackChoice-1 > len(Attaques)+1 {
             fmt.Print("\033[31m❌ Ce n'est pas une proposition espèce de demeuré\033[0m\n")
             AtackBasiqueSystème()
@@ -31,6 +30,19 @@ func AtackBasiqueSystème() {
         }
       
         if AttackChoice-1 < len(Attaques) {
+            if Attaques[AttackChoice-1].Name == "Renvoie Sinetqiue" {
+                if Joueur.AbsorbedDamage >= 30 {
+                    CurrentAdversery[AdverseryChoice].Vieactuelle -= 30
+                    Joueur.AbsorbedDamage = 0 
+                    fmt.Printf("\033[33mPV adversaire : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
+                    CurrentAdversery[AdverseryChoice].Vieactuelle,
+                    CurrentAdversery[AdverseryChoice].Viemax)
+                    return
+                } else {
+                    fmt.Print("vous ne pouvez pas faire cette attaque\n")
+                    return
+                }
+            }
             if RandomeRate <= int(Attaques[AttackChoice-1].LandingRate) {
                 Multiplicateur = (1 + Joueur.Puissance/100 + float64(Joueur.EquipedWeapon.Multiplicateur)/100)
                 CurrentAdversery[AdverseryChoice].Vieactuelle -= Attaques[AttackChoice-1].Damage * Arrondir(Multiplicateur)
@@ -85,9 +97,7 @@ func Response() {
                 RandomeRate = int(rand.Intn(101*(1-Joueur.Agilite/100)))
                 if RandomeRate <= int(PourUnSeulMec.Att[Attaque_CapaityChoice].LandingRate){
                     Joueur.Vieactuelle -= int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
-                     if Joueur.Classe == "Wakenda" {
-                        Joueur.AbsorbedDamage +=int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
-                     }
+                    Joueur.AbsorbedDamage += int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))    
                     UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
                     fmt.Printf("\n\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques_Capacity)
                     fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
@@ -99,9 +109,7 @@ func Response() {
                 RandomeRate = rand.Intn(101)
                 if RandomeRate <= int(PourUnSeulMec.Att[Attaque_CapaityChoice].LandingRate){
                     Joueur.Vieactuelle -= int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
-                    if Joueur.Classe == "Wakenda" {
-                        Joueur.AbsorbedDamage += int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
-                    }
+                    Joueur.AbsorbedDamage += int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
                     UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
                     fmt.Printf("\n\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques_Capacity)
                     fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
@@ -122,6 +130,7 @@ func Response() {
 
         if RandomeRate <= int(Attaques[ChoiceResponse].LandingRate) {
             Joueur.Vieactuelle -= int(Attaques[ChoiceResponse].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
+            Joueur.AbsorbedDamage +=int(PourUnSeulMec.Att[AdverseryChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
             UsedAttaques = Attaques[ChoiceResponse].Name
             fmt.Printf("\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques)
             fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",

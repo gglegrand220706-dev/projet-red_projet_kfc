@@ -33,7 +33,7 @@ func MenuGeneral() {
 	}
 	if selection == 3 {
 		fmt.Print("\033[H\033[2J")
-		RenvoieSinetique.Damage = 0
+		Joueur.AbsorbedDamage = 0
 		AdverseryChoice = 0
 		CombatMode()
 	}

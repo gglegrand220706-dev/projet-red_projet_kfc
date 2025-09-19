@@ -14,7 +14,7 @@ var GutPunch        = Attaques{"Coup à l’estomac 🤜", 8, 80, 0}
 
 var ClapSuperSonic = Attaques{"Clape SuperSonic", 10, 80, 0}
 
-var RenvoieSinetique = Attaques{"Renvoie Sinetqiue", Joueur.AbsorbedDamage, 100, 0}
+var RenvoieSinetique = Attaques{"Renvoie Sinetqiue", 30, 100, 0}
 
 var AttaqueHache    = Attaques{"Lancé de Hache 🪓", 10, 75, 10}
 var AttaqueHache02  = Attaques{"Hache de foudre ⚡🪓", 12, 75, 20}

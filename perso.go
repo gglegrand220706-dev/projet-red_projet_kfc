@@ -52,6 +52,7 @@ func (u *Character) RecupInfoClass() {
 	var Confirme int = 0
 	var ClasseSelection int
 	u.Niveau = 1
+	u.ExpNextLevel = 10
 	u.Attaques = []Attaques{HighKick, GutPunch, CoupDePoing}
 	u.CapacityDisplay = []string{CoupDePoing.Name, HighKick.Name, GutPunch.Name}
 	for Confirme != 1 {
