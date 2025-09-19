@@ -1,8 +1,6 @@
 # projet-red_projet_kfc
 Description : 
 Ce projet permet d’accéder au jeu TeKnologia : Battle World.
-
-[potentielle table des matières]
 Fonctionnalités : 
 -	Création de personnage (choix entre plusieurs classes)
 -	Économie : système de marchand pour acheter des potions, armes, armures, argent récupérable en faisant des quêtes
