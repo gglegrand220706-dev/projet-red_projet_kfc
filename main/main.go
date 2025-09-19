@@ -6,7 +6,11 @@ import (
 )
 
 func main() {	
+<<<<<<< HEAD
 	//personnage.WelcomeRecords()
+=======
+	// personnage.WelcomeRecords()
+>>>>>>> parent of 32c3a8f (Commit rajout de fonction et réparation design)
 	personnage.CharacterCreation()
 	personnage.MenuGeneral()
 	/*

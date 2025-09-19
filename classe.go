@@ -12,7 +12,11 @@ type Kryptonien struct {
 
 }
 
+<<<<<<< HEAD
 var Kryptonien1 = Kryptonien{20, 10, 25, 25, 20, []string{"Laser 🔴"}, []Attaques{AttaqueLasser}, []Capacity{}}
+=======
+var Kryptonien1 = Kryptonien{20, 10, 25, []string{"Crypto 🪙", "Magie ✨", "Puissance plus grande 💥"}, 25, 20, []string{"Laser 🔴"}, []Attaques{AttaqueLasser}, []Capacity{}}
+>>>>>>> parent of 32c3a8f (Commit rajout de fonction et réparation design)
 
 type Batfamily struct {
 	Viemax       int
