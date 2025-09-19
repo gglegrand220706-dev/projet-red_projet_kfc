@@ -2,7 +2,7 @@ package main
 
 import (
 	"personnage"
-	// "fmt"
+	"fmt"
 )
 
 func main() {
