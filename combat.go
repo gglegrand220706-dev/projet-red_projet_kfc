@@ -32,7 +32,7 @@ func AtackBasiqueSystème() {
         if AttackChoice-1 < len(Attaques) {
             if Attaques[AttackChoice-1].Name == "Renvoie Sinetqiue" {
                 if Joueur.AbsorbedDamage >= 30 {
-                    CurrentAdversery[AdverseryChoice].Vieactuelle -= 30
+                    CurrentAdversery[AdverseryChoice].Vieactuelle -= Joueur.AbsorbedDamage
                     Joueur.AbsorbedDamage = 0 
                     fmt.Printf("\033[33mPV adversaire : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
                     CurrentAdversery[AdverseryChoice].Vieactuelle,
@@ -94,26 +94,49 @@ func Response() {
         if Attaque_CapaityChoice + 1 > len(PourUnSeulMec.Att) && !PourUnSeulMec.Cap[0].Used {
             PourUnSeulMec.Cap[0].Used = true
             var RandomeRate int
-                RandomeRate = int(rand.Intn(101*(1-Joueur.Agilite/100)))
+            var Critique int
+            Critique = int(rand.Intn(101/CurrentAdversery[AdverseryChoice].Intelligence))
+            RandomeRate = int(rand.Intn(101*(1-Joueur.Agilite/100)))
                 if RandomeRate <= int(PourUnSeulMec.Att[Attaque_CapaityChoice].LandingRate){
-                    Joueur.Vieactuelle -= int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
-                    Joueur.AbsorbedDamage += int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))    
-                    UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
-                    fmt.Printf("\n\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques_Capacity)
-                    fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
-                    Joueur.Vieactuelle, Joueur.Viemax)
+                    if Critique <= int(PourUnSeulMec.Att[Attaque_CapaityChoice].Critique){
+                        Joueur.Vieactuelle -= 2*int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
+                        Joueur.AbsorbedDamage += 2*int((PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))/2)    
+                        UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
+                        fmt.Print("\n\033[31mCoup Crituqe !!!\033[0m\n")
+                        fmt.Printf("\n\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques_Capacity)
+                        fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
+                        Joueur.Vieactuelle, Joueur.Viemax)
+                    } else {
+                        Joueur.Vieactuelle -= int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
+                        Joueur.AbsorbedDamage += int((PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))/2)    
+                        UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
+                        fmt.Printf("\n\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques_Capacity)
+                        fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
+                        Joueur.Vieactuelle, Joueur.Viemax)
+                    }
                 }
         } else {
              if CurrentAdversery[AdverseryChoice].Vieactuelle > 0 && Joueur.Vieactuelle > 0 {
                 var RandomeRate int
+                var Critique int
+                Critique = rand.Intn(101/CurrentAdversery[AdverseryChoice].Intelligence)
                 RandomeRate = rand.Intn(101)
                 if RandomeRate <= int(PourUnSeulMec.Att[Attaque_CapaityChoice].LandingRate){
-                    Joueur.Vieactuelle -= int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
-                    Joueur.AbsorbedDamage += int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
-                    UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
-                    fmt.Printf("\n\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques_Capacity)
-                    fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
-                    Joueur.Vieactuelle, Joueur.Viemax)
+                    if Critique <= PourUnSeulMec.Att[Attaque_CapaityChoice].Critique {
+                        Joueur.Vieactuelle -= 2*int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
+                        Joueur.AbsorbedDamage += 2*int((PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))/4)
+                        UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
+                        fmt.Printf("\n\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques_Capacity)
+                        fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
+                        Joueur.Vieactuelle, Joueur.Viemax)
+                    } else {
+                        Joueur.Vieactuelle -= int(PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
+                        Joueur.AbsorbedDamage += int((PourUnSeulMec.Att[Attaque_CapaityChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))/4)
+                        UsedAttaques_Capacity = PourUnSeulMec.Att[Attaque_CapaityChoice].Name
+                        fmt.Printf("\n\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques_Capacity)
+                        fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
+                        Joueur.Vieactuelle, Joueur.Viemax)
+                    }
                 }
              }
         }
@@ -124,17 +147,31 @@ func Response() {
         Attaques = append(Attaques, CurrentAdversery[AdverseryChoice].Attaques...)
         var UsedAttaques string
         var RandomeRate int
-
+        var Critique int
+        Critique = rand.Intn(101/CurrentAdversery[AdverseryChoice].Intelligence)
         ChoiceResponse = rand.Intn(len(CurrentAdversery[AdverseryChoice].Attaques))
         RandomeRate = rand.Intn(101)
-
+        Critique = rand.Intn(101*(1-CurrentAdversery[AdverseryChoice].Intelligence/100))
         if RandomeRate <= int(Attaques[ChoiceResponse].LandingRate) {
+            if Attaques[ChoiceResponse].Name == "Équation anti-vie" {
+                Joueur.Vieactuelle -= Joueur.Vieactuelle -1
+            }
+            if Critique <= Attaques[ChoiceResponse].Critique {
+                 Joueur.Vieactuelle -= 2*int(Attaques[ChoiceResponse].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
+                Joueur.AbsorbedDamage += 2*int((Attaques[ChoiceResponse].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))/4)
+                UsedAttaques = Attaques[ChoiceResponse].Name
+                fmt.Print("\033[31m Coup Critique !!!\033[0m\n")
+                fmt.Printf("\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques)
+                fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
+                Joueur.Vieactuelle, Joueur.Viemax)
+            } else {
             Joueur.Vieactuelle -= int(Attaques[ChoiceResponse].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
-            Joueur.AbsorbedDamage +=int(PourUnSeulMec.Att[AdverseryChoice].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))
+            Joueur.AbsorbedDamage +=int((Attaques[ChoiceResponse].Damage * (1 + CurrentAdversery[AdverseryChoice].Puissance/100))/4)
             UsedAttaques = Attaques[ChoiceResponse].Name
             fmt.Printf("\033[31m❌ Vous avez été touché par : %v\033[0m\n", UsedAttaques)
             fmt.Printf("\033[33mPV joueur : \033[31m%d\033[0m/\033[32m%d\033[0m\n",
                 Joueur.Vieactuelle, Joueur.Viemax)
+            }
         } else {
             fmt.Printf("\033[32m✅ L'attaque de %v a raté, petit chanceux !\033[0m\n", CurrentAdversery[AdverseryChoice].Nom)
         }
@@ -187,7 +224,6 @@ func AtackWeaponSystème() {
         if AttackChoice-1 > len(Attaques)+2 {
             fmt.Print("\033[31m❌ Ce n'est pas une proposition espèce de demeuré\033[0m\n")
             AtackBasiqueSystème()
-            return
         }
         if AttackChoice -1 ==  len(Attaques)+2 && !PourUnSeulMec.Cap[0].Used && Joueur.EquipedWeapon.Name == PourUnSeulMec.Name[1] {
             fmt.Print("⏳ Le temps se déforme... 🌀 Vous allez rejouer ! 🔁\n")
@@ -198,7 +234,6 @@ func AtackWeaponSystème() {
 
         if AttackChoice == len(Attaques)+1 {
             CombatMode()
-            return
         }
         if AttackChoice-1 < len(Attaques) {
             if RandomeRate <= int(Attaques[AttackChoice-1].LandingRate) {

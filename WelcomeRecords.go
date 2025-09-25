@@ -20,7 +20,7 @@ func WelcomeRecords() {
     fmt.Println("\\__/     \\__| \\_______|\\__| \\_______| \\______/ \\__| \\__| \\__| \\_______|      \\__|  \\__| \\_______| \\_______| \\______/ \\__|       \\_______|")
     fmt.Println("\033[0m")
 
-    fmt.Println("\033[33m=== LORE ===\033[0m\n")
+    fmt.Print("\n\033[33m=== LORE ===\033[0m\n\n")
 
     lignes := []string{
         "Il y a bien longtemps, aux confins du multivers, une entité mécanique nommée TeKnologia a brisé l’équilibre cosmique.",
@@ -39,7 +39,7 @@ func WelcomeRecords() {
             time.Sleep(50 * time.Millisecond) 
         }
         fmt.Print("\n\n") 
-        time.Sleep(1 * time.Second) 
+        time.Sleep(60 * time.Millisecond) 
     }
 
     fmt.Println("\n\033[33mÊTES-VOUS PRÊT ? Appuyez sur ENTRER pour commencer votre aventure...\033[0m")

@@ -21,15 +21,14 @@ func MenuGeneral() {
 	fmt.Println("\033[31m | |_) | (_| | |_| |_| |  __/   \\ V  V / (_) | |  | | (_| |\033[0m")
 	fmt.Println("\033[31m |____/ \\__,_|\\__|\\__|_|\\___|    \\_/\\_/ \\___/|_|  |_|\\__,_|\033[0m")
 	fmt.Print("\033[33mOptions :\n\033[0m")
-	fmt.Print("\033[33m1 -->\033[0m \033[31m📚 Base de données\033[0m\n\033[33m2 -->\033[0m \033[31m🛒 Boutique\033[0m\n\033[33m3 -->\033[0m \033[31m🏋️ Entraînement\033[0m\n\033[33m4 -->\033[0m \033[31m🗺️  Quête\033[0m\n\033[33m5 -->\033[0m \033[31m🚪 Quitter\033[0m\n")
+	fmt.Print("\033[33m1 -->\033[0m \033[31m📚 Base de données\033[0m\n\033[33m2 --> \033[0m \033[31m Tekno-Town\033[0m\n\033[33m3 -->\033[0m \033[31m🏋️ Entraînement\033[0m\n\033[33m4 -->\033[0m \033[31m🚪 Quitter\033[0m\n\n")
 	fmt.Scan(&selection)
 	if selection == 1 {
 		fmt.Print("\033[H\033[2J")
 		MenuDataBase()
 	}
 	if selection == 2 {
-		fmt.Print("\033[H\033[2J")
-		MenuShop()
+		MenuTeknoTown()
 	}
 	if selection == 3 {
 		fmt.Print("\033[H\033[2J")
@@ -39,17 +38,12 @@ func MenuGeneral() {
 	}
 	if selection == 4 {
 		fmt.Print("\033[H\033[2J")
-		RenvoieSinetique.Damage = 0
-		MenuQuetes()
+		Quitter()
 	}
-	if selection == 5 {
-		return
-	}
-	if selection > 5 || selection <= 0 {
+	if selection > 4 || selection <= 0 {
 		fmt.Print("\033[H\033[2J")
-		fmt.Print("Option indisponible, veuillez choisir parmi les 4 propositions\n")
+		fmt.Print("\033[33mOption indisponible, veuillez choisir parmi les 4 propositions\033[om\n")
 		MenuGeneral()
-
 	}
 }
 
@@ -92,7 +86,6 @@ func MenuShop() {
     fmt.Print("\033[33m1 --> \033[31mPotions\033[0m\n")
     fmt.Print("\033[33m2 --> \033[31mArmes\033[0m\n")
     fmt.Print("\033[33m3 --> \033[31mArmures\033[0m\n")
-    fmt.Print("\033[33m4 --> \033[31mForgeron\033[0m\n")
     fmt.Print("\033[33m5 --> \033[31mRetour\033[0m\n")
     fmt.Print("\033[33mQue voulez-vous faire ?\033[0m\n")
     fmt.Scan(&selection)
@@ -119,17 +112,11 @@ func MenuShop() {
         ShopArmures()
         RetourMenu()
     }
+
     if selection == 4 {
-        fmt.Print("\033[H\033[2J")
-        BlackSmithDisplay()
-        BlackSmith()
-        Continuer()
-        MenuShop()
+        MenuTeknoTown()
     }
-    if selection == 5 {
-        MenuGeneral()
-    }
-    if selection > 5 || selection <= 0 {
+    if selection > 4 || selection <= 0 {
         fmt.Print("\033[H\033[2J")
         fmt.Print("\033[31m❌ Option indisponible, veuillez choisir parmi les 5 propositions\033[0m\n")
         MenuShop()
@@ -142,7 +129,7 @@ func RetourMenu() {
 }
 
 func DisplayAtackPhysqiue() {
-    if Joueur.Vieactuelle > 0 && CurrentAdversery[0].Vieactuelle > 0 {
+    if Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
         var OptionDisplay = []string{}
         var Index int = 1
         for _, Attaque := range Joueur.Attaques {
@@ -152,7 +139,7 @@ func DisplayAtackPhysqiue() {
         fmt.Print("\n\033[33mQue voulez-vous faire :\033[0m\n")
         for index, OptionsName := range OptionDisplay {
 			if OptionsName == "Renvoie Sinetqiue" {
-				fmt.Printf("\033[33m%d --> \033[31m%v %c\033[0m\n", index+1, RenvoieSinetique.Name, RenvoieSinetique.Damage)
+				fmt.Printf("\033[33m%d --> \033[31m%v %d\033[0m\n", index+1, RenvoieSinetique.Name, Joueur.AbsorbedDamage)
 			} else {
 				fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, OptionsName)
             index++
@@ -164,7 +151,7 @@ func DisplayAtackPhysqiue() {
 }
 
 func DisplayAtackArmes() {
-    if Joueur.Vieactuelle > 0 && CurrentAdversery[0].Vieactuelle > 0 {
+    if Joueur.Vieactuelle > 0 && CurrentAdversery[AdverseryChoice].Vieactuelle > 0 {
         var OptionDisplay = []Attaques{}
         var Index int
         for _, Attaque := range Joueur.EquipedWeapon.Attaques {
@@ -179,9 +166,6 @@ func DisplayAtackArmes() {
                 fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, OptionsName.Name)
             }
             Index++
-			if Joueur.EquipedWeapon.Name == PourUnSeulMec.Name[1]{
-				fmt.Print(Index+1, PourUnSeulMec.Cap[0].Name)
-			}
         }
         fmt.Printf("\033[33m%d --> \033[31mRetour\033[0m\n", Index+2)
     }
@@ -330,42 +314,7 @@ func CombatMode() {
 }
 
 
-var K int // indice pour le retour
 
-func BlackSmithDisplay() {
-    fmt.Print("\033[H\033[2J")
-    fmt.Print("\033[36m                 Forgeron\033[0m\n")
-    var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
-	var ArmuresForgeable = []*Armures{&ArmureBatman}
-	var TeknologiaForgeable = TeknologiaItem
-    var IndexObj int
-    K = 1
-
-    for index, Name := range ArmesForgeable {
-        fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, Name.Name)
-        K++
-        IndexObj = 0
-        for IndexObj < len(ArmesForgeable[index].ObjectsCraft) {
-            fmt.Printf("           \033[33m- \033[32m%v\033[0m\n", ArmesForgeable[index].ObjectsCraft[IndexObj].Name)
-            IndexObj++
-        }
-    }
-	for index, Name := range ArmuresForgeable {
-        fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", K, Name.Name)
-        K++
-        IndexObj = 0
-        for IndexObj < len(ArmuresForgeable[index].ObjectCraft) {
-            fmt.Printf("           \033[33m- \033[32m%v\033[0m\n", ArmuresForgeable[index].ObjectCraft[IndexObj].Name)
-            IndexObj++
-        }
-    }
-	fmt.Print(K, " --> ", TeknologiaForgeable.Name, "\n")
-	for IndexObj < len(TeknologiaForgeable.ObjectsCraft) {
-            fmt.Printf("           \033[33m- \033[32m%v\033[0m\n", TeknologiaForgeable.ObjectsCraft[IndexObj].Name)
-            IndexObj++
-        }
-    fmt.Printf("\033[33m%d --> \033[31mRetour\033[0m\n", K+1)
-}
 
 func DisplayInventory() {
     fmt.Print("\033[H\033[2J")
@@ -399,7 +348,7 @@ func MenuBosse() {
 	fmt.Print("\n\nqui voulez vous afronter ?\n\n")
 	for indexBosses, Bosses := range AllBosses {
 		if Bosses.Nom == "Chimère TeKnologia" && BeatenBosses < 6 {
-			fmt.Print(indexBosses+1, " -->", Bosses.Nom, " ", "(battez les autres bosses avant)\n")
+			fmt.Print(indexBosses+1, " -->", Bosses.Nom, " ", "\033[31m(battez les autres bosses avant)\033[0m\n")
 			IndexBosses ++
 		} else {
 			fmt.Print(indexBosses+1, " -->", Bosses.Nom, " ", "(Niveau ", Bosses.Niveau, ")\n")
@@ -443,4 +392,131 @@ func MenuBosse() {
 		fmt.Print("se n'est pas une option, lâche ça kantin")
 		MenuBosse()
 	}
+}
+
+func MenuTeknoTown() {
+    fmt.Print("\033[H\033[2J")
+    var SelectionInTown int
+    fmt.Print("                                      Bien Venue A Tekno Town !!!\n\n1 --> Boutique\n2 --> Forgeron\n3 --> Casino\n4 --> Tableau dess quêtes\n5 --> Quitter\n\nQue voulez vous faire ?\n")
+    fmt.Scan(&SelectionInTown)
+    switch SelectionInTown {
+    case 1 :
+        MenuShop()
+    case 2:
+        MenueBlackSmith()
+    case 3 :
+        CasinoMenu()
+    case 4:
+        RenvoieSinetique.Damage = 0
+        MenuQuetes()
+    case 5 :
+        MenuGeneral()
+        default :
+            fmt.Print("\nToujours pas une option disponible\n")
+            MenuTeknoTown()
+    }
+}
+
+func CasinoMenu() {
+    fmt.Print("\033[H\033[2J")
+    var ChoixCasino int
+    fmt.Print("                          TeKno-Casino $$\n\n Que voulez vous faire ? \n\n1 --> Machine a sous\n2 --> Roulette\n3 --> Quitter\n")
+    fmt.Scan(&ChoixCasino)
+        switch ChoixCasino {
+            case 1 :
+                CasinoMachineSous()
+            case 2 :
+                fmt.Print("on y est")
+                RouletteCasino()
+            case 3 :
+                MenuTeknoTown()
+                default :
+                    fmt.Print("\nchoisissez parmis les options possibles\n\n")
+                    fmt.Print("                          TeKno-Casino $$\n\n Que voulez vous faire ? \n\n 1 --> Machine a sous\n 2 --> quiter")
+        } 
+}
+
+var IndexArmesForgeable int
+
+func MenuBlackSmithArmes() {
+    var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
+    var IndexObj int
+       for index, Name := range ArmesForgeable {
+        fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, Name.Name)
+        IndexObj = 0
+        IndexArmesForgeable ++
+        for IndexObj < len(ArmesForgeable[index].ObjectsCraft) {
+            fmt.Printf("           \033[33m- \033[32m%v\033[0m\n", ArmesForgeable[index].ObjectsCraft[IndexObj].Name)
+            IndexObj++
+        }
+    }
+    fmt.Print(len(ArmesForgeable)+1, " --> Retour\n")
+}
+
+var IndexArmureForgeable int
+
+func MenuBlackSmithArmures() {
+    var ArmuresForgeable = []*Armures{&ArmureBatman}
+    var IndexObj int
+       for index, Name := range ArmuresForgeable {
+        fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, Name.Name)
+        IndexObj = 0
+        IndexArmureForgeable ++
+        for IndexObj < len(ArmuresForgeable[index].ObjectCraft) {
+            fmt.Printf("           \033[33m- \033[32m%v\033[0m\n", ArmuresForgeable[index].ObjectCraft[IndexObj].Name)
+            IndexObj++
+        }
+    }
+    fmt.Print(len(ArmuresForgeable)+1, " --> Retour\n")
+}
+
+var IndexObjetsForgeable int
+
+func MenueBlackSmithObbjet() {
+    var ObjetCraftable = []*Teknologia{&TeknologiaItem}
+    var IndexObj int
+
+       for index, Name := range ObjetCraftable {
+        fmt.Printf("\033[33m%d --> \033[31m%v\033[0m\n", index+1, Name.Name)
+        IndexObj = 0
+        IndexObjetsForgeable ++
+        for IndexObj < len(ObjetCraftable[index].ObjectsCraft) {
+            fmt.Printf("           \033[33m- \033[32m%v\033[0m\n", ObjetCraftable[index].ObjectsCraft[IndexObj].Name)
+            IndexObj++
+        }
+    }
+    fmt.Print(len(ObjetCraftable)+1, " --> Retour\n")
+}
+
+func MenueBlackSmith() {
+    fmt.Print("\033[H\033[2J")
+    var WhatForge int
+    fmt.Print("                            ");DynamiqueType("Bien venue chez le forgeron de Tekno-Town\n\nque voulez vous faire ?\n\n", 60)
+    DynamiqueType("1 --> Armes Forgeables\n2 --> Armures Forgeables\n3 --> Objets Forgeable\n4 --> Retour\n", 20)
+    fmt.Scan(&WhatForge)
+    for WhatForge > 0 || WhatForge < 4 {
+         fmt.Print("ouioui")
+        switch WhatForge {
+        case 1 :
+            fmt.Print("\033[H\033[2J")   
+            MenuBlackSmithArmes()
+            BlackSmithArmes()
+            Continuer()
+        case 2 :
+            fmt.Print("\033[H\033[2J")
+            MenuBlackSmithArmures()
+            BlackSmithArmures()
+            Continuer()
+        case 3 :
+            fmt.Print("\033[H\033[2J")
+            MenueBlackSmithObbjet()
+            BlackSmithObjets()
+            Continuer()
+        case 4 :
+            fmt.Print("\033[H\033[2J")
+            MenuTeknoTown()
+            default :
+                fmt.Print("se n'est pas une option disponible")
+        }
+    }
 }

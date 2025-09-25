@@ -2,6 +2,8 @@ package personnage
 
 import (
 	"fmt"
+	"math/rand"
+    "time"
 )
 
 func ShopPotion() {
@@ -123,74 +125,264 @@ func ShopArmures() {
     }
 }
 
-func BlackSmith() {
+func BlackSmithArmes() {
     var CraftingChoice int
-    fmt.Print("\033[33mQue voulez-vous, Aventurier ?\033[0m\n")
+    DynamiqueType("\033[33mQue voulez-vous, Aventurier ?\033[0m\n", 60)
     fmt.Scan(&CraftingChoice)
+    IndexArmesForgeable = 1
     var ArmesForgeable = []*Armes{&GantThanos, &StormBreaker}
-	var ArmuresForgeable =[]*Armures{&ArmureBatman}
-	var TeknologiaCraft = &TeknologiaItem
-    var Enough int
-    var IndexFreeFire int
-	var IndexTek int
-
-    if CraftingChoice == K +2 {
-        MenuShop()
+    var Enough bool = false
+    fmt.Print("ça marche ici")
+    if CraftingChoice == len(ArmesForgeable) + 1 {
+        MenueBlackSmith()
         return
     }
-	if 1 >= CraftingChoice || CraftingChoice <= 2 {
-		for IndexFreeFire < len(ArmesForgeable[CraftingChoice-1].ObjectsCraft) {
-        if ArmesForgeable[CraftingChoice-1].ObjectsCraft[IndexFreeFire].Nb >= ArmesForgeable[CraftingChoice-1].RequiredQuantity[IndexFreeFire] {
-            Enough++
-            IndexFreeFire++
-        } else {
-            fmt.Print("\033[31mVous n'avez pas les matériaux\033[0m\n")
-            return
+	if 1 == CraftingChoice || CraftingChoice == 2 {
+        fmt.Print("ça marche ici")
+        for IndexArmesForgeable < len(ArmesForgeable[CraftingChoice-1].ObjectsCraft) {
+            if ArmesForgeable[CraftingChoice-1].ObjectsCraft[IndexArmesForgeable-1].Nb >= ArmesForgeable[CraftingChoice-1].RequiredQuantity[IndexArmesForgeable-1] {
+                Enough = true
+                IndexArmesForgeable++
+            } else {
+                fmt.Print("\033[31mVous n'avez pas les matériaux\033[0m\n")
+                Enough = false
+                return          
+            }
         }
-    }
-    if Enough == len(ArmesForgeable[CraftingChoice-1].ObjectsCraft) {
-        for i := 0; i < len(ArmesForgeable[CraftingChoice-1].ObjectsCraft); i++ {
-            ArmesForgeable[CraftingChoice-1].ObjectsCraft[i].Nb -= ArmesForgeable[CraftingChoice-1].RequiredQuantity[i]
+        if Enough {
+            for i := 0; i < len(ArmesForgeable[CraftingChoice-1].ObjectsCraft); i++ {
+                ArmesForgeable[CraftingChoice-1].ObjectsCraft[i].Nb -= ArmesForgeable[CraftingChoice-1].RequiredQuantity[i]
+            }
+            fmt.Print("\033[32mVous retrouverez cette arme dans le magasin\033[0m\n")
+            ArmesForgeable[CraftingChoice-1].InStrore = true
+            Enough = false
         }
-        fmt.Print("\033[32mVous retrouverez cette arme dans le magasin\033[0m\n")
-        ArmesForgeable[CraftingChoice-1].InStrore = true
-    }
-	}
-    if CraftingChoice == 3 {
-		for IndexFreeFire < len(ArmuresForgeable[0].ObjectCraft) {
-        if ArmuresForgeable[0].ObjectCraft[IndexFreeFire].Nb >= ArmuresForgeable[0].RequiredQuantity[IndexFreeFire] {
-            Enough++
-            IndexFreeFire++
-        } else {
-            fmt.Print("\033[31mVous n'avez pas les matériaux\033[0m\n")
-            return
-        }
-    }
-    if Enough == len(ArmuresForgeable[0].ObjectCraft) {
-        for i := 0; i < len(ArmuresForgeable[0].ObjectCraft); i++ {
-            ArmuresForgeable[0].ObjectCraft[i].Nb -= ArmuresForgeable[0].RequiredQuantity[i]
-        }
-        fmt.Print("\033[32mVous retrouverez cette armure dans le magasin\033[0m\n")
-        ArmuresForgeable[0].InStrore = true
-    }
-	}
-	if CraftingChoice == 4 {
-		for IndexTek < len(TeknologiaCraft.ObjectsCraft){
-			if TeknologiaCraft.ObjectsCraft[IndexTek].Nb == TeknologiaCraft.ObjectsQuentity[IndexTek]{
-				Enough++
-				IndexTek ++
-			} else {
-				fmt.Print("vous n'avez pas les matériaux")
-				return
-			}
-		}
-		if Enough == len(TeknologiaCraft.ObjectsCraft) {
-			for i :=0; i< len(TeknologiaCraft.ObjectsCraft); i++ {
-				TeknologiaCraft.ObjectsCraft[i].Nb -= TeknologiaCraft.ObjectsQuentity[i]
-			}
-			fmt.Print("Vous avez réparer Teknologia, ouvrez votre invetaire pour l'utiliser")
-			TeknologiaCraft.Possede = true
-		}
-	}
+	}	
 }
 
+func BlackSmithArmures() {
+    var CraftingChoice int
+    DynamiqueType("\033[33mQue voulez-vous, Aventurier ?\033[0m\n", 60)
+    fmt.Scan(&CraftingChoice)
+    var ArmuresForgeable = []*Armures{&ArmureBatman}
+    var Enough bool = false
+
+    if CraftingChoice == len(ArmuresForgeable) + 1 {
+        MenueBlackSmith()
+        return
+    }
+	if CraftingChoice == 1 {
+        for IndexArmureForgeable <= len(ArmuresForgeable[CraftingChoice-1].ObjectCraft) {
+            if ArmuresForgeable[CraftingChoice-1].ObjectCraft[IndexArmureForgeable-1].Nb >= ArmuresForgeable[CraftingChoice-1].RequiredQuantity[IndexArmureForgeable-1] {
+                Enough = true
+                IndexArmureForgeable++
+            } else {
+                fmt.Print("\033[31mVous n'avez pas les matériaux\033[0m\n")
+                Enough = false
+                return
+            }
+        }
+        if Enough  {
+            for i := 0; i < len(ArmuresForgeable[CraftingChoice-1].ObjectCraft); i++ {
+                ArmuresForgeable[CraftingChoice-1].ObjectCraft[i].Nb -= ArmuresForgeable[CraftingChoice-1].RequiredQuantity[i]
+            }
+            fmt.Print("\033[32mVous retrouverez cette arme dans le magasin\033[0m\n")
+            ArmuresForgeable[CraftingChoice-1].InStrore = true
+        }
+	}	
+}
+
+func BlackSmithObjets() {
+    var CraftingChoice int
+    DynamiqueType("\033[33mQue voulez-vous, Aventurier ?\033[0m\n", 60)
+    fmt.Scan(&CraftingChoice)
+    var ObjetForgeables = []*Teknologia{&TeknologiaItem}
+    var Enough bool = false
+
+    if CraftingChoice == len(ObjetForgeables) +1 {
+        MenueBlackSmith()
+        return
+    }
+	if 1 == CraftingChoice {
+		for IndexObjetsForgeable < len(ObjetForgeables[CraftingChoice-1].ObjectsCraft) {
+            if ObjetForgeables[CraftingChoice-1].ObjectsCraft[IndexObjetsForgeable-1].Nb >=  ObjetForgeables[CraftingChoice-1].ObjectsQuentity[IndexObjetsForgeable-1] {
+                Enough = true
+                IndexObjetsForgeable++
+            } else {
+                fmt.Print("\033[31mVous n'avez pas les matériaux\033[0m\n")
+                Enough = false
+                return
+            }
+        }
+        if Enough {
+            for i := 0; i < len(ObjetForgeables[CraftingChoice-1].ObjectsCraft); i++ {
+                ObjetForgeables[CraftingChoice-1].ObjectsCraft[i].Nb -= ObjetForgeables[CraftingChoice-1].ObjectsQuentity[i]
+            }
+            DynamiqueType("\033[32mVous retrouverez cette Objets dans votre inventaire\033[0m\n", 60)
+            ObjetForgeables[CraftingChoice-1].Possede = true
+        }
+	}	
+}
+
+func CasinoMachineSous() {
+    fmt.Print("\033[H\033[2J")
+    fmt.Print("               Bien venue au TeKno -Casino")
+    var Replay string
+    var FDigit int
+    var SDigit  int
+    var TDigit int
+    var ForthDigit int
+    var AllDigits []int
+    var PlayedMoney int
+    fmt.Print("\n\nCombien voulez vous miser ? (entrez 0 pour quitter)\n\n")
+    fmt.Scan(&PlayedMoney)
+    if PlayedMoney == 0 {
+        CasinoMenu()
+    }
+    for PlayedMoney > Joueur.Bourse {
+        if PlayedMoney > Joueur.Bourse {
+            fmt.Print("vous n'avez pas autant d'argent que ça voyons\n")
+            fmt.Print("\nCombien voulez vous miser ?\n\n")
+            fmt.Scan(&PlayedMoney)
+        }
+    }
+    Joueur.Bourse -= PlayedMoney
+    FDigit = rand.Intn(8)
+    SDigit = rand.Intn(8)
+    TDigit = rand.Intn(8)
+    ForthDigit = rand.Intn(8)
+    AllDigits = append(AllDigits, FDigit, SDigit, TDigit, ForthDigit)
+    time.Sleep(1 * time.Second)
+    for i, Numbers := range AllDigits {
+        if i == len(AllDigits) -1 {
+            fmt.Print( Numbers)
+            time.Sleep(1 * time.Second)
+        } else {
+            fmt.Print( Numbers, "-")
+        time.Sleep(1 * time.Second)
+        }       
+    }
+    if FDigit == SDigit && TDigit == ForthDigit && SDigit == TDigit{
+        fmt.Print("\nVous Avez Gangné !!!\nVotre Bourse Gagne ", 9*PlayedMoney)
+        Joueur.Bourse += 10*PlayedMoney
+        fmt.Print("Voulez Vous Rejouer ? (o/n)")
+        fmt.Scan(&Replay)
+        for Replay != "o" || Replay != "n" {
+            switch Replay {
+                case "o" :
+                    CasinoMachineSous()
+                case "n" :
+                    MenuTeknoTown()
+                    default : 
+                        fmt.Print("veuillez choisire parmis les options proposée \n")
+                        fmt.Print("Voulez Vous Rejouer ? (o/n)\n")
+                        fmt.Scan(&Replay)
+            }
+        }
+        
+    } else {
+        fmt.Print("\nDommage, Voulez vous rejouer ? (o/n) ")
+        fmt.Scan(&Replay)
+       for Replay != "o" || Replay != "n" {
+            switch Replay {
+                case "o" :
+                    CasinoMachineSous()
+                case "n" :
+                    MenuTeknoTown()
+                    default : 
+                        fmt.Print("veuillez choisire parmis les options proposée \n")
+                        fmt.Print("Voulez Vous Rejouer ? (o/n)\n")
+                    fmt.Scan(&Replay)
+                }
+            }
+    }
+}
+
+func RouletteCasino() {
+    fmt.Print("\033[H\033[2J")
+    var Couleur string
+    var Replay string
+    var PlayedMoney int
+    var ChoisirNombreConf string
+    var NombreChoisi int
+    var RandColorCompare string
+    var RandColor string
+    var RandNumber int
+    fmt.Print("               Bien venue à la roulette du TeKno -Casino\n\nCombien voulez Vous miser ? (entrez 0 pour quitter)\n")
+    fmt.Scan(&PlayedMoney)
+    if PlayedMoney == 0 {
+        CasinoMenu()
+    }
+    fmt.Print("\n Quelle Couleur voulez vous choisire ? (r/n) ")
+    fmt.Scan(&Couleur)
+    for ChoisirNombreConf != "o" && ChoisirNombreConf != "n" {
+        fmt.Print("\n\n voulez vous Choisir un nombre ? (o/n) ")
+        fmt.Scan(&ChoisirNombreConf)
+    }   
+    switch ChoisirNombreConf {
+    case "o" :
+        fmt.Print("\n\nQuelle Nombre voulez vous choisire entre 0 et 36 \n")
+        fmt.Scan(&NombreChoisi)
+        fmt.Print("\nParfait êtes vous prêts ? c'est Partit !!!\n")
+        RandNumber = rand.Intn(37)
+        if  RandNumber%2 == 0 {
+            RandColor = "rouge"
+            RandColorCompare = "r"
+            fmt.Print("\nvous êtes tomber sur ", RandNumber, " qui est une case ", RandColor, "\n")
+        } else {
+            RandColor = "noir"
+            RandColorCompare = "n"
+            fmt.Print("\nvous êtes tomber sur ", RandNumber, " qui est une case ", RandColor, "\n")
+        }
+        if RandColorCompare == Couleur && RandNumber == NombreChoisi {
+            fmt.Print("\nCous avez gagné le gros lots !!! vous repartez avec ", PlayedMoney*36, "\n")
+            Joueur.Bourse += PlayedMoney
+        } else {
+            fmt.Print("\nDommage, voulez vous rejouer ?? (o/n) ")
+            Joueur.Bourse -= PlayedMoney
+            fmt.Scan(&Replay)
+            for Replay != "o" || Replay != "n"{
+            switch Replay {
+            case "o" :
+                RouletteCasino()
+            case "n" :
+                CasinoMenu()
+                default : 
+                fmt.Print("\nse n'est pas une option disponible !!!\n")
+            }
+        }
+        }
+    case "n" :
+        fmt.Print("\nParfait êtes vous prêts ? c'est Partit !!!\n")
+        RandNumber = rand.Intn(37)
+        if  RandNumber%2 == 0 {
+            RandColor = "rouge"
+            RandColorCompare = "r"
+            fmt.Print("\nvous êtes tomber sur ", RandNumber, " qui est une case ", RandColor, "\n")
+        } else {
+            RandColor = "noir"
+            RandColorCompare = "n"
+            fmt.Print("\nvous êtes tomber sur ", RandNumber, " qui est une case ", RandColor, "\n")
+        }
+        if RandColorCompare == Couleur {
+            fmt.Print("\nCous avez gagné !!! vous repartez avec ", PlayedMoney*2, "\n")
+            Joueur.Bourse += PlayedMoney
+        } else {
+            fmt.Print("\nDommage, voulez vous rejouer ?? (o/n) ")
+            Joueur.Bourse -= PlayedMoney
+            fmt.Scan(&Replay)
+            for Replay != "o" || Replay != "n"{
+                switch Replay {
+                case "o" :
+                    RouletteCasino()
+                case "n" :
+                    CasinoMenu()
+                    default :
+                    fmt.Print("\ntoujours pas une option disponible\n")
+                }
+            }
+        }
+        default : 
+        fmt.Print("\nse n'est pas une option disponible !!!!\n")
+    }
+}

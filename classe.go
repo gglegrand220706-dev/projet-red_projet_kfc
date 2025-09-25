@@ -58,3 +58,15 @@ type Wakandais struct {
 }
 
 var Wakanda1 = Wakandais{15, 13, 20, 30, 40, []string{"Assimilation des coups pour renvoi synthétique 🛡️🤖"}, []Attaques{RenvoieSinetique}}
+
+type SpiderMan struct {
+	Viemax 			int
+	Inventaire      int
+	Puissance       float64
+	Agilite         int
+	Intelligence    int
+	CapacityDisplay []string
+	AttaquesSpé     []Attaques
+}
+
+var SpiderMan1 = SpiderMan{20, 10, 15, 40, 35, []string{"Entoiler"}, []Attaques{}}

@@ -58,7 +58,7 @@ func (u *Character) RecupInfoClass() {
 	for Confirme != 1 {
 		ClasseSelection = 0
 		fmt.Print("\033[H\033[2J")
-		fmt.Println("\033[33m\033[33mChoissiser votre classe :\033[0m\033[0m\n\033[31m\033[0m\033[33m1-->\033[0m\033[34m Kryptonien\033[0m\n\033[31m\033[0m\033[33m2-->\033[0m\033[90m Bat family\033[0m\n\033[31m\033[0m\033[33m3-->\033[0m\033[92m Hulk\n\033[31m\033[0m\033[33m4-->\033[0m\033[95m Wakanda\033[0m")
+		fmt.Println("\033[33m\033[33mChoissiser votre classe :\033[0m\033[0m\n\033[31m\033[0m\033[33m1-->\033[0m\033[34m Kryptonien\033[0m\n\033[31m\033[0m\033[33m2-->\033[0m\033[90m Bat family\033[0m\n\033[31m\033[0m\033[33m3-->\033[0m\033[92m Hulk\n\033[31m\033[0m\033[33m4-->\033[0m\033[95m Wakanda\033[0m\n\033[33m5 -->\033[31mSpier-Hero\033[0m")
 		fmt.Scan(&ClasseSelection)
 		if ClasseSelection == 1 {
             u.Classe = "\033[34m Kryptonien\033[0m"
@@ -153,6 +153,29 @@ func (u *Character) RecupInfoClass() {
 			if Confirme == 2 {
 				fmt.Print("\033[H\033[2J")
 			}
+		}
+	if ClasseSelection == 5 {
+            u.Classe = "\033[34m Spider Hero\033[0m"
+			fmt.Print("\033[H\033[2J")
+			fmt.Print("\033[33mvoulez vous choisir -->", u.Classe, " \033[0m\033[33mcomme classe ?\033[0m\n")
+			fmt.Print("\033[33m Vie max -->\0330\033[32m ", SpiderMan1.Viemax, "\033[0m\n \033[33mInventaire -->\033[0m \033[32m ", SpiderMan1.Inventaire, "\033[0m\n \033[33mPuissance -->\033[0m \033[32m ", SpiderMan1.Puissance, "\033[0m\033[0m \n \033[33mAgilite -->\033[0m\033[32m ", SpiderMan1.Agilite, "\033[0m\n\033[33m Intelligence -->\033[0m \033[32m ", SpiderMan1.Intelligence, "\033[0m\n\033[33m Capacity -->\033[0m \033[32m ", SpiderMan1.CapacityDisplay, "\033[0m \n")
+			fmt.Print("\033[34mÊtes-vous sur ?\033[0m\n \033[33m1 -->\033[0m \033[32moui\033[0m \n \033[33m2 --> \033[31mnon\033[0m \n")
+			fmt.Scan(&Confirme)
+			if Confirme == 1 {
+				u.Viemax = SpiderMan1.Viemax
+				u.Vieactuelle = u.Viemax
+				u.Inventaire = SpiderMan1.Inventaire
+				u.Puissance = SpiderMan1.Puissance
+				u.Agilite = SpiderMan1.Agilite
+				u.Intelligence = SpiderMan1.Intelligence
+				u.CapacityClasseDisplay = SpiderMan1.CapacityDisplay
+				u.Capacity = nil 
+				u.Attaques = append(u.Attaques, SpiderMan1.AttaquesSpé...)
+				u.DisplayPlayerClass()
+			}
+			if Confirme == 2 {
+				fmt.Print("\033[H\033[2J")
+			}
 
 		}
 	}
@@ -160,7 +183,7 @@ func (u *Character) RecupInfoClass() {
 
 func DisplayInfo() {
 	fmt.Print("\033[33minfos perso : \n\033[0m")
-fmt.Println("\033[33mPseudo -->\033[32m", Joueur.Nom,
+	fmt.Println("\033[33mPseudo -->\033[32m", Joueur.Nom,
     "\n\033[33mClasse -->\033[32m", Joueur.Classe,
     "\n\033[33mNiveau -->\033[32m", Joueur.Niveau,
     "\n\033[33mExp -->\033[32m", Joueur.EXP, "/", Joueur.ExpNextLevel,
@@ -168,4 +191,3 @@ fmt.Println("\033[33mPseudo -->\033[32m", Joueur.Nom,
     "\n\033[33mCompétences -->\033[32m", Joueur.CapacityClasseDisplay,
 	)
 }
-

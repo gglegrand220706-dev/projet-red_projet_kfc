@@ -31,7 +31,8 @@ var EpeeTraining=Armes{"\033[36m⚔️  Épées d'entraînement\033[0m",false,tr
 var GantThanos=Armes{"\033[35m🧤 Gant de Thanos\033[0m",false,false,100,1000,[]*Objects{&ScrapMetal,&InfinityStoneMind,&InfinityStoneReality,&InfinityStoneTime,&InfinityStonePouvoir,&InfinityStoneSpace,&InfinityStoneSoule},[]int{10,1,1,1,1,1,1},[]Attaques{AttaqueGantThanos,AttaqueGantThanos02,AttaqueGantThanos03,AttaqueGantThanos04,AttaqueGantThanos05,AttaqueGantSnap},0,10}
 var MarteauThor=Armes{"\033[34m🔨 Marteau de Thor\033[0m",false,true,20,200,[]*Objects{},[]int{},[]Attaques{AttaquesMarteauLancé,AttaquesMarteauFoudre},0,15}
 var StormBreaker=Armes{"\033[33m🪓 StormBreaker\033[0m",false,false,30,400,[]*Objects{&ScrapMetal,&GrootsBranches},[]int{5,5},[]Attaques{AttaqueHache,AttaqueHache02},0,20}
-var AllWeapons = []*Armes{&EpeeTraining, &GantThanos, &MarteauThor, &StormBreaker}
+var GodKiller=Armes{"\033[33m GodKiller\033[0m", false, false, 40, 300, []*Objects{}, []int{},[]Attaques{GodSlicer, TrancheMagique}, 0, 20}
+var AllWeapons = []*Armes{&EpeeTraining, &GantThanos, &MarteauThor, &StormBreaker, &GodKiller}
 
 type Armures struct {
 	Name string
@@ -62,7 +63,7 @@ type Teknologia struct {
     Possede bool
 }
 
-var TeknologiaItem = Teknologia{"Teknologia", []*Objects{&KeyTK, &PlansMachine, &KeyTK}, []int{1, 1, 1}, false}
+var TeknologiaItem = Teknologia{"Teknologia", []*Objects{&PlansMachine, &KeyTK}, []int{1, 1, 1}, false}
 
 var ScrapMetal=Objects{"\033[90m⚙️  Scrape de Uruu\033[0m",10,75,10}
 var InfinityStoneMind=Objects{"\033[35m🧠 Pierre de l'esprit\033[0m",1,15,1}
@@ -73,8 +74,8 @@ var InfinityStoneSpace=Objects{"\033[35m🪐 Pierre de l'espace\033[0m",1,15,1}
 var InfinityStoneSoule=Objects{"\033[35m🧿 Pierre de l'âme\033[0m",1,15,1}
 var GrootsBranches=Objects{"\033[32m🌿 Branche de Groot\033[0m",10,50,10}
 var CuireBat=Objects{"\033[34m🦇 Aile de chauve-souris\033[0m",10,75,20}
-var PlansMachine=Objects{"\033[33m📐 Plan pour réparer TeKnologia\033[0m",0,100,1}
-var KeyTK=Objects{"\033[33m📐 Clé de TeKnologia\033[0m",0,100,1}
+var PlansMachine=Objects{"\033[33m📐 Plan pour réparer TeKnologia\033[0m",1,100,1}
+var KeyTK=Objects{"\033[33m📐 Clé de TeKnologia\033[0m",1,100,1}
 var AllObjects = []*Objects{&ScrapMetal, &InfinityStoneMind, &InfinityStoneReality, &InfinityStoneTime, &InfinityStonePouvoir, &InfinityStoneSpace, &InfinityStoneSoule, &GrootsBranches, &CuireBat, &KeyTK, &PlansMachine}
 
 
